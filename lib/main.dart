@@ -1,11 +1,85 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:isolate';
 
-void main() {
-  runApp(const MyApp());
+import 'package:flutter/material.dart';
+import 'package:monitoring/monitoring.dart';
+
+void main() async {
+  late final errorReportingService = ErrorReportingService();
+
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    await initializeMonitoringPackage();
+
+    //for A/B testing
+    final remoteValueService = RemoteValueService();
+    await remoteValueService.load();
+
+    FlutterError.onError = errorReportingService.recordFlutterError;
+
+    Isolate.current.addErrorListener(
+      RawReceivePort((pair) async {
+        final List<dynamic> errorAndStacktrace = pair;
+        await errorReportingService.recordError(
+          errorAndStacktrace.first,
+          errorAndStacktrace.last,
+        );
+      }).sendPort,
+    );
+    runApp(
+      MyApp(
+        remoteValueService: remoteValueService,
+      ),
+    );
+  },
+      (error, stack) => errorReportingService.recordError(
+            error,
+            stack,
+            fatal: true,
+          ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({
+    super.key,
+    required this.remoteValueService,
+  });
+  final RemoteValueService remoteValueService;
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _analyticsService = AnalyticsService();
+  final _dynamicLinkService = DynamicLinkService();
+
+  late StreamSubscription _incomingDynamicLinksSubscription;
+  @override
+  void initState() {
+    super.initState();
+
+    _openInitialDynamicLinkIfAny();
+
+    _incomingDynamicLinksSubscription =
+        _dynamicLinkService.onNewDynamicLinkPath().listen(
+              _routerDelegate.push,
+            );
+  }
+
+  Future<void> _openInitialDynamicLinkIfAny() async {
+    final path = await _dynamicLinkService.getInitialDynamicLinkPath();
+    if (path != null) {
+      _routerDelegate.push(path);
+    }
+  }
+
+  @override
+  void dispose() {
+    _incomingDynamicLinksSubscription.cancel();
+    super.dispose();
+  }
 
   // This widget is the root of your application.
   @override
