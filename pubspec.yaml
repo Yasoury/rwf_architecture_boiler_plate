@@ -11,9 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+    
   routemaster: ^1.0.1
+  cupertino_icons: ^1.0.2
+
 
   monitoring:
     path: packages/monitoring

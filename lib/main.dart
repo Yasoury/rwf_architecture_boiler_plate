@@ -2,10 +2,12 @@ import 'dart:async';
 import 'dart:isolate';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:monitoring/monitoring.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:rwf_architecture_boiler_plate/routing_table.dart';
 
+import 'l10n/app_localizations.dart';
 import 'screen_view_observer.dart';
 
 void main() async {
@@ -111,6 +113,15 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('ar', ''),
+      ],
+      localizationsDelegates: const [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        AppLocalizations.delegate,
+      ],
       routeInformationParser: const RoutemasterParser(),
       routerDelegate: _routerDelegate,
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:wonder_words/l10n/app_localizations.dart';
+import 'l10n/app_localizations.dart';
 
 class TabContainerScreen extends StatelessWidget {
   const TabContainerScreen({
