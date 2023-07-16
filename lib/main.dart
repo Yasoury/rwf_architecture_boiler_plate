@@ -3,6 +3,10 @@ import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:monitoring/monitoring.dart';
+import 'package:routemaster/routemaster.dart';
+import 'package:rwf_architecture_boiler_plate/routing_table.dart';
+
+import 'screen_view_observer.dart';
 
 void main() async {
   late final errorReportingService = ErrorReportingService();
@@ -55,7 +59,24 @@ class _MyAppState extends State<MyApp> {
   final _analyticsService = AnalyticsService();
   final _dynamicLinkService = DynamicLinkService();
 
+  late final RoutemasterDelegate _routerDelegate = RoutemasterDelegate(
+      observers: [
+        ScreenViewObserver(
+          analyticsService: _analyticsService,
+        )
+      ],
+      routesBuilder: (context) {
+        return RouteMap(
+          routes: buildRoutingTable(
+            routerDelegate: _routerDelegate,
+            remoteValueService: widget.remoteValueService,
+            dynamicLinkService: _dynamicLinkService,
+          ),
+        );
+      });
+
   late StreamSubscription _incomingDynamicLinksSubscription;
+
   @override
   void initState() {
     super.initState();
@@ -84,13 +105,14 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'RWF Architecture',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      routeInformationParser: const RoutemasterParser(),
+      routerDelegate: _routerDelegate,
     );
   }
 }

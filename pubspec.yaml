@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  routemaster: ^1.0.1
 
   monitoring:
     path: packages/monitoring
