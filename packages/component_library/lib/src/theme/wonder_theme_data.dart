@@ -79,7 +79,7 @@ class DarkWonderThemeData extends WonderThemeData {
   @override
   ThemeData get materialThemeData => ThemeData(
         brightness: Brightness.dark,
-        toggleableActiveColor: Colors.white,
+        toggleButtonsTheme: const ToggleButtonsThemeData(color: Colors.white),
         primarySwatch: Colors.white.toMaterialColor(),
         dividerTheme: _dividerThemeData,
       );
