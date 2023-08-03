@@ -13,13 +13,15 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-    
+
+  intl: ^0.18.0
   routemaster: ^1.0.1
   cupertino_icons: ^1.0.2
 
-
   monitoring:
     path: packages/monitoring
+  key_value_storage:
+    path: packages/key_value_storage
 
 dev_dependencies:
   flutter_test:

@@ -19,6 +19,7 @@ Map<String, PageBuilder> buildRoutingTable({
   };
 }
 
+//TODO add the pages path
 class _PathConstants {
   const _PathConstants._();
 
@@ -26,5 +27,5 @@ class _PathConstants {
 
   static String get quoteListPath => '${tabContainerPath}home_scren';
 
-  static String get profileMenuPath => '${tabContainerPath}user';
+  static String get profileMenuPath => '${tabContainerPath}profile';
 }
