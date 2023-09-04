@@ -21,6 +21,36 @@ dependencies:
   monitoring:
     path: packages/monitoring
 
+  user_repository:
+    path: packages/user_repository
+
+  key_value_storage:
+    path: packages/key_value_storage
+
+  component_library:
+    path: packages/component_library
+
+  firebase_api:
+    path: packages/firebase_api
+
+  domain_models:
+    path: packages/domain_models
+
+
+
+## Features
+  update_profile:
+    path: packages/features/update_profile
+  profile_menu:
+    path: packages/features/profile_menu
+  sign_in:
+    path: packages/features/sign_in
+  forgot_my_password:
+    path: packages/features/forgot_my_password
+  sign_up:
+    path: packages/features/sign_up
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
