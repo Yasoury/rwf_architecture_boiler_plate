@@ -1,6 +1,6 @@
 PACKAGES := $(wildcard packages/*)
 FEATURES := $(wildcard packages/features/*)
-BUILD-RUNNER := packages/fav_qs_api packages/key_value_storage
+BUILD-RUNNER := packages/firebase_api packages/key_value_storage
 
 print:
 	for feature in $(FEATURES); do \

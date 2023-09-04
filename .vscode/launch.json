@@ -7,7 +7,11 @@
         {
             "name": "rwf_architecture_boiler_plate",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "firebase-API-KEY=AIzaSyBlC2mnzQo3h5wetuvCcz2c5wFqbLOC-eY"
+            ]
         },
         {
             "name": "rwf_architecture_boiler_plate (profile mode)",
