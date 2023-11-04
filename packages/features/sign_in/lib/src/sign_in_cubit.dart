@@ -18,7 +18,8 @@ class SignInCubit extends Cubit<SignInState> {
   void onEmailChanged(String newValue) {
     final previousScreenState = state;
     final previousEmailState = previousScreenState.email;
-    final shouldValidate = previousEmailState.invalid;
+    final shouldValidate =
+        previousEmailState.isNotValid && !previousEmailState.isPure;
     final newEmailState = shouldValidate
         ? Email.validated(
             newValue,
@@ -51,7 +52,8 @@ class SignInCubit extends Cubit<SignInState> {
   void onPasswordChanged(String newValue) {
     final previousScreenState = state;
     final previousPasswordState = previousScreenState.password;
-    final shouldValidate = previousPasswordState.invalid;
+    final shouldValidate =
+        previousPasswordState.isNotValid && !previousPasswordState.isPure;
     final newPasswordState = shouldValidate
         ? Password.validated(
             newValue,
@@ -88,7 +90,7 @@ class SignInCubit extends Cubit<SignInState> {
     final isFormValid = Formz.validate([
       email,
       password,
-    ]).isValid;
+    ]);
 
     final newState = state.copyWith(
       email: email,

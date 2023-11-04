@@ -154,9 +154,13 @@ class _SignInFormState extends State<_SignInForm> {
         }
       },
       builder: (context, state) {
-        final emailError = state.email.invalid ? state.email.error : null;
-        final passwordError =
-            state.password.invalid ? state.password.error : null;
+        final emailError = state.email.isValid || state.email.isPure
+            ? null
+            : state.email.error;
+        final passwordError = state.password.isValid || state.password.isPure
+            ? null
+            : state.password.error;
+
         final isSubmissionInProgress =
             state.submissionStatus == SubmissionStatus.inProgress;
 

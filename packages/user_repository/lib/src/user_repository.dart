@@ -140,10 +140,10 @@ class UserRepository {
     }
   }
 
-  Future<void> updateProfile(
-    String displayName,
-    String photoUrl,
-  ) async {
+  Future<void> updateProfile({
+    required String displayName,
+    required String photoUrl,
+  }) async {
     try {
       final response = await remoteApi.updateProfile(
         displayName,
@@ -154,12 +154,11 @@ class UserRepository {
         displayName: displayName,
         userPhotoURL: photoUrl,
         email: response.email,
-        idToken: response.idToken,
       );
-
+      var accessToken = await getUserToken();
       _userSubject.add(
         User(
-          accessToken: response.idToken!,
+          accessToken: accessToken!,
           displayName: displayName,
           userPhotoURL: photoUrl,
           email: response.email!,

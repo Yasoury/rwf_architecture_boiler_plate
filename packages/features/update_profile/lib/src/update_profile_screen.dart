@@ -142,13 +142,17 @@ class _UpdateProfileFormState extends State<_UpdateProfileForm> {
         final l10n = UpdateProfileLocalizations.of(context);
         if (state is UpdateProfileLoaded) {
           final usernameError =
-              state.username.invalid ? state.username.error : null;
-          final emailError = state.email.invalid ? state.email.error : null;
-          final passwordError =
-              state.password.invalid ? state.password.error : null;
-          final passwordConfirmationError = state.passwordConfirmation.invalid
-              ? state.passwordConfirmation.error
-              : null;
+              state.username.isNotValid ? state.username.error : null;
+          final emailError = state.email.isNotValid ? state.email.error : null;
+
+          final passwordError = state.password.isValid || state.password.isPure
+              ? null
+              : state.password.error;
+          final passwordConfirmationError =
+              state.passwordConfirmation.isNotValid ||
+                      state.passwordConfirmation.isPure
+                  ? null
+                  : state.passwordConfirmation.error;
           final cubit = context.read<UpdateProfileCubit>();
           return Column(
             children: <Widget>[

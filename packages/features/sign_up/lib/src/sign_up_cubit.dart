@@ -17,7 +17,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   void onEmailChanged(String newValue) {
     final previousEmail = state.email;
-    final shouldValidate = previousEmail.invalid;
+    final shouldValidate = previousEmail.isNotValid && !previousEmail.isPure;
     final newState = state.copyWith(
       email: shouldValidate
           ? Email.validated(
@@ -46,7 +46,8 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   void onUsernameChanged(String newValue) {
     final previousUsername = state.username;
-    final shouldValidate = previousUsername.invalid;
+    final shouldValidate =
+        previousUsername.isNotValid && !previousUsername.isPure;
     final newState = state.copyWith(
       username: shouldValidate
           ? Username.validated(
@@ -75,7 +76,8 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   void onPasswordChanged(String newValue) {
     final previousPassword = state.password;
-    final shouldValidate = previousPassword.invalid;
+    final shouldValidate =
+        previousPassword.isNotValid && !previousPassword.isPure;
     final newState = state.copyWith(
       password: shouldValidate
           ? Password.validated(
@@ -100,7 +102,8 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   void onPasswordConfirmationChanged(String newValue) {
     final previousPasswordConfirmation = state.passwordConfirmation;
-    final shouldValidate = previousPasswordConfirmation.invalid;
+    final shouldValidate = previousPasswordConfirmation.isNotValid &&
+        !previousPasswordConfirmation.isPure;
     final newState = state.copyWith(
       passwordConfirmation: shouldValidate
           ? PasswordConfirmation.validated(
@@ -145,12 +148,11 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
 
     final isFormValid = Formz.validate([
-          username,
-          email,
-          password,
-          passwordConfirmation,
-        ]) ==
-        FormzStatus.valid;
+      username,
+      email,
+      password,
+      passwordConfirmation,
+    ]);
 
     final newState = state.copyWith(
       username: username,

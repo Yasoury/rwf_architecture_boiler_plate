@@ -28,7 +28,7 @@ class PasswordConfirmation
   @override
   List<Object?> get props => [
         value,
-        pure,
+        isPure,
         password,
       ];
 }

@@ -33,7 +33,7 @@ class Username extends FormzInput<String, UsernameValidationError>
   @override
   List<Object?> get props => [
         value,
-        pure,
+        isPure,
         isAlreadyRegistered,
       ];
 }

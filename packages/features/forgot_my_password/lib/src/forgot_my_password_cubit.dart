@@ -16,7 +16,7 @@ class ForgotMyPasswordCubit extends Cubit<ForgotMyPasswordState> {
 
   void onEmailChanged(String newValue) {
     final previousValue = state.email;
-    final shouldValidate = previousValue.invalid;
+    final shouldValidate = previousValue.isNotValid && !previousValue.isPure;
     final newState = state.copyWith(
       email: shouldValidate
           ? Email.validated(
@@ -46,10 +46,10 @@ class ForgotMyPasswordCubit extends Cubit<ForgotMyPasswordState> {
     final email = Email.validated(state.email.value);
     final newState = state.copyWith(
       email: email,
-      submissionStatus: email.valid ? SubmissionStatus.inProgress : null,
+      submissionStatus: email.isValid ? SubmissionStatus.inProgress : null,
     );
     emit(newState);
-    if (email.valid) {
+    if (email.isValid) {
       try {
         await userRepository.requestPasswordResetEmail(
           email.value,

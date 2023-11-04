@@ -12,20 +12,24 @@ import 'models/response/update_profile_info_response_rm.dart';
 typedef UserTokenSupplier = Future<String?> Function();
 
 class FirebaseApi {
-  static const _errorCodeJsonKey = 'error_code';
+  static const _errorCodeJsonKey = 'error';
   static const _errorMessageJsonKey = 'message';
   FirebaseApi({
     required UserTokenSupplier userTokenSupplier,
     @visibleForTesting Dio? dio,
     @visibleForTesting UrlBuilder? urlBuilder,
   })  : _dio = dio ?? Dio(),
+        userTokenSupplierLocal = userTokenSupplier,
         _urlBuilder = urlBuilder ?? const UrlBuilder() {
     _dio.setUpAuthHeaders(userTokenSupplier);
     _dio.interceptors.add(
-      LogInterceptor(responseBody: false),
+      LogInterceptor(
+        responseBody: true,
+        requestBody: true,
+      ),
     );
   }
-
+  final UserTokenSupplier userTokenSupplierLocal;
   final Dio _dio;
   final UrlBuilder _urlBuilder;
 
@@ -37,20 +41,24 @@ class FirebaseApi {
       password: password,
       returnSecureToken: true,
     ).toJson();
-    final response = await _dio.post(
-      url,
-      data: requestJsonBody,
-    );
-    final jsonObject = response.data;
     try {
+      final response = await _dio.post(
+        url,
+        data: requestJsonBody,
+      );
+      final jsonObject = response.data;
+
       final user = SignInWithEmailAndPasswordResponseRm.fromJson(jsonObject);
       return user;
-    } catch (error) {
-      final int errorCode = jsonObject[_errorCodeJsonKey];
-      if (errorCode == 21) {
+    } on DioException catch (dioError) {
+      log(dioError.toString());
+      final int errorCode = dioError.response!.statusCode!;
+      if (errorCode == 400) {
         throw InvalidCredentialsFirebaseException();
       }
       rethrow;
+    } catch (error) {
+      throw UnkownFirebaseException();
     }
   }
 
@@ -88,7 +96,11 @@ class FirebaseApi {
     String? photoUrl,
   ) async {
     final url = _urlBuilder.buildUpdateProfileUrl();
-    final requestJsonBody = UpdateProfileInfoRm(
+
+    String? userToken = await userTokenSupplierLocal();
+
+    final requestJsonBody = UpdateProfileInfoRequestRm(
+      idToken: userToken,
       displayName: displayName,
       photoUrl: photoUrl,
       returnSecureToken: true,
@@ -135,19 +147,19 @@ extension on Dio {
       _firebaseAPIKey,
     );
     options = BaseOptions(headers: {
-      //'Authorization': 'Token token=$appToken',
+      'Authorization': 'Token token=$appToken',
     }, queryParameters: {
       "key": appToken,
     });
     interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          String? userToken = await userTokenSupplier();
-          if (userToken != null) {
+          /*  String? userToken = await userTokenSupplier();
+           if (userToken != null) {
             options.headers.addAll({
               'User-Token': userToken,
             });
-          }
+          } */
           return handler.next(options);
         },
       ),

@@ -44,10 +44,10 @@ class ForgotMyPasswordView extends StatefulWidget {
   final VoidCallback onEmailRequestSuccess;
 
   @override
-  _ForgotMyPasswordViewState createState() => _ForgotMyPasswordViewState();
+  ForgotMyPasswordViewState createState() => ForgotMyPasswordViewState();
 }
 
-class _ForgotMyPasswordViewState extends State<ForgotMyPasswordView> {
+class ForgotMyPasswordViewState extends State<ForgotMyPasswordView> {
   final _emailFocusNode = FocusNode();
 
   @override
@@ -87,7 +87,7 @@ class _ForgotMyPasswordViewState extends State<ForgotMyPasswordView> {
         final cubit = context.read<ForgotMyPasswordCubit>();
         final isSubmissionInProgress =
             state.submissionStatus == SubmissionStatus.inProgress;
-        final emailError = state.email.invalid ? state.email.error : null;
+        final emailError = state.email.isValid ? state.email.error : null;
         return GestureDetector(
           onTap: () => _releaseFocus(context),
           child: AlertDialog(

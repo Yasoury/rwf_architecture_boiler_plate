@@ -1,11 +1,11 @@
-class UpdateProfileInfoRm {
+class UpdateProfileInfoRequestRm {
   String? idToken;
   String? displayName;
   String? photoUrl;
   List<String>? deleteAttribute;
   bool? returnSecureToken;
 
-  UpdateProfileInfoRm({
+  UpdateProfileInfoRequestRm({
     this.idToken,
     this.displayName,
     this.photoUrl,
@@ -13,8 +13,8 @@ class UpdateProfileInfoRm {
     this.returnSecureToken,
   });
 
-  factory UpdateProfileInfoRm.fromJson(Map<String, dynamic> json) {
-    return UpdateProfileInfoRm(
+  factory UpdateProfileInfoRequestRm.fromJson(Map<String, dynamic> json) {
+    return UpdateProfileInfoRequestRm(
       idToken: json['idToken'] as String?,
       displayName: json['displayName'] as String?,
       photoUrl: json['photoUrl'] as String?,

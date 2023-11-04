@@ -1,7 +1,7 @@
 class UrlBuilder {
   const UrlBuilder({
     String? baseUrl,
-  }) : _baseUrl = baseUrl ?? 'https://identitytoolkit.googleapis.com/v1/';
+  }) : _baseUrl = baseUrl ?? 'https://identitytoolkit.googleapis.com/v1';
 
   final String _baseUrl;
 
