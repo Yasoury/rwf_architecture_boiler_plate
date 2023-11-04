@@ -1,5 +1,4 @@
-export 'package:formz/formz.dart'
-    show FormzInput, FormzStatus, Formz, FormzStatusX;
+export 'package:formz/formz.dart' show FormzInput, FormzSubmissionStatus, Formz;
 
 export 'src/email.dart';
 export 'src/optional_password.dart';

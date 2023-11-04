@@ -36,7 +36,7 @@ class Email extends FormzInput<String, EmailValidationError>
   @override
   List<Object?> get props => [
         value,
-        pure,
+        isPure,
         isAlreadyRegistered,
       ];
 }

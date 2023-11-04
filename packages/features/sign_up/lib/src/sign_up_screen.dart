@@ -152,14 +152,23 @@ class _SignUpFormState extends State<_SignUpForm> {
       builder: (context, state) {
         final l10n = SignUpLocalizations.of(context);
         final cubit = context.read<SignUpCubit>();
-        final emailError = state.email.invalid ? state.email.error : null;
-        final usernameError =
-            state.username.invalid ? state.username.error : null;
-        final passwordError =
-            state.password.invalid ? state.password.error : null;
-        final passwordConfirmationError = state.passwordConfirmation.invalid
-            ? state.passwordConfirmation.error
-            : null;
+        final emailError = state.email.isValid || state.email.isPure
+            ? null
+            : state.email.error;
+
+        final usernameError = state.username.isValid || state.username.isPure
+            ? null
+            : state.username.error;
+
+        final passwordError = state.password.isValid || state.password.isPure
+            ? null
+            : state.password.error;
+
+        final passwordConfirmationError = state.passwordConfirmation.isValid ||
+                state.passwordConfirmation.isPure
+            ? null
+            : state.passwordConfirmation.error;
+
         final isSubmissionInProgress =
             state.submissionStatus == SubmissionStatus.inProgress;
         return Column(

@@ -20,7 +20,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   void onUsernameChanged(String newValue) {
     final currentState = state as UpdateProfileLoaded;
     final previousValue = currentState.email;
-    final shouldValidate = previousValue.invalid;
+    final shouldValidate = previousValue.isNotValid;
     final newState = currentState.copyWith(
       username: shouldValidate
           ? Username.validated(
@@ -40,7 +40,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   void onEmailChanged(String newValue) {
     final currentState = state as UpdateProfileLoaded;
     final previousValue = currentState.email;
-    final shouldValidate = previousValue.invalid;
+    final shouldValidate = previousValue.isNotValid;
     final newState = currentState.copyWith(
       email: shouldValidate
           ? Email.validated(
@@ -59,7 +59,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   void onPasswordChanged(String newValue) {
     final currentState = state as UpdateProfileLoaded;
     final previousValue = currentState.password;
-    final shouldValidate = previousValue.invalid && newValue.isNotEmpty;
+    final shouldValidate = previousValue.isNotValid && newValue.isNotEmpty;
     final newState = currentState.copyWith(
       password: shouldValidate
           ? OptionalPassword.validated(
@@ -75,7 +75,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   void onPasswordConfirmationChanged(String newValue) {
     final currentState = state as UpdateProfileLoaded;
     final previousValue = currentState.passwordConfirmation;
-    final shouldValidate = previousValue.invalid;
+    final shouldValidate = previousValue.isNotValid;
     final newState = currentState.copyWith(
       passwordConfirmation: shouldValidate
           ? OptionalPasswordConfirmation.validated(
@@ -151,12 +151,11 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       password: password,
     );
     final isFormValid = Formz.validate([
-          username,
-          email,
-          password,
-          passwordConfirmation,
-        ]) ==
-        FormzStatus.valid;
+      username,
+      email,
+      password,
+      passwordConfirmation,
+    ]);
     final newState = currentState.copyWith(
       username: username,
       email: email,
@@ -169,8 +168,9 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
     if (isFormValid) {
       try {
         await userRepository.updateProfile(
-          username.value,
-          email.value,
+          displayName: username.value,
+          //TODO update later
+          photoUrl: "",
         );
         final newState = currentState.copyWith(
           submissionStatus: SubmissionStatus.success,
