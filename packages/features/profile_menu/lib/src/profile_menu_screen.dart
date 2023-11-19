@@ -73,10 +73,10 @@ class ProfileMenuView extends StatelessWidget {
                         l10n.signUpOpeningText,
                       ),
                       TextButton(
+                        onPressed: onSignUpTap,
                         child: Text(
                           l10n.signUpButtonLabel,
                         ),
-                        onPressed: onSignUpTap,
                       ),
                       const SizedBox(
                         height: Spacing.large,

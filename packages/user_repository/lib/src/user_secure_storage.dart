@@ -5,6 +5,7 @@ class UserSecureStorage {
   static const _displayNameKey = 'display_name_key';
   static const _userEmailKey = 'user_email_key';
   static const _userPhotoURLKey = 'user_photo_url_key';
+  static const _refreshToken = '_refresh_token_key';
 
   const UserSecureStorage({
     FlutterSecureStorage? secureStorage,
@@ -17,6 +18,7 @@ class UserSecureStorage {
     String? userPhotoURL,
     String? email,
     String? idToken,
+    String? refreshToken,
   }) =>
       Future.wait([
         if (email != null)
@@ -38,6 +40,11 @@ class UserSecureStorage {
           _secureStorage.write(
             key: _idToken,
             value: idToken,
+          ),
+        if (refreshToken != null)
+          _secureStorage.write(
+            key: _refreshToken,
+            value: refreshToken,
           )
       ]);
 
@@ -60,6 +67,10 @@ class UserSecureStorage {
         key: _idToken,
       );
 
+  Future<String?> getRefreshToken() => _secureStorage.read(
+        key: _refreshToken,
+      );
+
   Future<String?> getPhotoURL() => _secureStorage.read(
         key: _userPhotoURLKey,
       );
@@ -68,7 +79,7 @@ class UserSecureStorage {
         key: _userEmailKey,
       );
 
-  Future<String?> getUsername() => _secureStorage.read(
+  Future<String?> getDisplayName() => _secureStorage.read(
         key: _displayNameKey,
       );
 }

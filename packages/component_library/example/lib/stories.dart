@@ -5,6 +5,16 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 List<Story> getStories(WonderThemeData theme) {
   return [
     Story.simple(
+      name: 'CircularProgressIndicator',
+      section: 'Indecators',
+      child: const CircularProgressIndicator(),
+    ),
+    Story.simple(
+      name: 'InProgressTextButton',
+      section: 'Indecators',
+      child: const InProgressTextButton(label: "upload"),
+    ),
+    Story.simple(
       name: 'Simple Expanded Elevated Button',
       section: 'Buttons',
       child: ExpandedElevatedButton(

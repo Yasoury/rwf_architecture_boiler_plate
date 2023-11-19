@@ -149,7 +149,7 @@ class _UpdateProfileFormState extends State<_UpdateProfileForm> {
               ? null
               : state.password.error;
           final passwordConfirmationError =
-              state.passwordConfirmation.isNotValid ||
+              state.passwordConfirmation.isValid ||
                       state.passwordConfirmation.isPure
                   ? null
                   : state.passwordConfirmation.error;
