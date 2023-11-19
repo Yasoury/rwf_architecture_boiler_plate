@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:firebase_api/src/models/exceptions.dart';
 import 'package:firebase_api/src/models/models.dart';
+import 'package:firebase_api/src/models/request/change_password_request_rm.dart';
+import 'package:firebase_api/src/models/response/change_password_response_rm.dart';
 import 'package:firebase_api/src/models/response/sign_in_with_email_and_password_response_rm.dart';
 import 'package:firebase_api/src/url_builder.dart';
 import 'package:meta/meta.dart';
@@ -88,6 +90,31 @@ class FirebaseApi {
         }
       }
       rethrow;
+    }
+  }
+
+  Future<ChangePasswordResponseRm> changePassword(
+    String password,
+  ) async {
+    final url = _urlBuilder.buildUpdateProfileUrl();
+
+    String? userToken = await userTokenSupplierLocal();
+
+    final requestJsonBody = ChangePasswordRequestRM(
+      idToken: userToken,
+      password: password,
+      returnSecureToken: true,
+    ).toJson();
+    final response = await _dio.post(
+      url,
+      data: requestJsonBody,
+    );
+    try {
+      final Map<String, dynamic> jsonObject = response.data;
+      return ChangePasswordResponseRm.fromJson(jsonObject);
+    } on DioException catch (error) {
+      log(error.toString());
+      throw UnkownFirebaseException();
     }
   }
 

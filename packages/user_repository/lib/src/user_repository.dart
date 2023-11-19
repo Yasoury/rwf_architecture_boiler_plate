@@ -74,7 +74,7 @@ class UserRepository {
     if (!_userSubject.hasValue) {
       final userInfo = await Future.wait([
         _secureStorage.getUserEmail(),
-        _secureStorage.getUsername(),
+        _secureStorage.getDisplayName(),
         _secureStorage.getPhotoURL(),
         _secureStorage.getUserToken(),
       ]);
@@ -140,6 +140,34 @@ class UserRepository {
     }
   }
 
+  Future<void> changePassword({
+    required String password,
+  }) async {
+    try {
+      final response = await remoteApi.changePassword(
+        password,
+      );
+
+      await _secureStorage.upsertUserInfo(
+        idToken: response.idToken,
+        refreshToken: response.refreshToken,
+      );
+      var userPhotoURL = await _secureStorage.getPhotoURL() ?? "";
+      var displayName = await _secureStorage.getDisplayName() ?? "";
+
+      _userSubject.add(
+        User(
+          accessToken: response.idToken!,
+          displayName: displayName,
+          userPhotoURL: userPhotoURL,
+          email: _userSubject.value!.email,
+        ),
+      );
+    } catch (_) {
+      throw UnkownFirebaseException();
+    }
+  }
+
   Future<void> updateProfile({
     required String displayName,
     required String photoUrl,
@@ -149,7 +177,7 @@ class UserRepository {
         displayName,
         photoUrl,
       );
-
+      //response have null token thats why we used the local one to upsert the new user auth
       await _secureStorage.upsertUserInfo(
         displayName: displayName,
         userPhotoURL: photoUrl,

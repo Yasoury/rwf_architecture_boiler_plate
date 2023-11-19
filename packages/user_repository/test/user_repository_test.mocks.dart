@@ -33,6 +33,7 @@ class MockUserSecureStorage extends _i1.Mock implements _i2.UserSecureStorage {
     String? email,
     String? idToken,
     String? userPhotoURL,
+    String? refreshToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -42,6 +43,7 @@ class MockUserSecureStorage extends _i1.Mock implements _i2.UserSecureStorage {
             #username: displayName,
             #email: email,
             #idToken: idToken,
+            #refreshToken: refreshToken,
             #userPhotoURL: userPhotoURL,
           },
         ),
@@ -82,7 +84,7 @@ class MockUserSecureStorage extends _i1.Mock implements _i2.UserSecureStorage {
         returnValue: _i3.Future<String?>.value(),
       ) as _i3.Future<String?>);
   @override
-  _i3.Future<String?> getUsername() => (super.noSuchMethod(
+  _i3.Future<String?> getDisplayName() => (super.noSuchMethod(
         Invocation.method(
           #getUsername,
           [],

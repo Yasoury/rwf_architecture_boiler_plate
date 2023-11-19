@@ -172,10 +172,13 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
           //TODO update later
           photoUrl: "",
         );
-        final newState = currentState.copyWith(
-          submissionStatus: SubmissionStatus.success,
-        );
-        emit(newState);
+
+        if (passwordConfirmation.value.isEmpty) {
+          final newState = currentState.copyWith(
+            submissionStatus: SubmissionStatus.success,
+          );
+          emit(newState);
+        }
       } catch (error) {
         final newState = currentState.copyWith(
           submissionStatus: error is! UsernameAlreadyTakenException &&
@@ -196,6 +199,23 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
               : null,
         );
         emit(newState);
+      }
+      if (passwordConfirmation.value.isNotEmpty &&
+          passwordConfirmation.isValid) {
+        try {
+          await userRepository.changePassword(
+            password: password.value,
+          );
+          final newState = currentState.copyWith(
+            submissionStatus: SubmissionStatus.success,
+          );
+          emit(newState);
+        } catch (error) {
+          final newState = currentState.copyWith(
+            submissionStatus: SubmissionStatus.error,
+          );
+          emit(newState);
+        }
       }
     }
   }
