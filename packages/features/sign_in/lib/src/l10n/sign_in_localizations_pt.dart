@@ -17,18 +17,16 @@ class SignInLocalizationsPt extends SignInLocalizations {
   String get emailTextFieldEmptyErrorMessage => 'Seu email não pode ser vazio.';
 
   @override
-  String get emailTextFieldInvalidErrorMessage => 'Esse email não é válido.';
+  String get emailTextFieldInvalidErrorMessage => 'Este email não é válido.';
 
   @override
   String get passwordTextFieldLabel => 'Senha';
 
   @override
-  String get passwordTextFieldEmptyErrorMessage =>
-      'Sua senha não pode ser vazia.';
+  String get passwordTextFieldEmptyErrorMessage => 'Sua senha não pode ser vazia.';
 
   @override
-  String get passwordTextFieldInvalidErrorMessage =>
-      'Sua senha precisa ter pelo menos cinco caracteres.';
+  String get passwordTextFieldInvalidErrorMessage => 'Sua senha precisa ter pelo menos cinco caracteres.';
 
   @override
   String get forgotMyPasswordButtonLabel => 'Esqueci minha senha';

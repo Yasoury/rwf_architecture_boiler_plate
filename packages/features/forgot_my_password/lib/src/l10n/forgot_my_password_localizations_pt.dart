@@ -17,8 +17,7 @@ class ForgotMyPasswordLocalizationsPt extends ForgotMyPasswordLocalizations {
   String get emailTextFieldInvalidErrorMessage => 'Este email não é válido.';
 
   @override
-  String get emailRequestSuccessMessage =>
-      'Se este email estiver registrado em nossos servidores, um link será enviado para você com instruções sobre como resetar sua senha.';
+  String get emailRequestSuccessMessage => 'Se este email estiver registrado em nossos servidores, um link será enviado para você com instruções sobre como resetar sua senha.';
 
   @override
   String get confirmButtonLabel => 'Confirmar';
@@ -27,6 +26,5 @@ class ForgotMyPasswordLocalizationsPt extends ForgotMyPasswordLocalizations {
   String get cancelButtonLabel => 'Cancelar';
 
   @override
-  String get errorMessage =>
-      'Ocorreu um erro. Por favor, confira sua conexão com a internet.';
+  String get errorMessage => 'Ocorreu um erro. Por favor, confira sua conexão com a internet.';
 }

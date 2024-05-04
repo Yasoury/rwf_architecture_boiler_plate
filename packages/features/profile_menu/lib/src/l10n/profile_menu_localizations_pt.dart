@@ -16,8 +16,7 @@ class ProfileMenuLocalizationsPt extends ProfileMenuLocalizations {
   String get updateProfileTileLabel => 'Atualizar Perfil';
 
   @override
-  String get darkModePreferencesHeaderTileLabel =>
-      'Configurações de Modo Noturno';
+  String get darkModePreferencesHeaderTileLabel => 'Configurações de Modo Noturno';
 
   @override
   String get darkModePreferencesAlwaysDarkTileLabel => 'Sempre Escuro';
@@ -26,8 +25,7 @@ class ProfileMenuLocalizationsPt extends ProfileMenuLocalizations {
   String get darkModePreferencesAlwaysLightTileLabel => 'Sempre Claro';
 
   @override
-  String get darkModePreferencesUseSystemSettingsTileLabel =>
-      'De Acordo com o Sistema';
+  String get darkModePreferencesUseSystemSettingsTileLabel => 'De Acordo com o Sistema';
 
   @override
   String get signOutButtonLabel => 'Sair';

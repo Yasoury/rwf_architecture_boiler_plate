@@ -1,14 +1,14 @@
-class SignInWithEmailAndPasswordRequestRM {
+class SignInWithEmailAndPasswordRequestModel {
   String? email;
   String? password;
   bool? returnSecureToken;
 
-  SignInWithEmailAndPasswordRequestRM(
+  SignInWithEmailAndPasswordRequestModel(
       {this.email, this.password, this.returnSecureToken});
 
-  factory SignInWithEmailAndPasswordRequestRM.fromJson(
+  factory SignInWithEmailAndPasswordRequestModel.fromJson(
       Map<String, dynamic> json) {
-    return SignInWithEmailAndPasswordRequestRM(
+    return SignInWithEmailAndPasswordRequestModel(
       email: json['email'] as String?,
       password: json['password'] as String?,
       returnSecureToken: json['returnSecureToken'] as bool?,

@@ -146,11 +146,13 @@ class _MyAppState extends State<MyApp> {
               themeMode: darkModePreference?.toThemeMode(),
               supportedLocales: const [
                 Locale('en', ''),
-                Locale('ar', ''),
+                Locale('pt', ''),
+                //Locale('ar', ''),
               ],
               localizationsDelegates: const [
                 GlobalCupertinoLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
                 AppLocalizations.delegate,
                 ComponentLibraryLocalizations.delegate,
                 ProfileMenuLocalizations.delegate,
