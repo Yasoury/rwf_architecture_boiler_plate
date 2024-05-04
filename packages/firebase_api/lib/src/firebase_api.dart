@@ -35,10 +35,10 @@ class FirebaseApi {
   final Dio _dio;
   final UrlBuilder _urlBuilder;
 
-  Future<SignInWithEmailAndPasswordResponseRm> signInWithEmailAndPassword(
+  Future<SignInWithEmailAndPasswordResponseModel> signInWithEmailAndPassword(
       String email, String password) async {
     final url = _urlBuilder.buildSignInWithPasswordUrl();
-    final requestJsonBody = SignInWithEmailAndPasswordRequestRM(
+    final requestJsonBody = SignInWithEmailAndPasswordRequestModel(
       email: email,
       password: password,
       returnSecureToken: true,
@@ -50,7 +50,7 @@ class FirebaseApi {
       );
       final jsonObject = response.data;
 
-      final user = SignInWithEmailAndPasswordResponseRm.fromJson(jsonObject);
+      final user = SignInWithEmailAndPasswordResponseModel.fromJson(jsonObject);
       return user;
     } on DioException catch (dioError) {
       log(dioError.toString());
@@ -66,10 +66,10 @@ class FirebaseApi {
 
   signUpAnonymously() {}
 
-  Future<SignupWithEmailAndPasswordResponseRm> signUpWithEmailAndPassword(
+  Future<SignupWithEmailAndPasswordResponseModel> signUpWithEmailAndPassword(
       String username, String email, String password) async {
     final url = _urlBuilder.buildSignUpUrl();
-    final requestJsonBody = SignUpWithEmailAndPasswordRequestRM(
+    final requestJsonBody = SignUpWithEmailAndPasswordRequestModel(
       returnSecureToken: true,
       email: email,
       password: password,
@@ -80,7 +80,7 @@ class FirebaseApi {
     );
     final jsonObject = response.data;
     try {
-      return SignupWithEmailAndPasswordResponseRm.fromJson(jsonObject);
+      return SignupWithEmailAndPasswordResponseModel.fromJson(jsonObject);
     } catch (error) {
       final int errorCode = jsonObject[_errorCodeJsonKey];
       if (errorCode == 32) {
@@ -93,14 +93,14 @@ class FirebaseApi {
     }
   }
 
-  Future<ChangePasswordResponseRm> changePassword(
+  Future<ChangePasswordResponseModel> changePassword(
     String password,
   ) async {
     final url = _urlBuilder.buildUpdateProfileUrl();
 
     String? userToken = await userTokenSupplierLocal();
 
-    final requestJsonBody = ChangePasswordRequestRM(
+    final requestJsonBody = ChangePasswordRequestModel(
       idToken: userToken,
       password: password,
       returnSecureToken: true,
@@ -111,14 +111,14 @@ class FirebaseApi {
     );
     try {
       final Map<String, dynamic> jsonObject = response.data;
-      return ChangePasswordResponseRm.fromJson(jsonObject);
+      return ChangePasswordResponseModel.fromJson(jsonObject);
     } on DioException catch (error) {
       log(error.toString());
       throw UnkownFirebaseException();
     }
   }
 
-  Future<UpdateProfileInfoResponseRm> updateProfile(
+  Future<UpdateProfileInfoResponseModel> updateProfile(
     String displayName,
     String? photoUrl,
   ) async {
@@ -126,7 +126,7 @@ class FirebaseApi {
 
     String? userToken = await userTokenSupplierLocal();
 
-    final requestJsonBody = UpdateProfileInfoRequestRm(
+    final requestJsonBody = UpdateProfileInfoRequestModel(
       idToken: userToken,
       displayName: displayName,
       photoUrl: photoUrl,
@@ -138,7 +138,7 @@ class FirebaseApi {
     );
     try {
       final Map<String, dynamic> jsonObject = response.data;
-      return UpdateProfileInfoResponseRm.fromJson(jsonObject);
+      return UpdateProfileInfoResponseModel.fromJson(jsonObject);
     } on DioException catch (error) {
       log(error.toString());
       throw UnkownFirebaseException();

@@ -1,4 +1,4 @@
-class SignInWithEmailAndPasswordResponseRm {
+class SignInWithEmailAndPasswordResponseModel {
   String? localId;
   String? email;
   String? displayName;
@@ -7,7 +7,7 @@ class SignInWithEmailAndPasswordResponseRm {
   String? refreshToken;
   String? expiresIn;
 
-  SignInWithEmailAndPasswordResponseRm({
+  SignInWithEmailAndPasswordResponseModel({
     this.localId,
     this.email,
     this.displayName,
@@ -17,9 +17,9 @@ class SignInWithEmailAndPasswordResponseRm {
     this.expiresIn,
   });
 
-  factory SignInWithEmailAndPasswordResponseRm.fromJson(
+  factory SignInWithEmailAndPasswordResponseModel.fromJson(
       Map<String, dynamic> json) {
-    return SignInWithEmailAndPasswordResponseRm(
+    return SignInWithEmailAndPasswordResponseModel(
       localId: json['localId'] as String?,
       email: json['email'] as String?,
       displayName: json['displayName'] as String?,

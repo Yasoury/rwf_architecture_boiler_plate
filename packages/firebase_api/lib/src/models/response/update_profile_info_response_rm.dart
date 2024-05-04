@@ -1,4 +1,4 @@
-class UpdateProfileInfoResponseRm {
+class UpdateProfileInfoResponseModel {
   String? localId;
   String? email;
   String? displayName;
@@ -9,7 +9,7 @@ class UpdateProfileInfoResponseRm {
   String? refreshToken;
   String? expiresIn;
 
-  UpdateProfileInfoResponseRm({
+  UpdateProfileInfoResponseModel({
     this.localId,
     this.email,
     this.displayName,
@@ -21,8 +21,8 @@ class UpdateProfileInfoResponseRm {
     this.expiresIn,
   });
 
-  factory UpdateProfileInfoResponseRm.fromJson(Map<String, dynamic> json) {
-    return UpdateProfileInfoResponseRm(
+  factory UpdateProfileInfoResponseModel.fromJson(Map<String, dynamic> json) {
+    return UpdateProfileInfoResponseModel(
       localId: json['localId'] as String?,
       email: json['email'] as String?,
       displayName: json['displayName'] as String?,

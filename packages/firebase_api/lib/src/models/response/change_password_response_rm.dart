@@ -1,4 +1,4 @@
-class ChangePasswordResponseRm {
+class ChangePasswordResponseModel {
   String? localId;
   String? email;
   String? passwordHash;
@@ -7,7 +7,7 @@ class ChangePasswordResponseRm {
   String? refreshToken;
   String? expiresIn;
 
-  ChangePasswordResponseRm({
+  ChangePasswordResponseModel({
     this.localId,
     this.email,
     this.passwordHash,
@@ -17,8 +17,8 @@ class ChangePasswordResponseRm {
     this.expiresIn,
   });
 
-  factory ChangePasswordResponseRm.fromJson(Map<String, dynamic> json) {
-    return ChangePasswordResponseRm(
+  factory ChangePasswordResponseModel.fromJson(Map<String, dynamic> json) {
+    return ChangePasswordResponseModel(
       localId: json['localId'] as String?,
       email: json['email'] as String?,
       passwordHash: json['passwordHash'] as String?,

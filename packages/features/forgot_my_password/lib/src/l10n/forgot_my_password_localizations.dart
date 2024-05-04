@@ -8,14 +8,14 @@ import 'package:intl/intl.dart' as intl;
 import 'forgot_my_password_localizations_en.dart';
 import 'forgot_my_password_localizations_pt.dart';
 
-/// Callers can lookup localized strings with an instance of ForgotMyPasswordLocalizations returned
-/// by `ForgotMyPasswordLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of ForgotMyPasswordLocalizations
+/// returned by `ForgotMyPasswordLocalizations.of(context)`.
 ///
 /// Applications need to include `ForgotMyPasswordLocalizations.delegate()` in their app's
-/// localizationDelegates list, and the locales they support in the app's
-/// supportedLocales list. For example:
+/// `localizationDelegates` list, and the locales they support in the app's
+/// `supportedLocales` list. For example:
 ///
-/// ```
+/// ```dart
 /// import 'l10n/forgot_my_password_localizations.dart';
 ///
 /// return MaterialApp(
@@ -30,14 +30,14 @@ import 'forgot_my_password_localizations_pt.dart';
 /// Please make sure to update your pubspec.yaml to include the following
 /// packages:
 ///
-/// ```
+/// ```yaml
 /// dependencies:
 ///   # Internationalization support.
 ///   flutter_localizations:
 ///     sdk: flutter
 ///   intl: any # Use the pinned version from flutter_localizations
 ///
-///   # rest of dependencies
+///   # Rest of dependencies
 /// ```
 ///
 /// ## iOS Applications
@@ -60,18 +60,15 @@ import 'forgot_my_password_localizations_pt.dart';
 /// be consistent with the languages listed in the ForgotMyPasswordLocalizations.supportedLocales
 /// property.
 abstract class ForgotMyPasswordLocalizations {
-  ForgotMyPasswordLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  ForgotMyPasswordLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static ForgotMyPasswordLocalizations of(BuildContext context) {
-    return Localizations.of<ForgotMyPasswordLocalizations>(
-        context, ForgotMyPasswordLocalizations)!;
+    return Localizations.of<ForgotMyPasswordLocalizations>(context, ForgotMyPasswordLocalizations)!;
   }
 
-  static const LocalizationsDelegate<ForgotMyPasswordLocalizations> delegate =
-      _ForgotMyPasswordLocalizationsDelegate();
+  static const LocalizationsDelegate<ForgotMyPasswordLocalizations> delegate = _ForgotMyPasswordLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -83,8 +80,7 @@ abstract class ForgotMyPasswordLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -146,37 +142,34 @@ abstract class ForgotMyPasswordLocalizations {
   String get errorMessage;
 }
 
-class _ForgotMyPasswordLocalizationsDelegate
-    extends LocalizationsDelegate<ForgotMyPasswordLocalizations> {
+class _ForgotMyPasswordLocalizationsDelegate extends LocalizationsDelegate<ForgotMyPasswordLocalizations> {
   const _ForgotMyPasswordLocalizationsDelegate();
 
   @override
   Future<ForgotMyPasswordLocalizations> load(Locale locale) {
-    return SynchronousFuture<ForgotMyPasswordLocalizations>(
-        lookupForgotMyPasswordLocalizations(locale));
+    return SynchronousFuture<ForgotMyPasswordLocalizations>(lookupForgotMyPasswordLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ForgotMyPasswordLocalizationsDelegate old) => false;
 }
 
-ForgotMyPasswordLocalizations lookupForgotMyPasswordLocalizations(
-    Locale locale) {
+ForgotMyPasswordLocalizations lookupForgotMyPasswordLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return ForgotMyPasswordLocalizationsEn();
-    case 'pt':
-      return ForgotMyPasswordLocalizationsPt();
+    case 'en': return ForgotMyPasswordLocalizationsEn();
+    case 'pt': return ForgotMyPasswordLocalizationsPt();
   }
 
   throw FlutterError(
-      'ForgotMyPasswordLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'ForgotMyPasswordLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

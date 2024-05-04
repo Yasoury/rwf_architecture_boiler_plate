@@ -25,7 +25,7 @@ void main() {
 
     final url = const UrlBuilder().buildSignInWithPasswordUrl();
 
-    final requestJsonBody = SignInWithEmailAndPasswordRequestRM(
+    final requestJsonBody = SignInWithEmailAndPasswordRequestModel(
       email: email,
       password: password,
     ).toJson();
@@ -41,6 +41,6 @@ void main() {
     );
 
     expect(await remoteApi.signInWithEmailAndPassword(email, password),
-        isA<SignInWithEmailAndPasswordResponseRm>());
+        isA<SignInWithEmailAndPasswordResponseModel>());
   });
 }
