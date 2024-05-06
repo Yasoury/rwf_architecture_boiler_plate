@@ -16,6 +16,7 @@ import 'package:sign_in/sign_in.dart';
 import 'package:sign_up/sign_up.dart';
 import 'package:update_profile/update_profile.dart';
 import 'package:user_repository/user_repository.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'l10n/app_localizations.dart';
 import 'screen_view_observer.dart';
@@ -24,7 +25,7 @@ void main() async {
   late final errorReportingService = ErrorReportingService();
 
   runZonedGuarded<Future<void>>(() async {
-    WidgetsFlutterBinding.ensureInitialized();
+    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
     await initializeMonitoringPackage();
 
@@ -43,6 +44,9 @@ void main() async {
         );
       }).sendPort,
     );
+
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
     runApp(
       MyApp(
         remoteValueService: remoteValueService,
@@ -131,40 +135,74 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<DarkModePreference>(
-        stream: _userRepository.getDarkModePreference(),
-        builder: (context, snapshot) {
-          final darkModePreference = snapshot.data;
+    return StreamBuilder<UserSettings>(
+        stream: _userRepository.getUserSettings(),
+        builder: (context, userSettingsStream) {
+          final darkModePreference =
+              userSettingsStream.data?.darkModePreference;
+          final userPassedOnBoarding =
+              userSettingsStream.data?.passedOnBoarding ?? false;
+          /*   if (userSettingsStream.data != null) { */
+          FlutterNativeSplash.remove();
 
           return WonderTheme(
             lightTheme: _lightTheme,
             darkTheme: _darkTheme,
-            child: MaterialApp.router(
-              title: 'RWF Architecture',
-              theme: _lightTheme.materialThemeData,
-              darkTheme: _darkTheme.materialThemeData,
-              themeMode: darkModePreference?.toThemeMode(),
-              supportedLocales: const [
-                Locale('en', ''),
-                Locale('pt', ''),
-                //Locale('ar', ''),
-              ],
-              localizationsDelegates: const [
-                GlobalCupertinoLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                AppLocalizations.delegate,
-                ComponentLibraryLocalizations.delegate,
-                ProfileMenuLocalizations.delegate,
-                SignInLocalizations.delegate,
-                ForgotMyPasswordLocalizations.delegate,
-                SignUpLocalizations.delegate,
-                UpdateProfileLocalizations.delegate,
-              ],
-              routeInformationParser: const RoutemasterParser(),
-              routerDelegate: _routerDelegate,
-            ),
+            child: !userPassedOnBoarding
+                ? const MaterialApp(
+                    locale: Locale('en'),
+                    localizationsDelegates: [
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      ComponentLibraryLocalizations.delegate,
+                      //OnBoardingLocalizations.delegate,
+                    ],
+                    home: Scaffold(
+                      body: Center(
+                        child: Text("On Boarding"),
+                      ),
+                    ) /* OnBoardingScreen(
+                      navigateToHome: () {
+                        _userRepository.upsertUserSettings(UserSettings(
+                          viewedOnBoarding: true,
+                        ));
+                      },
+                    ) */
+                    ,
+                  )
+                : MaterialApp.router(
+                    title: 'RWF Architecture',
+                    theme: _lightTheme.materialThemeData,
+                    darkTheme: _darkTheme.materialThemeData,
+                    themeMode: darkModePreference?.toThemeMode(),
+                    supportedLocales: const [
+                      Locale('en', ''),
+                      Locale('pt', ''),
+                      //Locale('ar', ''),
+                    ],
+                    localizationsDelegates: const [
+                      GlobalCupertinoLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      AppLocalizations.delegate,
+                      ComponentLibraryLocalizations.delegate,
+                      ProfileMenuLocalizations.delegate,
+                      SignInLocalizations.delegate,
+                      ForgotMyPasswordLocalizations.delegate,
+                      SignUpLocalizations.delegate,
+                      UpdateProfileLocalizations.delegate,
+                    ],
+                    routeInformationParser: const RoutemasterParser(),
+                    routerDelegate: _routerDelegate,
+                  ),
           );
+          /*  } else {
+            //TODO make it error message or loading
+            return const MaterialApp(
+              home: CenteredCircularProgressIndicator(),
+            );
+          } */
         });
   }
 }

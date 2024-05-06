@@ -1,6 +1,7 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:firebase_api/firebase_api.dart';
 import 'package:key_value_storage/key_value_storage.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:user_repository/src/mappers/mappers.dart';
@@ -23,26 +24,46 @@ class UserRepository {
   final UserLocalStorage _localStorage;
   final UserSecureStorage _secureStorage;
   final BehaviorSubject<User?> _userSubject = BehaviorSubject();
-  final BehaviorSubject<DarkModePreference> _darkModePreferenceSubject =
-      BehaviorSubject();
 
-  Future<void> upsertDarkModePreference(DarkModePreference preference) async {
-    await _localStorage.upsertDarkModePreference(
-      preference.toCacheModel(),
+  final BehaviorSubject<UserSettings> _userSettingsSubject = BehaviorSubject();
+
+  Future<void> upsertUserSettings(UserSettings settings) async {
+    var savedSettings = await getUserSettingsAsFuture();
+
+    var settingsToBeSaved = UserSettings(
+      darkModePreference: settings.darkModePreference,
+      langugae: settings.langugae ?? savedSettings.langugae,
+      passedOnBoarding:
+          settings.passedOnBoarding ?? savedSettings.passedOnBoarding,
     );
-    _darkModePreferenceSubject.add(preference);
+
+    await _localStorage.upsertUserSettings(
+      settingsToBeSaved.toCacheModel(),
+    );
+    _userSettingsSubject.add(settingsToBeSaved);
   }
 
-  Stream<DarkModePreference> getDarkModePreference() async* {
-    if (!_darkModePreferenceSubject.hasValue) {
-      final storedPreference = await _localStorage.getDarkModePreference();
-      _darkModePreferenceSubject.add(
+  Stream<UserSettings> getUserSettings() async* {
+    if (!_userSettingsSubject.hasValue) {
+      final storedPreference = await _localStorage.getUserSettings();
+      _userSettingsSubject.add(
         storedPreference?.toDomainModel() ??
-            DarkModePreference.useSystemSettings,
+            UserSettings(
+              langugae: 'en',
+              passedOnBoarding: false,
+              darkModePreference: DarkModePreference.useSystemSettings,
+            ),
       );
     }
 
-    yield* _darkModePreferenceSubject.stream;
+    yield* _userSettingsSubject.stream;
+  }
+
+  Future<UserSettings> getUserSettingsAsFuture() async {
+    final storedPreference =
+        await _localStorage.getUserSettings() ?? UserSettingsCM();
+
+    return storedPreference.toDomainModel();
   }
 
   Future<void> signIn(String email, String password) async {

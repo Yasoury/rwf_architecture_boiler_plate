@@ -13,3 +13,13 @@ extension DarkModePreferenceCMToDomain on DarkModePreferenceCM {
     }
   }
 }
+
+extension UserSettingsCMToDomain on UserSettingsCM {
+  UserSettings toDomainModel() {
+    return UserSettings(
+      langugae: langugae,
+      passedOnBoarding: passedOnBoarding,
+      darkModePreference: darkModePreference!.toDomainModel(),
+    );
+  }
+}

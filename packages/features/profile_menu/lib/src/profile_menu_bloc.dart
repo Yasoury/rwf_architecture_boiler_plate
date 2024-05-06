@@ -1,4 +1,5 @@
 import 'package:domain_models/domain_models.dart';
+// ignore: depend_on_referenced_packages
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
@@ -17,11 +18,11 @@ class ProfileMenuBloc extends Bloc<ProfileMenuEvent, ProfileMenuState> {
     on<ProfileMenuStarted>(
       (_, emit) async {
         await emit.onEach(
-          Rx.combineLatest2<User?, DarkModePreference, ProfileMenuLoaded>(
+          Rx.combineLatest2<User?, UserSettings, ProfileMenuLoaded>(
             userRepository.getUser(),
-            userRepository.getDarkModePreference(),
-            (user, darkModePreference) => ProfileMenuLoaded(
-              darkModePreference: darkModePreference,
+            userRepository.getUserSettings(),
+            (user, userSettings) => ProfileMenuLoaded(
+              darkModePreference: userSettings.darkModePreference,
               username: user?.displayName,
             ),
           ),
@@ -45,9 +46,9 @@ class ProfileMenuBloc extends Bloc<ProfileMenuEvent, ProfileMenuState> {
     });
 
     on<ProfileMenuDarkModePreferenceChanged>((event, _) async {
-      await userRepository.upsertDarkModePreference(
-        event.preference,
-      );
+      await userRepository.upsertUserSettings(UserSettings(
+        darkModePreference: event.preference,
+      ));
     });
 
     add(

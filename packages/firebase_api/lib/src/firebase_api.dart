@@ -7,6 +7,7 @@ import 'package:firebase_api/src/models/request/change_password_request_rm.dart'
 import 'package:firebase_api/src/models/response/change_password_response_rm.dart';
 import 'package:firebase_api/src/models/response/sign_in_with_email_and_password_response_rm.dart';
 import 'package:firebase_api/src/url_builder.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'models/response/signup_with_email_and_password_response_rm.dart';
 import 'models/response/update_profile_info_response_rm.dart';
