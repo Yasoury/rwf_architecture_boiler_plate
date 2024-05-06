@@ -18,7 +18,7 @@ import 'package:path_provider/path_provider.dart';
 /// avoid conflicts.
 class KeyValueStorage {
   //TODO add the keys for new boxes /cart,favorate....
-  static const _darkModePreferenceBoxKey = 'dark-mode-preference';
+  static const userSettingsKey = 'user-settings';
 
   KeyValueStorage({
     @visibleForTesting HiveInterface? hive,
@@ -34,9 +34,9 @@ class KeyValueStorage {
 
   final HiveInterface _hive;
 
-  Future<Box<DarkModePreferenceCM>> get darkModePreferenceBox =>
-      _openHiveBox<DarkModePreferenceCM>(
-        _darkModePreferenceBoxKey,
+  Future<Box<UserSettingsCM>> get userSettingsBox =>
+      _openHiveBox<UserSettingsCM>(
+        userSettingsKey,
         isTemporary: false,
       );
 

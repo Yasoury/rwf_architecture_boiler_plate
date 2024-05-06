@@ -7,13 +7,13 @@ class UserLocalStorage {
 
   final KeyValueStorage noSqlStorage;
 
-  Future<void> upsertDarkModePreference(DarkModePreferenceCM preference) async {
-    final box = await noSqlStorage.darkModePreferenceBox;
-    await box.put(0, preference);
+  Future<void> upsertUserSettings(UserSettingsCM settings) async {
+    final box = await noSqlStorage.userSettingsBox;
+    await box.put(0, settings);
   }
 
-  Future<DarkModePreferenceCM?> getDarkModePreference() async {
-    final box = await noSqlStorage.darkModePreferenceBox;
+  Future<UserSettingsCM?> getUserSettings() async {
+    final box = await noSqlStorage.userSettingsBox;
     return box.get(0);
   }
 }
