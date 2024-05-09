@@ -9,6 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:forgot_my_password/forgot_my_password.dart';
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:monitoring/monitoring.dart';
+import 'package:on_boarding/on_boarding.dart';
 import 'package:profile_menu/profile_menu.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:rwf_architecture_boiler_plate/routing_table.dart';
@@ -149,27 +150,24 @@ class _MyAppState extends State<MyApp> {
             lightTheme: _lightTheme,
             darkTheme: _darkTheme,
             child: !userPassedOnBoarding
-                ? const MaterialApp(
-                    locale: Locale('en'),
-                    localizationsDelegates: [
+                ? MaterialApp(
+                    locale: const Locale('en'),
+                    localizationsDelegates: const [
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
                       GlobalMaterialLocalizations.delegate,
                       ComponentLibraryLocalizations.delegate,
-                      //OnBoardingLocalizations.delegate,
+                      OnBoardingLocalizations.delegate,
                     ],
                     home: Scaffold(
-                      body: Center(
-                        child: Text("On Boarding"),
+                      body: OnBoardingScreen(
+                        navigateToHome: () {
+                          _userRepository.upsertUserSettings(UserSettings(
+                            passedOnBoarding: true,
+                          ));
+                        },
                       ),
-                    ) /* OnBoardingScreen(
-                      navigateToHome: () {
-                        _userRepository.upsertUserSettings(UserSettings(
-                          viewedOnBoarding: true,
-                        ));
-                      },
-                    ) */
-                    ,
+                    ),
                   )
                 : MaterialApp.router(
                     title: 'RWF Architecture',
