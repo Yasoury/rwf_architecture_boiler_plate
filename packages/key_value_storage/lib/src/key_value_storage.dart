@@ -17,7 +17,7 @@ import 'package:path_provider/path_provider.dart';
 /// Having all these models and boxes' keys in a single package allows us to
 /// avoid conflicts.
 class KeyValueStorage {
-  //TODO add the keys for new boxes /cart,favorate....
+  //TODO add the keys and the adapter for new boxes /cart,favorate....
   static const userSettingsKey = 'user-settings';
 
   KeyValueStorage({
@@ -25,6 +25,7 @@ class KeyValueStorage {
   }) : _hive = hive ?? Hive {
     try {
       _hive.registerAdapter(DarkModePreferenceCMAdapter());
+      _hive.registerAdapter(UserSettingsCMAdapter());
     } catch (_) {
       throw Exception(
           'You shouldn\'t have more than one [KeyValueStorage] instance in your '

@@ -33,6 +33,18 @@ abstract class WonderThemeData {
 
   Color get votedButtonColor;
 
+  Color get primaryColor;
+
+  Color get secondaryColor;
+
+  Color get accentColor;
+
+  Color get lightAccentColor;
+
+  Color get lightTextColor;
+
+  MaterialColor get accentColorAsMaterialColor;
+
   TextStyle quoteTextStyle = const TextStyle(
     fontFamily: 'Fondamento',
     package: 'component_library',
@@ -73,6 +85,25 @@ class LightWonderThemeData extends WonderThemeData {
 
   @override
   Color get votedButtonColor => Colors.black;
+
+  @override
+  Color get primaryColor => Colors.white;
+
+  @override
+  Color get secondaryColor => const Color(0xff535353);
+
+  @override
+  Color get accentColor => const Color(0xff6c63ff);
+
+  @override
+  Color get lightAccentColor => const Color(0xffF3F9ED);
+
+  @override
+  Color get lightTextColor => const Color(0xffBEBEBE);
+
+  @override
+  MaterialColor get accentColorAsMaterialColor =>
+      const Color(0xff6c63ff).toMaterialColor();
 }
 
 class DarkWonderThemeData extends WonderThemeData {
@@ -110,6 +141,25 @@ class DarkWonderThemeData extends WonderThemeData {
 
   @override
   Color get votedButtonColor => Colors.white;
+
+  @override
+  Color get primaryColor => Colors.white;
+
+  @override
+  Color get secondaryColor => const Color(0xff535353);
+
+  @override
+  Color get accentColor => const Color(0xff6c63ff);
+
+  @override
+  Color get lightAccentColor => const Color(0xffF3F9ED);
+
+  @override
+  Color get lightTextColor => const Color(0xffBEBEBE);
+
+  @override
+  MaterialColor get accentColorAsMaterialColor =>
+      const Color(0xff6c63ff).toMaterialColor();
 }
 
 extension on Color {
