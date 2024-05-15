@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1939be35-be8f-4130-a128-e98770476e35" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routing_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routing_table.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/component_library/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/domain_models/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/domain_models/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/features/forgot_my_password/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/forgot_my_password/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/features/on_boarding/lib/src/on_boarding_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/on_boarding/lib/src/on_boarding_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/features/on_boarding/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/on_boarding/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/features/profile_menu/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/profile_menu/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/features/sign_in/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/sign_in/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/features/sign_up/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/sign_up/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/features/update_profile/lib/src/update_profile_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/update_profile/lib/src/update_profile_cubit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/features/update_profile/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/update_profile/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/firebase_api/lib/src/firebase_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/firebase_api/lib/src/firebase_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/firebase_api/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/firebase_api/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/form_fields/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/form_fields/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/key_value_storage/lib/src/key_value_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/key_value_storage/lib/src/key_value_storage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/key_value_storage/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/key_value_storage/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/monitoring/lib/monitoring.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/monitoring/lib/monitoring.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/monitoring/lib/src/dynamic_link_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/monitoring/lib/src/dynamic_link_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/monitoring/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/monitoring/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/user_repository/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/user_repository/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rwf_architecture_boiler_plate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/rwf_architecture_boiler_plate.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
@@ -13,24 +61,59 @@
       </file>
     </leaf>
   </component>
-  <component name="ToolWindowManager">
-    <editor active="true" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-    </layout>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2gUC85wcDzRg66DwgwKBDwzkeRl" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-    </navigator>
+    <navigator currentView="ProjectPane" proportions="" version="1" />
     <panes>
       <pane id="ProjectPane">
         <option name="show-excluded-files" value="false" />
       </pane>
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="dart.analysis.tool.window.force.activate" value="true" />
-    <property name="show.migrate.to.gradle.popup" value="false" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flutter.main.dart.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Gaming/Documents/GitHub/rwf_architecture_boiler_plate",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1939be35-be8f-4130-a128-e98770476e35" name="Changes" comment="" />
+      <created>1715742606593</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715742606593</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+    </layout>
   </component>
 </project>

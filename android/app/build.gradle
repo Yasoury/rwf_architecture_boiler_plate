@@ -48,7 +48,7 @@ android {
         applicationId "com.example.rwf_architecture_boiler_plate"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 34
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -61,9 +61,12 @@ android {
         release {
 
             signingConfig signingConfigs.debug
+            
         }
 
         debug {
+                    minifyEnabled true
+
                 signingConfig signingConfigs.debug
             }
 
@@ -77,6 +80,7 @@ flutter {
 dependencies {
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation("com.google.firebase:firebase-appcheck-playintegrity")
     // Add the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics-ktx'

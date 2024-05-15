@@ -110,7 +110,7 @@ abstract class OnBoardingLocalizations {
   /// No description provided for @onBoardingTitleSubTitle.
   ///
   /// In en, this message translates to:
-  /// **'some day you will look at the soruce code and wonder, WHY the fuck I didn\'t use MVWhatever design pattren'**
+  /// **'some featres out of the Box: Scalable Architecture, Firebase Integration, Navigator 2, Hive DB, and more'**
   String get onBoardingTitleSubTitle;
 
   /// No description provided for @next.

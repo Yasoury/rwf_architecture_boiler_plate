@@ -9,7 +9,7 @@
             "request": "launch",
             "program": "lib/main.dart",
             "type": "dart",
-            "args": [
+            "args": [ 
                 "--dart-define",
                 "firebase-API-KEY=AIzaSyBlC2mnzQo3h5wetuvCcz2c5wFqbLOC-eY"
             ]
