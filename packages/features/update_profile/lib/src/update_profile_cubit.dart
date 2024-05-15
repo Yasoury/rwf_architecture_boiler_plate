@@ -169,7 +169,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       try {
         await userRepository.updateProfile(
           displayName: username.value,
-          //TODO update later
+          //TODOTip update later
           photoUrl: "",
         );
 

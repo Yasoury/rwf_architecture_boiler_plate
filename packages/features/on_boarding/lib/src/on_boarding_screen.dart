@@ -22,7 +22,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      //onBoardingViewed = await DB. onBoardingViewed ; TODO
       bloc.initState(onBoardingViewed: false);
     });
   }

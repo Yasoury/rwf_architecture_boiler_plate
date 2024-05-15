@@ -17,7 +17,7 @@ import 'package:path_provider/path_provider.dart';
 /// Having all these models and boxes' keys in a single package allows us to
 /// avoid conflicts.
 class KeyValueStorage {
-  //TODO add the keys and the adapter for new boxes /cart,favorate....
+  //TODOTip add the keys and the adapter for new boxes /cart,favorate....
   static const userSettingsKey = 'user-settings';
 
   KeyValueStorage({

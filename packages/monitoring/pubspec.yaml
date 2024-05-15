@@ -12,7 +12,8 @@ dependencies:
   firebase_dynamic_links: ^5.3.3
   firebase_analytics: ^10.4.3
   firebase_remote_config: ^4.2.3
+  firebase_app_check: ^0.2.2+5
 
 dev_dependencies:
-  lints: ^2.1.1
+  lints: ^4.0.0
   test: ^1.16.8

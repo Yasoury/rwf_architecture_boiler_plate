@@ -169,7 +169,7 @@ class FirebaseApi {
 
 extension on Dio {
   static const _firebaseAPIKey = 'firebase-API-KEY';
-//TODO to implement "Token-based authentication"
+  //TODOTip to implement "Token-based authentication"
   void setUpAuthHeaders(UserTokenSupplier userTokenSupplier) {
     final appToken = const String.fromEnvironment(
       _firebaseAPIKey,

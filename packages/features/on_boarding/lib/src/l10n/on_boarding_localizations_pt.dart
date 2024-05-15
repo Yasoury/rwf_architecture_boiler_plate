@@ -11,7 +11,7 @@ class OnBoardingLocalizationsPt extends OnBoardingLocalizations {
   String get onBoardingTitle => 'Welcome to your favorite app';
 
   @override
-  String get onBoardingTitleSubTitle => 'some day you will look at the soruce code and wonder, WHY the fuck I didn\'t use MVWhatever design pattren';
+  String get onBoardingTitleSubTitle => 'some featres out of the Box: Scalable Architecture, Firebase Integration, Navigator 2, Hive DB, and more';
 
   @override
   String get next => 'Next';

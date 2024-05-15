@@ -143,7 +143,6 @@ class _MyAppState extends State<MyApp> {
               userSettingsStream.data?.darkModePreference;
           final userPassedOnBoarding =
               userSettingsStream.data?.passedOnBoarding ?? false;
-          /*   if (userSettingsStream.data != null) { */
           FlutterNativeSplash.remove();
 
           return WonderTheme(
@@ -195,12 +194,6 @@ class _MyAppState extends State<MyApp> {
                     routerDelegate: _routerDelegate,
                   ),
           );
-          /*  } else {
-            //TODO make it error message or loading
-            return const MaterialApp(
-              home: CenteredCircularProgressIndicator(),
-            );
-          } */
         });
   }
 }

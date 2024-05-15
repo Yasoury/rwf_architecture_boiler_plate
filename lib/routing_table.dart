@@ -14,13 +14,13 @@ Map<String, PageBuilder> buildRoutingTable({
   required RemoteValueService remoteValueService,
   required DynamicLinkService dynamicLinkService,
   required UserRepository userRepository,
-  //TODO add the neassery Repository
+  //TODOTip add the neassery Repository
 }) {
   return {
     _PathConstants.tabContainerPath: (_) => CupertinoTabPage(
           child: const TabContainerScreen(),
           paths: [
-            _PathConstants.quoteListPath,
+            _PathConstants.homePath,
             _PathConstants.profileMenuPath,
           ],
         ),
@@ -108,7 +108,7 @@ class _PathConstants {
 
   static String get tabContainerPath => '/';
 
-  static String get quoteListPath => '${tabContainerPath}home_scren';
+  static String get homePath => '${tabContainerPath}home_screen';
 
   static String get profileMenuPath => '${tabContainerPath}user';
   static String get signInPath => '${tabContainerPath}sign-in';
