@@ -26,7 +26,7 @@ class ProfileMenuBloc extends Bloc<ProfileMenuEvent, ProfileMenuState> {
               username: user?.displayName,
             ),
           ),
-          onData: emit,
+          onData: emit.call,
         );
       },
       transformer: (events, mapper) => events.flatMap(

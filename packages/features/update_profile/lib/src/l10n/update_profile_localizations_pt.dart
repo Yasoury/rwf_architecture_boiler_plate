@@ -2,7 +2,7 @@ import 'update_profile_localizations.dart';
 
 /// The translations for Portuguese (`pt`).
 class UpdateProfileLocalizationsPt extends UpdateProfileLocalizations {
-  UpdateProfileLocalizationsPt([String locale = 'pt']) : super(locale);
+  UpdateProfileLocalizationsPt([super.locale = 'pt']);
 
   @override
   String get appBarTitle => 'Atualizar Perfil';

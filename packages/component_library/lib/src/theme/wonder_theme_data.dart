@@ -57,6 +57,7 @@ class LightWonderThemeData extends WonderThemeData {
         brightness: Brightness.light,
         primarySwatch: Colors.black.toMaterialColor(),
         dividerTheme: _dividerThemeData,
+        useMaterial3: false,
       );
 
   @override
@@ -113,6 +114,7 @@ class DarkWonderThemeData extends WonderThemeData {
         toggleButtonsTheme: const ToggleButtonsThemeData(color: Colors.white),
         primarySwatch: Colors.white.toMaterialColor(),
         dividerTheme: _dividerThemeData,
+        useMaterial3: false,
       );
 
   @override

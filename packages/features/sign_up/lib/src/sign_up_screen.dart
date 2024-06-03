@@ -11,8 +11,8 @@ class SignUpScreen extends StatelessWidget {
   const SignUpScreen({
     required this.userRepository,
     required this.onSignUpSuccess,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserRepository userRepository;
   final VoidCallback onSignUpSuccess;
@@ -34,8 +34,8 @@ class SignUpScreen extends StatelessWidget {
 class SignUpView extends StatelessWidget {
   const SignUpView({
     required this.onSignUpSuccess,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final VoidCallback onSignUpSuccess;
 
@@ -70,8 +70,7 @@ class SignUpView extends StatelessWidget {
 class _SignUpForm extends StatefulWidget {
   const _SignUpForm({
     required this.onSignUpSuccess,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final VoidCallback onSignUpSuccess;
 

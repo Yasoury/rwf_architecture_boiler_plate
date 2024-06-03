@@ -11,8 +11,8 @@ class ForgotMyPasswordDialog extends StatelessWidget {
     required this.userRepository,
     required this.onCancelTap,
     required this.onEmailRequestSuccess,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserRepository userRepository;
   final VoidCallback onCancelTap;
@@ -37,8 +37,8 @@ class ForgotMyPasswordView extends StatefulWidget {
   const ForgotMyPasswordView({
     required this.onCancelTap,
     required this.onEmailRequestSuccess,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final VoidCallback onCancelTap;
   final VoidCallback onEmailRequestSuccess;

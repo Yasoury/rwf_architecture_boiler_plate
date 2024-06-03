@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class InProgressTextButton extends StatelessWidget {
   const InProgressTextButton({
     required this.label,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String label;
 

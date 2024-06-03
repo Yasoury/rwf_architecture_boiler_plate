@@ -3,8 +3,8 @@ part of './profile_menu_screen.dart';
 class DarkModePreferencePicker extends StatelessWidget {
   const DarkModePreferencePicker({
     required this.currentValue,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final DarkModePreference currentValue;
 

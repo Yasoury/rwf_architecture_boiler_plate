@@ -6,8 +6,8 @@ class ShrinkableText extends StatelessWidget {
     this.data, {
     this.style,
     this.textAlign = TextAlign.center,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String data;
   final TextStyle? style;

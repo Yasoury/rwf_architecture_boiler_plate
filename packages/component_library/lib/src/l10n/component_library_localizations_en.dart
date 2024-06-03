@@ -2,7 +2,7 @@ import 'component_library_localizations.dart';
 
 /// The translations for English (`en`).
 class ComponentLibraryLocalizationsEn extends ComponentLibraryLocalizations {
-  ComponentLibraryLocalizationsEn([String locale = 'en']) : super(locale);
+  ComponentLibraryLocalizationsEn([super.locale = 'en']);
 
   @override
   String get downvoteIconButtonTooltip => 'Downvote';

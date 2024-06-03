@@ -5,8 +5,8 @@ import 'l10n/app_localizations.dart';
 
 class TabContainerScreen extends StatelessWidget {
   const TabContainerScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

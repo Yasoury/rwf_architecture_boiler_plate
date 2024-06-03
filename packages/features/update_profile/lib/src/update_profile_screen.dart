@@ -11,8 +11,8 @@ class UpdateProfileScreen extends StatelessWidget {
   const UpdateProfileScreen({
     required this.userRepository,
     required this.onUpdateProfileSuccess,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserRepository userRepository;
   final VoidCallback onUpdateProfileSuccess;
@@ -34,8 +34,8 @@ class UpdateProfileScreen extends StatelessWidget {
 class UpdateProfileView extends StatelessWidget {
   const UpdateProfileView({
     required this.onUpdateProfileSuccess,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final VoidCallback onUpdateProfileSuccess;
 
@@ -70,8 +70,7 @@ class UpdateProfileView extends StatelessWidget {
 class _UpdateProfileForm extends StatefulWidget {
   const _UpdateProfileForm({
     required this.onUpdateProfileSuccess,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final VoidCallback onUpdateProfileSuccess;
 

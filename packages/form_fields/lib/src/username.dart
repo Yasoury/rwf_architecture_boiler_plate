@@ -4,14 +4,14 @@ import 'package:formz/formz.dart';
 class Username extends FormzInput<String, UsernameValidationError>
     with EquatableMixin {
   const Username.unvalidated([
-    String value = '',
+    super.value = '',
   ])  : isAlreadyRegistered = false,
-        super.pure(value);
+        super.pure();
 
   const Username.validated(
-    String value, {
+    super.value, {
     this.isAlreadyRegistered = false,
-  }) : super.dirty(value);
+  }) : super.dirty();
 
   static final _usernameRegex = RegExp(
     r'^(?=.{1,20}$)(?![_])(?!.*[_.]{2})[a-zA-Z0-9_]+(?<![_])$',

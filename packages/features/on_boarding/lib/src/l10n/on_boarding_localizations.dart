@@ -61,15 +61,18 @@ import 'on_boarding_localizations_pt.dart';
 /// be consistent with the languages listed in the OnBoardingLocalizations.supportedLocales
 /// property.
 abstract class OnBoardingLocalizations {
-  OnBoardingLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  OnBoardingLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static OnBoardingLocalizations of(BuildContext context) {
-    return Localizations.of<OnBoardingLocalizations>(context, OnBoardingLocalizations)!;
+    return Localizations.of<OnBoardingLocalizations>(
+        context, OnBoardingLocalizations)!;
   }
 
-  static const LocalizationsDelegate<OnBoardingLocalizations> delegate = _OnBoardingLocalizationsDelegate();
+  static const LocalizationsDelegate<OnBoardingLocalizations> delegate =
+      _OnBoardingLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,7 +84,8 @@ abstract class OnBoardingLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -126,35 +130,38 @@ abstract class OnBoardingLocalizations {
   String get startNow;
 }
 
-class _OnBoardingLocalizationsDelegate extends LocalizationsDelegate<OnBoardingLocalizations> {
+class _OnBoardingLocalizationsDelegate
+    extends LocalizationsDelegate<OnBoardingLocalizations> {
   const _OnBoardingLocalizationsDelegate();
 
   @override
   Future<OnBoardingLocalizations> load(Locale locale) {
-    return SynchronousFuture<OnBoardingLocalizations>(lookupOnBoardingLocalizations(locale));
+    return SynchronousFuture<OnBoardingLocalizations>(
+        lookupOnBoardingLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_OnBoardingLocalizationsDelegate old) => false;
 }
 
 OnBoardingLocalizations lookupOnBoardingLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return OnBoardingLocalizationsAr();
-    case 'en': return OnBoardingLocalizationsEn();
-    case 'pt': return OnBoardingLocalizationsPt();
+    case 'ar':
+      return OnBoardingLocalizationsAr();
+    case 'en':
+      return OnBoardingLocalizationsEn();
+    case 'pt':
+      return OnBoardingLocalizationsPt();
   }
 
   throw FlutterError(
-    'OnBoardingLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'OnBoardingLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

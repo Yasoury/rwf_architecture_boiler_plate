@@ -2,15 +2,14 @@ import 'package:component_library/component_library.dart';
 import 'package:flutter/material.dart';
 
 class GenericErrorSnackBar extends SnackBar {
-  const GenericErrorSnackBar({Key? key})
+  const GenericErrorSnackBar({super.key})
       : super(
-          key: key,
           content: const _GenericErrorSnackBarMessage(),
         );
 }
 
 class _GenericErrorSnackBarMessage extends StatelessWidget {
-  const _GenericErrorSnackBarMessage({Key? key}) : super(key: key);
+  const _GenericErrorSnackBarMessage();
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,8 @@ class ChevronListTile extends StatelessWidget {
   const ChevronListTile({
     required this.label,
     this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String label;
   final VoidCallback? onTap;

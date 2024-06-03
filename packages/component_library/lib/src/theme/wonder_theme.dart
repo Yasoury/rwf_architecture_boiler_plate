@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 
 class WonderTheme extends InheritedWidget {
   const WonderTheme({
-    required Widget child,
+    required super.child,
     required this.lightTheme,
     required this.darkTheme,
-    Key? key,
-  }) : super(
-          key: key,
-          child: child,
-        );
+    super.key,
+  });
 
   final WonderThemeData lightTheme;
   final WonderThemeData darkTheme;
