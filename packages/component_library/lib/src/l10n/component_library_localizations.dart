@@ -5,17 +5,17 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'component_library_localizations_ar.dart';
 import 'component_library_localizations_en.dart';
-import 'component_library_localizations_pt.dart';
 
-/// Callers can lookup localized strings with an instance of ComponentLibraryLocalizations returned
-/// by `ComponentLibraryLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of ComponentLibraryLocalizations
+/// returned by `ComponentLibraryLocalizations.of(context)`.
 ///
 /// Applications need to include `ComponentLibraryLocalizations.delegate()` in their app's
-/// localizationDelegates list, and the locales they support in the app's
-/// supportedLocales list. For example:
+/// `localizationDelegates` list, and the locales they support in the app's
+/// `supportedLocales` list. For example:
 ///
-/// ```
+/// ```dart
 /// import 'l10n/component_library_localizations.dart';
 ///
 /// return MaterialApp(
@@ -30,14 +30,14 @@ import 'component_library_localizations_pt.dart';
 /// Please make sure to update your pubspec.yaml to include the following
 /// packages:
 ///
-/// ```
+/// ```yaml
 /// dependencies:
 ///   # Internationalization support.
 ///   flutter_localizations:
 ///     sdk: flutter
 ///   intl: any # Use the pinned version from flutter_localizations
 ///
-///   # rest of dependencies
+///   # Rest of dependencies
 /// ```
 ///
 /// ## iOS Applications
@@ -93,8 +93,8 @@ abstract class ComponentLibraryLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en'),
-    Locale('pt')
+    Locale('ar'),
+    Locale('en')
   ];
 
   /// No description provided for @downvoteIconButtonTooltip.
@@ -176,7 +176,7 @@ class _ComponentLibraryLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'pt'].contains(locale.languageCode);
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ComponentLibraryLocalizationsDelegate old) => false;
@@ -186,10 +186,10 @@ ComponentLibraryLocalizations lookupComponentLibraryLocalizations(
     Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return ComponentLibraryLocalizationsAr();
     case 'en':
       return ComponentLibraryLocalizationsEn();
-    case 'pt':
-      return ComponentLibraryLocalizationsPt();
   }
 
   throw FlutterError(

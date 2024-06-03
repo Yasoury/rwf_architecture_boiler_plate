@@ -24,6 +24,17 @@ class ProfileMenuDarkModePreferenceChanged extends ProfileMenuEvent {
       ];
 }
 
+class ProfileMenuLocaleChanged extends ProfileMenuEvent {
+  const ProfileMenuLocaleChanged(this.appLocale);
+
+  final Locale appLocale;
+
+  @override
+  List<Object?> get props => [
+        appLocale,
+      ];
+}
+
 class ProfileMenuSignedOut extends ProfileMenuEvent {
   const ProfileMenuSignedOut();
 }

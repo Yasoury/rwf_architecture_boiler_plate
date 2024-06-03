@@ -10,10 +10,14 @@
   },
   "updateProfileTileLabel": "Atualizar Perfil",
   "darkModePreferencesHeaderTileLabel": "Configurações de Modo Noturno",
+  "languageHeaderTileLabel": "Linguagem",
   "darkModePreferencesAlwaysDarkTileLabel": "Sempre Escuro",
   "darkModePreferencesAlwaysLightTileLabel": "Sempre Claro",
   "darkModePreferencesUseSystemSettingsTileLabel": "De Acordo com o Sistema",
   "signOutButtonLabel": "Sair",
   "signUpOpeningText": "Não tem uma conta?",
-  "signUpButtonLabel": "Cadastrar"
+  "signUpButtonLabel": "Cadastrar",
+  "english":"English",
+  "arabic":"Arabic",
+  "portuguese":"Portuguese"
 }

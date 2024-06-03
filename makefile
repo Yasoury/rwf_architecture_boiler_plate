@@ -138,3 +138,12 @@ outdated:
 		flutter pub outdated ; \
 		cd ../../ ; \
 	done
+
+gen-l10n:
+	flutter gen-l10n
+	for feature in $(FEATURES); do \
+		cd $${feature} ; \
+		echo "Updating dependencies on $${feature}" ; \
+		flutter gen-l10n ; \
+		cd ../../../ ; \
+	done

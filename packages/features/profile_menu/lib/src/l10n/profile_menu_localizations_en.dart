@@ -19,6 +19,9 @@ class ProfileMenuLocalizationsEn extends ProfileMenuLocalizations {
   String get darkModePreferencesHeaderTileLabel => 'Dark Mode Preferences';
 
   @override
+  String get languageHeaderTileLabel => 'Language';
+
+  @override
   String get darkModePreferencesAlwaysDarkTileLabel => 'Always Dark';
 
   @override
@@ -36,4 +39,13 @@ class ProfileMenuLocalizationsEn extends ProfileMenuLocalizations {
 
   @override
   String get signUpButtonLabel => 'Sign up';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get arabic => 'العربية';
+
+  @override
+  String get portuguese => 'Portuguese';
 }

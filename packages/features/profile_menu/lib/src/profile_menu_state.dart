@@ -9,27 +9,29 @@ abstract class ProfileMenuState extends Equatable {
 
 class ProfileMenuLoaded extends ProfileMenuState {
   const ProfileMenuLoaded({
-    this.darkModePreference = DarkModePreference.useSystemSettings,
+    this.darkModePreference,
     this.isSignOutInProgress = false,
     this.username,
+    this.appLocale = const Locale('ar'),
   });
 
-  final DarkModePreference darkModePreference;
+  final DarkModePreference? darkModePreference;
   final String? username;
   final bool isSignOutInProgress;
-
+  final Locale? appLocale;
   bool get isUserAuthenticated => username != null;
 
   ProfileMenuLoaded copyWith({
     DarkModePreference? darkModePreference,
     String? username,
     bool? isSignOutInProgress,
+    Locale? appLocale,
   }) {
     return ProfileMenuLoaded(
-      darkModePreference: darkModePreference ?? this.darkModePreference,
-      username: username ?? this.username,
-      isSignOutInProgress: isSignOutInProgress ?? this.isSignOutInProgress,
-    );
+        darkModePreference: darkModePreference ?? this.darkModePreference,
+        username: username ?? this.username,
+        isSignOutInProgress: isSignOutInProgress ?? this.isSignOutInProgress,
+        appLocale: appLocale ?? const Locale('en'));
   }
 
   @override
@@ -37,6 +39,7 @@ class ProfileMenuLoaded extends ProfileMenuState {
         darkModePreference,
         username,
         isSignOutInProgress,
+        appLocale,
       ];
 }
 

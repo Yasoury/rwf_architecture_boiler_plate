@@ -148,7 +148,7 @@ class _MyAppState extends State<MyApp> {
             darkTheme: _darkTheme,
             child: !userPassedOnBoarding
                 ? MaterialApp(
-                    locale: const Locale('en'),
+                    locale: Locale(userSettingsStream.data?.langugae ?? "en"),
                     localizationsDelegates: const [
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
@@ -171,10 +171,10 @@ class _MyAppState extends State<MyApp> {
                     theme: _lightTheme.materialThemeData,
                     darkTheme: _darkTheme.materialThemeData,
                     themeMode: darkModePreference?.toThemeMode(),
+                    locale: Locale(userSettingsStream.data?.langugae ?? "en"),
                     supportedLocales: const [
-                      Locale('en', ''),
-                      Locale('pt', ''),
-                      //Locale('ar', ''),
+                      Locale('en', 'US'),
+                      Locale('ar', 'SA'),
                     ],
                     localizationsDelegates: const [
                       GlobalCupertinoLocalizations.delegate,

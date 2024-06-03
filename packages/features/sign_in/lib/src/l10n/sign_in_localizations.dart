@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'sign_in_localizations_ar.dart';
 import 'sign_in_localizations_en.dart';
-import 'sign_in_localizations_pt.dart';
 
 /// Callers can lookup localized strings with an instance of SignInLocalizations
 /// returned by `SignInLocalizations.of(context)`.
@@ -92,8 +92,8 @@ abstract class SignInLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en'),
-    Locale('pt')
+    Locale('ar'),
+    Locale('en')
   ];
 
   /// No description provided for @invalidCredentialsErrorMessage.
@@ -181,7 +181,7 @@ class _SignInLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'pt'].contains(locale.languageCode);
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SignInLocalizationsDelegate old) => false;
@@ -190,10 +190,10 @@ class _SignInLocalizationsDelegate
 SignInLocalizations lookupSignInLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return SignInLocalizationsAr();
     case 'en':
       return SignInLocalizationsEn();
-    case 'pt':
-      return SignInLocalizationsPt();
   }
 
   throw FlutterError(

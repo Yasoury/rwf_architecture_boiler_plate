@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'forgot_my_password_localizations_ar.dart';
 import 'forgot_my_password_localizations_en.dart';
-import 'forgot_my_password_localizations_pt.dart';
 
 /// Callers can lookup localized strings with an instance of ForgotMyPasswordLocalizations
 /// returned by `ForgotMyPasswordLocalizations.of(context)`.
@@ -93,8 +93,8 @@ abstract class ForgotMyPasswordLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en'),
-    Locale('pt')
+    Locale('ar'),
+    Locale('en')
   ];
 
   /// No description provided for @dialogTitle.
@@ -158,7 +158,7 @@ class _ForgotMyPasswordLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'pt'].contains(locale.languageCode);
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ForgotMyPasswordLocalizationsDelegate old) => false;
@@ -168,10 +168,10 @@ ForgotMyPasswordLocalizations lookupForgotMyPasswordLocalizations(
     Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return ForgotMyPasswordLocalizationsAr();
     case 'en':
       return ForgotMyPasswordLocalizationsEn();
-    case 'pt':
-      return ForgotMyPasswordLocalizationsPt();
   }
 
   throw FlutterError(
