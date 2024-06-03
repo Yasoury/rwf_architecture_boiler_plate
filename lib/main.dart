@@ -5,7 +5,6 @@ import 'package:component_library/component_library.dart';
 import 'package:domain_models/domain_models.dart';
 import 'package:firebase_api/firebase_api.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:forgot_my_password/forgot_my_password.dart';
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:monitoring/monitoring.dart';
@@ -18,7 +17,6 @@ import 'package:sign_up/sign_up.dart';
 import 'package:update_profile/update_profile.dart';
 import 'package:user_repository/user_repository.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
 import 'l10n/app_localizations.dart';
 import 'screen_view_observer.dart';
 

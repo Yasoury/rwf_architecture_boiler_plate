@@ -14,8 +14,8 @@ class ProfileMenuScreen extends StatelessWidget {
     this.onSignInTap,
     this.onSignUpTap,
     this.onUpdateProfileTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final VoidCallback? onSignInTap;
   final VoidCallback? onUpdateProfileTap;
@@ -43,8 +43,8 @@ class ProfileMenuView extends StatelessWidget {
     this.onSignInTap,
     this.onSignUpTap,
     this.onUpdateProfileTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final VoidCallback? onSignInTap;
   final VoidCallback? onSignUpTap;
@@ -132,9 +132,8 @@ class ProfileMenuView extends StatelessWidget {
 
 class _SignInButton extends StatelessWidget {
   const _SignInButton({
-    Key? key,
     this.onSignInTap,
-  }) : super(key: key);
+  });
 
   final VoidCallback? onSignInTap;
 
@@ -162,8 +161,7 @@ class _SignInButton extends StatelessWidget {
 class _SignOutButton extends StatelessWidget {
   const _SignOutButton({
     required this.isSignOutInProgress,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final bool isSignOutInProgress;
 

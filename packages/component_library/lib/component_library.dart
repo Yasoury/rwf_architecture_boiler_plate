@@ -12,3 +12,5 @@ export 'src/chevron_list_tile.dart';
 export 'src/in_progress_text_button.dart';
 export 'src/const/assets_const.dart';
 export 'package:flutter_svg/flutter_svg.dart';
+export 'package:intl/intl.dart';
+export 'package:flutter_localizations/flutter_localizations.dart';

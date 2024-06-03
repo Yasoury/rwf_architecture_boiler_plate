@@ -2,7 +2,7 @@ import 'sign_in_localizations.dart';
 
 /// The translations for Portuguese (`pt`).
 class SignInLocalizationsPt extends SignInLocalizations {
-  SignInLocalizationsPt([String locale = 'pt']) : super(locale);
+  SignInLocalizationsPt([super.locale = 'pt']);
 
   @override
   String get invalidCredentialsErrorMessage => 'Email e/ou senha inválida.';
@@ -23,10 +23,12 @@ class SignInLocalizationsPt extends SignInLocalizations {
   String get passwordTextFieldLabel => 'Senha';
 
   @override
-  String get passwordTextFieldEmptyErrorMessage => 'Sua senha não pode ser vazia.';
+  String get passwordTextFieldEmptyErrorMessage =>
+      'Sua senha não pode ser vazia.';
 
   @override
-  String get passwordTextFieldInvalidErrorMessage => 'Sua senha precisa ter pelo menos cinco caracteres.';
+  String get passwordTextFieldInvalidErrorMessage =>
+      'Sua senha precisa ter pelo menos cinco caracteres.';
 
   @override
   String get forgotMyPasswordButtonLabel => 'Esqueci minha senha';

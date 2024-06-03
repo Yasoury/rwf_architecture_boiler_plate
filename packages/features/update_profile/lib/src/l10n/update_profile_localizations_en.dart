@@ -2,7 +2,7 @@ import 'update_profile_localizations.dart';
 
 /// The translations for English (`en`).
 class UpdateProfileLocalizationsEn extends UpdateProfileLocalizations {
-  UpdateProfileLocalizationsEn([String locale = 'en']) : super(locale);
+  UpdateProfileLocalizationsEn([super.locale = 'en']);
 
   @override
   String get appBarTitle => 'Update Profile';

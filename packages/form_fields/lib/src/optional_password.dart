@@ -7,12 +7,12 @@ import 'package:formz/formz.dart';
 class OptionalPassword
     extends FormzInput<String, OptionalPasswordValidationError> {
   const OptionalPassword.unvalidated([
-    String value = '',
-  ]) : super.pure(value);
+    super.value = '',
+  ]) : super.pure();
 
   const OptionalPassword.validated([
-    String value = '',
-  ]) : super.dirty(value);
+    super.value = '',
+  ]) : super.dirty();
 
   @override
   OptionalPasswordValidationError? validator(String value) {

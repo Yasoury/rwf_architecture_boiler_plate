@@ -9,14 +9,14 @@ class OptionalPasswordConfirmation
     extends FormzInput<String, OptionalPasswordConfirmationValidationError>
     with EquatableMixin {
   const OptionalPasswordConfirmation.unvalidated([
-    String value = '',
+    super.value = '',
   ])  : password = const OptionalPassword.unvalidated(),
-        super.pure(value);
+        super.pure();
 
   const OptionalPasswordConfirmation.validated(
-    String value, {
+    super.value, {
     required this.password,
-  }) : super.dirty(value);
+  }) : super.dirty();
 
   final OptionalPassword password;
 

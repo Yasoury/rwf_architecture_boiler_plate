@@ -2,12 +2,12 @@ name: forgot_my_password
 publish_to: none
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   component_library:
     path: ../../component_library
-  flutter_bloc: ^8.0.1
+  flutter_bloc: ^8.1.5
   flutter:
     sdk: flutter
   user_repository:

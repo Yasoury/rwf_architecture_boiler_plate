@@ -2,7 +2,7 @@ import 'component_library_localizations.dart';
 
 /// The translations for Portuguese (`pt`).
 class ComponentLibraryLocalizationsPt extends ComponentLibraryLocalizations {
-  ComponentLibraryLocalizationsPt([String locale = 'pt']) : super(locale);
+  ComponentLibraryLocalizationsPt([super.locale = 'pt']);
 
   @override
   String get downvoteIconButtonTooltip => 'Negativo';

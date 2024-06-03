@@ -7,8 +7,8 @@ class StyledStatusBar extends StatelessWidget {
   const StyledStatusBar._({
     required this.child,
     required this.style,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   const StyledStatusBar.light({
     required Widget child,

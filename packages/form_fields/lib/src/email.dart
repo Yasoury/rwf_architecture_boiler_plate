@@ -4,14 +4,14 @@ import 'package:formz/formz.dart';
 class Email extends FormzInput<String, EmailValidationError>
     with EquatableMixin {
   const Email.unvalidated([
-    String value = '',
+    super.value = '',
   ])  : isAlreadyRegistered = false,
-        super.pure(value);
+        super.pure();
 
   const Email.validated(
-    String value, {
+    super.value, {
     this.isAlreadyRegistered = false,
-  }) : super.dirty(value);
+  }) : super.dirty();
 
   static final _emailRegex = RegExp(
     '^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@((([0-1]?'

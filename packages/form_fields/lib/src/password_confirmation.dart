@@ -5,14 +5,14 @@ class PasswordConfirmation
     extends FormzInput<String, PasswordConfirmationValidationError>
     with EquatableMixin {
   const PasswordConfirmation.unvalidated([
-    String value = '',
+    super.value = '',
   ])  : password = const Password.unvalidated(),
-        super.pure(value);
+        super.pure();
 
   const PasswordConfirmation.validated(
-    String value, {
+    super.value, {
     required this.password,
-  }) : super.dirty(value);
+  }) : super.dirty();
 
   final Password password;
 

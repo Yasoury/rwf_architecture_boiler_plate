@@ -13,8 +13,8 @@ class SignInScreen extends StatelessWidget {
     required this.onSignInSuccess,
     this.onForgotMyPasswordTap,
     this.onSignUpTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final VoidCallback? onSignUpTap;
   final VoidCallback? onForgotMyPasswordTap;
@@ -42,8 +42,8 @@ class SignInView extends StatelessWidget {
     required this.onSignInSuccess,
     this.onSignUpTap,
     this.onForgotMyPasswordTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final VoidCallback? onSignUpTap;
   final VoidCallback? onForgotMyPasswordTap;
@@ -85,8 +85,7 @@ class _SignInForm extends StatefulWidget {
     required this.onSignInSuccess,
     this.onSignUpTap,
     this.onForgotMyPasswordTap,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final VoidCallback? onSignUpTap;
   final VoidCallback? onForgotMyPasswordTap;
@@ -207,11 +206,11 @@ class _SignInFormState extends State<_SignInForm> {
               ),
             ),
             TextButton(
+              onPressed:
+                  isSubmissionInProgress ? null : widget.onForgotMyPasswordTap,
               child: Text(
                 l10n.forgotMyPasswordButtonLabel,
               ),
-              onPressed:
-                  isSubmissionInProgress ? null : widget.onForgotMyPasswordTap,
             ),
             const SizedBox(
               height: Spacing.small,
@@ -234,10 +233,10 @@ class _SignInFormState extends State<_SignInForm> {
               l10n.signUpOpeningText,
             ),
             TextButton(
+              onPressed: isSubmissionInProgress ? null : widget.onSignUpTap,
               child: Text(
                 l10n.signUpButtonLabel,
               ),
-              onPressed: isSubmissionInProgress ? null : widget.onSignUpTap,
             ),
           ],
         );
