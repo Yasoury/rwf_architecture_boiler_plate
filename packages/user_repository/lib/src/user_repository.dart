@@ -31,7 +31,8 @@ class UserRepository {
     var savedSettings = await getUserSettingsAsFuture();
 
     var settingsToBeSaved = UserSettings(
-      darkModePreference: settings.darkModePreference,
+      darkModePreference:
+          settings.darkModePreference ?? savedSettings.darkModePreference,
       langugae: settings.langugae ?? savedSettings.langugae,
       passedOnBoarding:
           settings.passedOnBoarding ?? savedSettings.passedOnBoarding,

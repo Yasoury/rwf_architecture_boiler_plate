@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:domain_models/domain_models.dart';
 // ignore: depend_on_referenced_packages
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:user_repository/user_repository.dart';
@@ -24,6 +27,7 @@ class ProfileMenuBloc extends Bloc<ProfileMenuEvent, ProfileMenuState> {
             (user, userSettings) => ProfileMenuLoaded(
               darkModePreference: userSettings.darkModePreference,
               username: user?.displayName,
+              appLocale: Locale(userSettings.langugae!),
             ),
           ),
           onData: emit.call,
@@ -48,6 +52,12 @@ class ProfileMenuBloc extends Bloc<ProfileMenuEvent, ProfileMenuState> {
     on<ProfileMenuDarkModePreferenceChanged>((event, _) async {
       await userRepository.upsertUserSettings(UserSettings(
         darkModePreference: event.preference,
+      ));
+    });
+
+    on<ProfileMenuLocaleChanged>((event, _) async {
+      await userRepository.upsertUserSettings(UserSettings(
+        langugae: event.appLocale.languageCode,
       ));
     });
 

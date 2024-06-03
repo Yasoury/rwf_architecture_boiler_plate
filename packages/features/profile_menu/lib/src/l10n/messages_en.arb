@@ -10,10 +10,15 @@
   },
   "updateProfileTileLabel": "Update Profile",
   "darkModePreferencesHeaderTileLabel": "Dark Mode Preferences",
+  "languageHeaderTileLabel": "Language",
+
   "darkModePreferencesAlwaysDarkTileLabel": "Always Dark",
   "darkModePreferencesAlwaysLightTileLabel": "Always Light",
   "darkModePreferencesUseSystemSettingsTileLabel": "Use System Settings",
   "signOutButtonLabel": "Sign Out",
   "signUpOpeningText": "Don't have an account?",
-  "signUpButtonLabel": "Sign up"
+  "signUpButtonLabel": "Sign up",
+  "english":"English",
+  "arabic":"العربية",
+  "portuguese":"Portuguese"
 }

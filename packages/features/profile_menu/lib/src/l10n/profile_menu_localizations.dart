@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'profile_menu_localizations_ar.dart';
 import 'profile_menu_localizations_en.dart';
 import 'profile_menu_localizations_pt.dart';
 
@@ -93,6 +94,7 @@ abstract class ProfileMenuLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
     Locale('en'),
     Locale('pt')
   ];
@@ -120,6 +122,12 @@ abstract class ProfileMenuLocalizations {
   /// In en, this message translates to:
   /// **'Dark Mode Preferences'**
   String get darkModePreferencesHeaderTileLabel;
+
+  /// No description provided for @languageHeaderTileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageHeaderTileLabel;
 
   /// No description provided for @darkModePreferencesAlwaysDarkTileLabel.
   ///
@@ -156,6 +164,24 @@ abstract class ProfileMenuLocalizations {
   /// In en, this message translates to:
   /// **'Sign up'**
   String get signUpButtonLabel;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get arabic;
+
+  /// No description provided for @portuguese.
+  ///
+  /// In en, this message translates to:
+  /// **'Portuguese'**
+  String get portuguese;
 }
 
 class _ProfileMenuLocalizationsDelegate
@@ -170,7 +196,7 @@ class _ProfileMenuLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'pt'].contains(locale.languageCode);
+      <String>['ar', 'en', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ProfileMenuLocalizationsDelegate old) => false;
@@ -179,6 +205,8 @@ class _ProfileMenuLocalizationsDelegate
 ProfileMenuLocalizations lookupProfileMenuLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return ProfileMenuLocalizationsAr();
     case 'en':
       return ProfileMenuLocalizationsEn();
     case 'pt':

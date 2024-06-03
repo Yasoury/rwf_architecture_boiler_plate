@@ -7,7 +7,6 @@ import 'package:intl/intl.dart' as intl;
 
 import 'on_boarding_localizations_ar.dart';
 import 'on_boarding_localizations_en.dart';
-import 'on_boarding_localizations_pt.dart';
 
 /// Callers can lookup localized strings with an instance of OnBoardingLocalizations
 /// returned by `OnBoardingLocalizations.of(context)`.
@@ -95,8 +94,7 @@ abstract class OnBoardingLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en'),
-    Locale('pt')
+    Locale('en')
   ];
 
   /// No description provided for @skip.
@@ -142,7 +140,7 @@ class _OnBoardingLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['ar', 'en', 'pt'].contains(locale.languageCode);
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_OnBoardingLocalizationsDelegate old) => false;
@@ -155,8 +153,6 @@ OnBoardingLocalizations lookupOnBoardingLocalizations(Locale locale) {
       return OnBoardingLocalizationsAr();
     case 'en':
       return OnBoardingLocalizationsEn();
-    case 'pt':
-      return OnBoardingLocalizationsPt();
   }
 
   throw FlutterError(

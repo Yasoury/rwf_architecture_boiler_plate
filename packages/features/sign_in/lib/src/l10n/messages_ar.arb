@@ -1,0 +1,14 @@
+{
+  "invalidCredentialsErrorMessage": "البريد الإلكتروني و/أو كلمة المرور غير صحيحة.",
+  "appBarTitle": "تسجيل الدخول",
+  "emailTextFieldLabel": "البريد الإلكتروني",
+  "emailTextFieldEmptyErrorMessage": "لا يمكن أن يكون بريدك الإلكتروني فارغًا.",
+  "emailTextFieldInvalidErrorMessage": "هذا البريد الإلكتروني غير صالح.",
+  "passwordTextFieldLabel": "كلمة المرور",
+  "passwordTextFieldEmptyErrorMessage": "لا يمكن أن تكون كلمة المرور فارغة.",
+  "passwordTextFieldInvalidErrorMessage": "يجب أن تكون كلمة المرور مكونة من خمسة أحرف على الأقل.",
+  "forgotMyPasswordButtonLabel": "نسيت كلمة المرور",
+  "signInButtonLabel": "تسجيل الدخول",
+  "signUpOpeningText": "لا تملك حسابًا؟",
+  "signUpButtonLabel": "إنشاء حساب"
+}

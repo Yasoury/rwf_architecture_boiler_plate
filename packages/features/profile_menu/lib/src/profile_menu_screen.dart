@@ -3,6 +3,7 @@ import 'package:domain_models/domain_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile_menu/profile_menu.dart';
+import 'package:profile_menu/src/locale_picker.dart';
 import 'package:profile_menu/src/profile_menu_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -109,7 +110,10 @@ class ProfileMenuView extends StatelessWidget {
                       ),
                     ],
                     DarkModePreferencePicker(
-                      currentValue: state.darkModePreference,
+                      currentValue: state.darkModePreference!,
+                    ),
+                    LocalePicker(
+                      currentLocale: state.appLocale ?? const Locale('en'),
                     ),
                     if (state.isUserAuthenticated) ...[
                       const Spacer(),

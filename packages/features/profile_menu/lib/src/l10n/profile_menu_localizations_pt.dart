@@ -20,6 +20,9 @@ class ProfileMenuLocalizationsPt extends ProfileMenuLocalizations {
       'Configurações de Modo Noturno';
 
   @override
+  String get languageHeaderTileLabel => 'Linguagem';
+
+  @override
   String get darkModePreferencesAlwaysDarkTileLabel => 'Sempre Escuro';
 
   @override
@@ -37,4 +40,13 @@ class ProfileMenuLocalizationsPt extends ProfileMenuLocalizations {
 
   @override
   String get signUpButtonLabel => 'Cadastrar';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get arabic => 'Arabic';
+
+  @override
+  String get portuguese => 'Portuguese';
 }

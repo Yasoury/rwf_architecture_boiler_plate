@@ -1,0 +1,13 @@
+{
+  "downvoteIconButtonTooltip": "عدم الإعجاب",
+  "upvoteIconButtonTooltip": "الإعجاب",
+  "searchBarHintText": "رحلة",
+  "searchBarLabelText": "بحث",
+  "shareIconButtonTooltip": "مشاركة",
+  "favoriteIconButtonTooltip": "المفضلة",
+  "exceptionIndicatorGenericTitle": "حدث خطأ ما",
+  "exceptionIndicatorTryAgainButton": "حاول مرة أخرى",
+  "exceptionIndicatorGenericMessage": "حدث خطأ.\nيرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى لاحقًا.",
+  "genericErrorSnackbarMessage": "حدث خطأ. يرجى التحقق من اتصالك بالإنترنت.",
+  "authenticationRequiredErrorSnackbarMessage": "تحتاج إلى تسجيل الدخول قبل القيام بهذا الإجراء."
+}

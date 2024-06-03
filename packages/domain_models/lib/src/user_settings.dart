@@ -4,11 +4,11 @@ import 'package:equatable/equatable.dart';
 class UserSettings extends Equatable {
   final String? langugae;
   final bool? passedOnBoarding;
-  final DarkModePreference darkModePreference;
+  final DarkModePreference? darkModePreference;
   UserSettings({
     this.langugae,
     this.passedOnBoarding,
-    this.darkModePreference = DarkModePreference.useSystemSettings,
+    this.darkModePreference,
   });
 
   @override
