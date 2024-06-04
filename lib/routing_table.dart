@@ -6,6 +6,7 @@ import 'package:routemaster/routemaster.dart';
 import 'package:sign_in/sign_in.dart';
 import 'package:sign_up/sign_up.dart';
 import 'package:update_profile/update_profile.dart';
+import 'package:user_preferences/user_preferences.dart';
 import 'package:user_repository/user_repository.dart';
 import 'tab_container_screen.dart';
 
@@ -22,8 +23,23 @@ Map<String, PageBuilder> buildRoutingTable({
           paths: [
             _PathConstants.homePath,
             _PathConstants.profileMenuPath,
+            _PathConstants.userPreferencesPath,
           ],
         ),
+    _PathConstants.userPreferencesPath: (_) {
+      return MaterialPage(
+        name: 'user-preferences',
+        child: UserPreferencesScreen(
+          userRepository: userRepository,
+          //TODO change later
+          onUpdateProfileTap: () {
+            routerDelegate.push(
+              _PathConstants.updateProfilePath,
+            );
+          },
+        ),
+      );
+    },
     _PathConstants.profileMenuPath: (_) {
       return MaterialPage(
         name: 'profile-menu',
@@ -107,9 +123,9 @@ class _PathConstants {
   const _PathConstants._();
 
   static String get tabContainerPath => '/';
-
+  static String get userPreferencesPath =>
+      '${tabContainerPath}user-preferencesPath';
   static String get homePath => '${tabContainerPath}home_screen';
-
   static String get profileMenuPath => '${tabContainerPath}user';
   static String get signInPath => '${tabContainerPath}sign-in';
   static String get signUpPath => '${tabContainerPath}sign-up';

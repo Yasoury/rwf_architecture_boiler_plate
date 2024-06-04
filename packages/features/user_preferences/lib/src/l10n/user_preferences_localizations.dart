@@ -5,22 +5,23 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'sign_in_localizations_ar.dart';
-import 'sign_in_localizations_en.dart';
+import 'user_preferences_localizations_ar.dart';
+import 'user_preferences_localizations_en.dart';
+import 'user_preferences_localizations_pt.dart';
 
-/// Callers can lookup localized strings with an instance of SignInLocalizations
-/// returned by `SignInLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of UserPreferencesLocalizations
+/// returned by `UserPreferencesLocalizations.of(context)`.
 ///
-/// Applications need to include `SignInLocalizations.delegate()` in their app's
+/// Applications need to include `UserPreferencesLocalizations.delegate()` in their app's
 /// `localizationDelegates` list, and the locales they support in the app's
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'l10n/sign_in_localizations.dart';
+/// import 'l10n/user_preferences_localizations.dart';
 ///
 /// return MaterialApp(
-///   localizationsDelegates: SignInLocalizations.localizationsDelegates,
-///   supportedLocales: SignInLocalizations.supportedLocales,
+///   localizationsDelegates: UserPreferencesLocalizations.localizationsDelegates,
+///   supportedLocales: UserPreferencesLocalizations.supportedLocales,
 ///   home: MyApplicationHome(),
 /// );
 /// ```
@@ -57,18 +58,18 @@ import 'sign_in_localizations_en.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the SignInLocalizations.supportedLocales
+/// be consistent with the languages listed in the UserPreferencesLocalizations.supportedLocales
 /// property.
-abstract class SignInLocalizations {
-  SignInLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+abstract class UserPreferencesLocalizations {
+  UserPreferencesLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static SignInLocalizations of(BuildContext context) {
-    return Localizations.of<SignInLocalizations>(context, SignInLocalizations)!;
+  static UserPreferencesLocalizations of(BuildContext context) {
+    return Localizations.of<UserPreferencesLocalizations>(context, UserPreferencesLocalizations)!;
   }
 
-  static const LocalizationsDelegate<SignInLocalizations> delegate = _SignInLocalizationsDelegate();
+  static const LocalizationsDelegate<UserPreferencesLocalizations> delegate = _UserPreferencesLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -90,68 +91,63 @@ abstract class SignInLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en')
+    Locale('en'),
+    Locale('pt')
   ];
-
-  /// No description provided for @invalidCredentialsErrorMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid email and/or password.'**
-  String get invalidCredentialsErrorMessage;
-
-  /// No description provided for @appBarTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign In'**
-  String get appBarTitle;
-
-  /// No description provided for @emailTextFieldLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get emailTextFieldLabel;
-
-  /// No description provided for @emailTextFieldEmptyErrorMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Your email can\'t be empty.'**
-  String get emailTextFieldEmptyErrorMessage;
-
-  /// No description provided for @emailTextFieldInvalidErrorMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'This email is not valid.'**
-  String get emailTextFieldInvalidErrorMessage;
-
-  /// No description provided for @passwordTextFieldLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get passwordTextFieldLabel;
-
-  /// No description provided for @passwordTextFieldEmptyErrorMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Your password can\'t be empty.'**
-  String get passwordTextFieldEmptyErrorMessage;
-
-  /// No description provided for @passwordTextFieldInvalidErrorMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Password must be at least five characters long.'**
-  String get passwordTextFieldInvalidErrorMessage;
-
-  /// No description provided for @forgotMyPasswordButtonLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Forgot my password'**
-  String get forgotMyPasswordButtonLabel;
 
   /// No description provided for @signInButtonLabel.
   ///
   /// In en, this message translates to:
   /// **'Sign In'**
   String get signInButtonLabel;
+
+  /// No description provided for @signedInUserGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi, {username}!'**
+  String signedInUserGreeting(String username);
+
+  /// No description provided for @updateProfileTileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Profile'**
+  String get updateProfileTileLabel;
+
+  /// No description provided for @darkModePreferencesHeaderTileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode Preferences'**
+  String get darkModePreferencesHeaderTileLabel;
+
+  /// No description provided for @languageHeaderTileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageHeaderTileLabel;
+
+  /// No description provided for @darkModePreferencesAlwaysDarkTileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Always Dark'**
+  String get darkModePreferencesAlwaysDarkTileLabel;
+
+  /// No description provided for @darkModePreferencesAlwaysLightTileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Always Light'**
+  String get darkModePreferencesAlwaysLightTileLabel;
+
+  /// No description provided for @darkModePreferencesUseSystemSettingsTileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Use System Settings'**
+  String get darkModePreferencesUseSystemSettingsTileLabel;
+
+  /// No description provided for @signOutButtonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get signOutButtonLabel;
 
   /// No description provided for @signUpOpeningText.
   ///
@@ -164,34 +160,53 @@ abstract class SignInLocalizations {
   /// In en, this message translates to:
   /// **'Sign up'**
   String get signUpButtonLabel;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get arabic;
+
+  /// No description provided for @portuguese.
+  ///
+  /// In en, this message translates to:
+  /// **'Portuguese'**
+  String get portuguese;
 }
 
-class _SignInLocalizationsDelegate extends LocalizationsDelegate<SignInLocalizations> {
-  const _SignInLocalizationsDelegate();
+class _UserPreferencesLocalizationsDelegate extends LocalizationsDelegate<UserPreferencesLocalizations> {
+  const _UserPreferencesLocalizationsDelegate();
 
   @override
-  Future<SignInLocalizations> load(Locale locale) {
-    return SynchronousFuture<SignInLocalizations>(lookupSignInLocalizations(locale));
+  Future<UserPreferencesLocalizations> load(Locale locale) {
+    return SynchronousFuture<UserPreferencesLocalizations>(lookupUserPreferencesLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en', 'pt'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_SignInLocalizationsDelegate old) => false;
+  bool shouldReload(_UserPreferencesLocalizationsDelegate old) => false;
 }
 
-SignInLocalizations lookupSignInLocalizations(Locale locale) {
+UserPreferencesLocalizations lookupUserPreferencesLocalizations(Locale locale) {
 
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return SignInLocalizationsAr();
-    case 'en': return SignInLocalizationsEn();
+    case 'ar': return UserPreferencesLocalizationsAr();
+    case 'en': return UserPreferencesLocalizationsEn();
+    case 'pt': return UserPreferencesLocalizationsPt();
   }
 
   throw FlutterError(
-    'SignInLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'UserPreferencesLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.'

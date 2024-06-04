@@ -1,9 +1,4 @@
-import 'package:component_library/component_library.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:profile_menu/src/profile_menu_bloc.dart';
-
-import '../profile_menu.dart';
+part of 'user_preferences_screen.dart';
 
 class LocalePicker extends StatelessWidget {
   final Locale currentLocale;
@@ -14,8 +9,8 @@ class LocalePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = ProfileMenuLocalizations.of(context);
-    final bloc = context.read<ProfileMenuBloc>();
+    final l10n = UserPreferencesLocalizations.of(context);
+    final bloc = context.read<UserPreferencesBloc>();
     return Column(children: [
       ListTile(
         title: Text(
@@ -38,7 +33,7 @@ class LocalePicker extends StatelessWidget {
             groupValue: currentLocale,
             onChanged: (newOption) {
               bloc.add(
-                const ProfileMenuLocaleChanged(
+                const UserPreferencesLocaleChanged(
                   Locale('en'),
                 ),
               );
@@ -52,7 +47,7 @@ class LocalePicker extends StatelessWidget {
             groupValue: currentLocale,
             onChanged: (newOption) {
               bloc.add(
-                const ProfileMenuLocaleChanged(
+                const UserPreferencesLocaleChanged(
                   Locale('ar'),
                 ),
               );

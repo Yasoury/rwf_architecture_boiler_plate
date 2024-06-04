@@ -104,6 +104,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profileBottomNavigationBarItemLabel;
+
+  /// No description provided for @userPreferencesBottomNavigationBarItemLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get userPreferencesBottomNavigationBarItemLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

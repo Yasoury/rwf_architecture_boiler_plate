@@ -9,6 +9,7 @@ import 'package:forgot_my_password/forgot_my_password.dart';
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:monitoring/monitoring.dart';
 import 'package:on_boarding/on_boarding.dart';
+import 'package:user_preferences/user_preferences.dart';
 import 'package:profile_menu/profile_menu.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:rwf_architecture_boiler_plate/routing_table.dart';
@@ -187,6 +188,7 @@ class _MyAppState extends State<MyApp> {
                       ForgotMyPasswordLocalizations.delegate,
                       SignUpLocalizations.delegate,
                       UpdateProfileLocalizations.delegate,
+                      UserPreferencesLocalizations.delegate,
                     ],
                     routeInformationParser: const RoutemasterParser(),
                     routerDelegate: _routerDelegate,

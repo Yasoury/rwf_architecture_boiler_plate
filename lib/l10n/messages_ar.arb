@@ -1,4 +1,6 @@
 {
   "quotesBottomNavigationBarItemLabel": "الصفحة الرئيسية",
-  "profileBottomNavigationBarItemLabel": "الملف الشخصي"
+  "profileBottomNavigationBarItemLabel": "الملف الشخصي",
+  "userPreferencesBottomNavigationBarItemLabel": "الاعدادات"
+
 }

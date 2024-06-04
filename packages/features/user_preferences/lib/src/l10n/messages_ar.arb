@@ -1,0 +1,24 @@
+{
+  "signInButtonLabel": "تسجيل الدخول",
+  "signedInUserGreeting": "مرحبًا، {username}!",
+  "@signedInUserGreeting": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "updateProfileTileLabel": "تحديث الملف الشخصي",
+  "darkModePreferencesHeaderTileLabel": "تفضيلات الوضع الداكن",
+  "languageHeaderTileLabel": "اللغة",
+
+  "darkModePreferencesAlwaysDarkTileLabel": "دائمًا داكن",
+  "darkModePreferencesAlwaysLightTileLabel": "دائمًا فاتح",
+  "darkModePreferencesUseSystemSettingsTileLabel": "استخدام إعدادات النظام",
+  "signOutButtonLabel": "تسجيل الخروج",
+  "signUpOpeningText": "لا تملك حسابًا؟",
+  "signUpButtonLabel": "إنشاء حساب",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "portuguese": "البرتغالية"
+}
