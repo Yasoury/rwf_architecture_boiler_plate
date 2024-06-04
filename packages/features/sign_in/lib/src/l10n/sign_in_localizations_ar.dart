@@ -2,11 +2,10 @@ import 'sign_in_localizations.dart';
 
 /// The translations for Arabic (`ar`).
 class SignInLocalizationsAr extends SignInLocalizations {
-  SignInLocalizationsAr([super.locale = 'ar']);
+  SignInLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get invalidCredentialsErrorMessage =>
-      'البريد الإلكتروني و/أو كلمة المرور غير صحيحة.';
+  String get invalidCredentialsErrorMessage => 'البريد الإلكتروني و/أو كلمة المرور غير صحيحة.';
 
   @override
   String get appBarTitle => 'تسجيل الدخول';
@@ -15,23 +14,19 @@ class SignInLocalizationsAr extends SignInLocalizations {
   String get emailTextFieldLabel => 'البريد الإلكتروني';
 
   @override
-  String get emailTextFieldEmptyErrorMessage =>
-      'لا يمكن أن يكون بريدك الإلكتروني فارغًا.';
+  String get emailTextFieldEmptyErrorMessage => 'لا يمكن أن يكون بريدك الإلكتروني فارغًا.';
 
   @override
-  String get emailTextFieldInvalidErrorMessage =>
-      'هذا البريد الإلكتروني غير صالح.';
+  String get emailTextFieldInvalidErrorMessage => 'هذا البريد الإلكتروني غير صالح.';
 
   @override
   String get passwordTextFieldLabel => 'كلمة المرور';
 
   @override
-  String get passwordTextFieldEmptyErrorMessage =>
-      'لا يمكن أن تكون كلمة المرور فارغة.';
+  String get passwordTextFieldEmptyErrorMessage => 'لا يمكن أن تكون كلمة المرور فارغة.';
 
   @override
-  String get passwordTextFieldInvalidErrorMessage =>
-      'يجب أن تكون كلمة المرور مكونة من خمسة أحرف على الأقل.';
+  String get passwordTextFieldInvalidErrorMessage => 'يجب أن تكون كلمة المرور مكونة من خمسة أحرف على الأقل.';
 
   @override
   String get forgotMyPasswordButtonLabel => 'نسيت كلمة المرور';

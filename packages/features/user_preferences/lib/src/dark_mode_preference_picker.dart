@@ -1,4 +1,4 @@
-part of './profile_menu_screen.dart';
+part of 'user_preferences_screen.dart';
 
 class DarkModePreferencePicker extends StatelessWidget {
   const DarkModePreferencePicker({
@@ -10,8 +10,8 @@ class DarkModePreferencePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = ProfileMenuLocalizations.of(context);
-    final bloc = context.read<ProfileMenuBloc>();
+    final l10n = UserPreferencesLocalizations.of(context);
+    final bloc = context.read<UserPreferencesBloc>();
     return Column(
       children: [
         ListTile(
@@ -34,7 +34,7 @@ class DarkModePreferencePicker extends StatelessWidget {
               groupValue: currentValue,
               onChanged: (newOption) {
                 bloc.add(
-                  const ProfileMenuDarkModePreferenceChanged(
+                  const UserPreferencesDarkModePreferenceChanged(
                     DarkModePreference.alwaysDark,
                   ),
                 );
@@ -48,7 +48,7 @@ class DarkModePreferencePicker extends StatelessWidget {
               groupValue: currentValue,
               onChanged: (newOption) {
                 bloc.add(
-                  const ProfileMenuDarkModePreferenceChanged(
+                  const UserPreferencesDarkModePreferenceChanged(
                     DarkModePreference.alwaysLight,
                   ),
                 );
@@ -62,7 +62,7 @@ class DarkModePreferencePicker extends StatelessWidget {
               groupValue: currentValue,
               onChanged: (newOption) {
                 bloc.add(
-                  const ProfileMenuDarkModePreferenceChanged(
+                  const UserPreferencesDarkModePreferenceChanged(
                     DarkModePreference.useSystemSettings,
                   ),
                 );

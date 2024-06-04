@@ -50,6 +50,8 @@ dependencies:
     path: packages/features/sign_up
   on_boarding:
     path: packages/features/on_boarding
+  user_preferences:
+    path: packages/features/user_preferences
 
   intl: any
 dev_dependencies:

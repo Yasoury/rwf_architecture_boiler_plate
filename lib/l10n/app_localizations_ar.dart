@@ -9,4 +9,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profileBottomNavigationBarItemLabel => 'الملف الشخصي';
+
+  @override
+  String get userPreferencesBottomNavigationBarItemLabel => 'الاعدادات';
 }

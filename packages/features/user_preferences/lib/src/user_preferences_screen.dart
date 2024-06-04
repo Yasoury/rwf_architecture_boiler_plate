@@ -1,116 +1,86 @@
 import 'package:component_library/component_library.dart';
+import 'package:domain_models/domain_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:profile_menu/profile_menu.dart';
-import 'package:profile_menu/src/profile_menu_bloc.dart';
+import 'package:user_preferences/user_preferences.dart';
+import 'package:user_preferences/src/user_preferences_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
-class ProfileMenuScreen extends StatelessWidget {
-  const ProfileMenuScreen({
+part './dark_mode_preference_picker.dart';
+part './locale_picker.dart';
+
+class UserPreferencesScreen extends StatelessWidget {
+  const UserPreferencesScreen({
     required this.userRepository,
-    this.onSignInTap,
-    this.onSignUpTap,
     this.onUpdateProfileTap,
     super.key,
   });
 
-  final VoidCallback? onSignInTap;
   final VoidCallback? onUpdateProfileTap;
-  final VoidCallback? onSignUpTap;
   final UserRepository userRepository;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ProfileMenuBloc>(
-      create: (_) => ProfileMenuBloc(
+    return BlocProvider<UserPreferencesBloc>(
+      create: (_) => UserPreferencesBloc(
         userRepository: userRepository,
       ),
-      child: ProfileMenuView(
-        onSignInTap: onSignInTap,
+      child: UserPreferencesView(
         onUpdateProfileTap: onUpdateProfileTap,
-        onSignUpTap: onSignUpTap,
       ),
     );
   }
 }
 
 @visibleForTesting
-class ProfileMenuView extends StatelessWidget {
-  const ProfileMenuView({
-    this.onSignInTap,
-    this.onSignUpTap,
+class UserPreferencesView extends StatelessWidget {
+  const UserPreferencesView({
     this.onUpdateProfileTap,
     super.key,
   });
 
-  final VoidCallback? onSignInTap;
-  final VoidCallback? onSignUpTap;
   final VoidCallback? onUpdateProfileTap;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = ProfileMenuLocalizations.of(context);
+    final l10n = UserPreferencesLocalizations.of(context);
     return StyledStatusBar.dark(
       child: Scaffold(
         body: SafeArea(
-          child: BlocBuilder<ProfileMenuBloc, ProfileMenuState>(
+          child: BlocBuilder<UserPreferencesBloc, UserPreferencesState>(
             builder: (context, state) {
-              if (state is ProfileMenuLoaded) {
+              if (state is UserPreferencesLoaded) {
                 final username = state.username;
                 return Column(
                   children: [
-                    if (!state.isUserAuthenticated) ...[
-                      _SignInButton(
-                        onSignInTap: onSignInTap,
-                      ),
-                      const SizedBox(
-                        height: Spacing.xLarge,
-                      ),
-                      Text(
-                        l10n.signUpOpeningText,
-                      ),
-                      TextButton(
-                        onPressed: onSignUpTap,
-                        child: Text(
-                          l10n.signUpButtonLabel,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: Spacing.large,
-                      ),
-                    ],
                     if (username != null) ...[
-                      Expanded(
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(
-                              Spacing.small,
-                            ),
-                            child: ShrinkableText(
-                              l10n.signedInUserGreeting(username),
-                              style: const TextStyle(
-                                fontSize: 36,
-                              ),
+                      //TODO show load/save settings buttons
+                      const SizedBox(
+                        height: Spacing.mediumLarge,
+                      ),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(
+                            Spacing.small,
+                          ),
+                          child: ShrinkableText(
+                            l10n.signedInUserGreeting(username),
+                            style: const TextStyle(
+                              fontSize: 36,
                             ),
                           ),
                         ),
                       ),
-                      const Divider(),
-                      ChevronListTile(
-                        label: l10n.updateProfileTileLabel,
-                        onTap: onUpdateProfileTap,
-                      ),
-                      const Divider(),
                       const SizedBox(
                         height: Spacing.mediumLarge,
                       ),
                     ],
-                    if (state.isUserAuthenticated) ...[
-                      const Spacer(),
-                      _SignOutButton(
-                        isSignOutInProgress: state.isSignOutInProgress,
-                      ),
-                    ]
+                    DarkModePreferencePicker(
+                      currentValue: state.darkModePreference!,
+                    ),
+                    LocalePicker(
+                      currentLocale: state.appLocale ?? const Locale('en'),
+                    ),
                   ],
                 );
               } else {
@@ -134,7 +104,7 @@ class _SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = WonderTheme.of(context);
-    final l10n = ProfileMenuLocalizations.of(context);
+    final l10n = UserPreferencesLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.only(
         left: theme.screenMargin,
@@ -162,7 +132,7 @@ class _SignOutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = WonderTheme.of(context);
-    final l10n = ProfileMenuLocalizations.of(context);
+    final l10n = UserPreferencesLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.only(
         left: theme.screenMargin,
@@ -175,9 +145,9 @@ class _SignOutButton extends StatelessWidget {
             )
           : ExpandedElevatedButton(
               onTap: () {
-                final bloc = context.read<ProfileMenuBloc>();
+                final bloc = context.read<UserPreferencesBloc>();
                 bloc.add(
-                  const ProfileMenuSignedOut(),
+                  const UserPreferencesSignedOut(),
                 );
               },
               label: l10n.signOutButtonLabel,

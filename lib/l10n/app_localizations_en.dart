@@ -9,4 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileBottomNavigationBarItemLabel => 'Profile';
+
+  @override
+  String get userPreferencesBottomNavigationBarItemLabel => 'Settings';
 }

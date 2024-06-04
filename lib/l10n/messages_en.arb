@@ -1,4 +1,6 @@
 {
   "quotesBottomNavigationBarItemLabel": "Home screen",
-  "profileBottomNavigationBarItemLabel": "Profile"
+  "profileBottomNavigationBarItemLabel": "Profile", 
+  "userPreferencesBottomNavigationBarItemLabel": "Settings"
+
 }

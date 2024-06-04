@@ -2,7 +2,7 @@ import 'sign_in_localizations.dart';
 
 /// The translations for English (`en`).
 class SignInLocalizationsEn extends SignInLocalizations {
-  SignInLocalizationsEn([super.locale = 'en']);
+  SignInLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
   String get invalidCredentialsErrorMessage => 'Invalid email and/or password.';
@@ -23,12 +23,10 @@ class SignInLocalizationsEn extends SignInLocalizations {
   String get passwordTextFieldLabel => 'Password';
 
   @override
-  String get passwordTextFieldEmptyErrorMessage =>
-      'Your password can\'t be empty.';
+  String get passwordTextFieldEmptyErrorMessage => 'Your password can\'t be empty.';
 
   @override
-  String get passwordTextFieldInvalidErrorMessage =>
-      'Password must be at least five characters long.';
+  String get passwordTextFieldInvalidErrorMessage => 'Password must be at least five characters long.';
 
   @override
   String get forgotMyPasswordButtonLabel => 'Forgot my password';
