@@ -81,6 +81,17 @@ class UserPreferencesView extends StatelessWidget {
                     LocalePicker(
                       currentLocale: state.appLocale ?? const Locale('en'),
                     ),
+                    RoundedChoiceChip(
+                        label: l10n.showOnbOarding,
+                        isSelected: !state.passedOnBoarding,
+                        onSelected: (val) {
+                          final bloc = context.read<UserPreferencesBloc>();
+                          bloc.userRepository.upsertUserSettings(
+                            UserSettings(
+                              passedOnBoarding: !val,
+                            ),
+                          );
+                        }),
                   ],
                 );
               } else {
@@ -95,9 +106,7 @@ class UserPreferencesView extends StatelessWidget {
 }
 
 class _SignInButton extends StatelessWidget {
-  const _SignInButton({
-    this.onSignInTap,
-  });
+  const _SignInButton(this.onSignInTap);
 
   final VoidCallback? onSignInTap;
 

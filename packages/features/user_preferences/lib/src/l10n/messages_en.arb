@@ -20,5 +20,7 @@
   "signUpButtonLabel": "Sign up",
   "english":"English",
   "arabic":"العربية",
-  "portuguese":"Portuguese"
+  "portuguese":"Portuguese",
+  "showOnbOarding":"Show On Boarding Screen"
+
 }

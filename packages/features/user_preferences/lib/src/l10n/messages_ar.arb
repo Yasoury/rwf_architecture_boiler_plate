@@ -20,5 +20,6 @@
   "signUpButtonLabel": "إنشاء حساب",
   "english": "الإنجليزية",
   "arabic": "العربية",
-  "portuguese": "البرتغالية"
+  "portuguese": "البرتغالية",
+  "showOnbOarding":"أظهر شاشة التقديم الاولي"
 }

@@ -5,55 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1939be35-be8f-4130-a128-e98770476e35" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_pt.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_pt.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tab_container_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_container_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/example/lib/component_storybook.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/example/lib/component_storybook.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/example/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/component_library.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/component_library.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/centered_circular_progress_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/centered_circular_progress_indicator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/chevron_list_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/chevron_list_tile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/generic_error_snack_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/generic_error_snack_bar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/in_progress_text_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/in_progress_text_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/l10n/component_library_localizations_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/l10n/component_library_localizations_en.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/l10n/component_library_localizations_pt.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/l10n/component_library_localizations_pt.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/shrinkable_text.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/shrinkable_text.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/styled_status_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/styled_status_bar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/lib/src/theme/wonder_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/lib/src/theme/wonder_theme.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/component_library/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/component_library/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/domain_models/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/domain_models/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/forgot_my_password/lib/src/forgot_my_password_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/forgot_my_password/lib/src/forgot_my_password_dialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/forgot_my_password/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/forgot_my_password/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/on_boarding/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/on_boarding/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/profile_menu/lib/src/dark_mode_preference_picker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/profile_menu/lib/src/dark_mode_preference_picker.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/profile_menu/lib/src/profile_menu_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/profile_menu/lib/src/profile_menu_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/profile_menu/lib/src/profile_menu_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/profile_menu/lib/src/profile_menu_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/profile_menu/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/profile_menu/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/sign_in/lib/src/sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/sign_in/lib/src/sign_in_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/sign_in/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/sign_in/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/sign_up/lib/src/sign_up_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/sign_up/lib/src/sign_up_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/sign_up/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/sign_up/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/update_profile/lib/src/l10n/update_profile_localizations_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/update_profile/lib/src/l10n/update_profile_localizations_en.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/update_profile/lib/src/l10n/update_profile_localizations_pt.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/update_profile/lib/src/l10n/update_profile_localizations_pt.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/update_profile/lib/src/update_profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/update_profile/lib/src/update_profile_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/features/update_profile/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/features/update_profile/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/firebase_api/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/firebase_api/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/form_fields/lib/src/email.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/form_fields/lib/src/email.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/form_fields/lib/src/optional_password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/form_fields/lib/src/optional_password.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/form_fields/lib/src/optional_password_confirmation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/form_fields/lib/src/optional_password_confirmation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/form_fields/lib/src/password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/form_fields/lib/src/password.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/form_fields/lib/src/password_confirmation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/form_fields/lib/src/password_confirmation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/form_fields/lib/src/username.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/form_fields/lib/src/username.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/form_fields/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/form_fields/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/key_value_storage/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/key_value_storage/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/monitoring/lib/src/analytics_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/monitoring/lib/src/analytics_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/monitoring/lib/src/dynamic_link_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/monitoring/lib/src/dynamic_link_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/monitoring/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/monitoring/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/user_repository/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/user_repository/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,23 +50,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Gaming/Documents/GitHub/rwf_architecture_boiler_plate&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DEBUGGABLE_DEVICE": "Resizable_Experimental_API_33 [emulator-5554]",
+    "DEBUGGABLE_PROCESS": "com.bcy.fsapp",
+    "DEBUGGER_ID": "Java",
+    "Flutter.main.dart.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHOW_ALL_PROCESSES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Gaming/Documents/GitHub/rwf_architecture_boiler_plate",
+    "settings.editor.selected.configurable": "Errors",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
