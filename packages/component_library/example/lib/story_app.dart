@@ -3,7 +3,7 @@ import 'package:component_library_storybook/component_storybook.dart';
 import 'package:flutter/material.dart';
 
 class StoryApp extends StatelessWidget {
-  StoryApp({Key? key}) : super(key: key);
+  StoryApp({super.key});
 
   final _lightTheme = LightWonderThemeData();
   final _darkTheme = DarkWonderThemeData();

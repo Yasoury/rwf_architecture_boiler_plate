@@ -7,27 +7,20 @@ class ComponentStorybook extends StatelessWidget {
   final ThemeData lightThemeData, darkThemeData;
 
   const ComponentStorybook({
-    Key? key,
+    super.key,
     required this.lightThemeData,
     required this.darkThemeData,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = WonderTheme.of(context);
     return Storybook(
-      theme: lightThemeData,
-      darkTheme: darkThemeData,
-      localizationDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        ComponentLibraryLocalizations.delegate,
-      ],
-      children: [
+      initialLayout: Layout.compact,
+      stories: [
         ...getStories(theme),
       ],
-      initialRoute: 'rounded-choice-chip',
+      initialStory: 'rounded-choice-chip',
     );
   }
 }

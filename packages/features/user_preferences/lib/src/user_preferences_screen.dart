@@ -54,7 +54,7 @@ class UserPreferencesView extends StatelessWidget {
                 return Column(
                   children: [
                     if (username != null) ...[
-                      //TODO show load/save settings buttons
+                      //TODOTips show load/save settings buttons
                       const SizedBox(
                         height: Spacing.mediumLarge,
                       ),
@@ -104,7 +104,7 @@ class UserPreferencesView extends StatelessWidget {
     );
   }
 }
-
+/* 
 class _SignInButton extends StatelessWidget {
   const _SignInButton(this.onSignInTap);
 
@@ -167,3 +167,4 @@ class _SignOutButton extends StatelessWidget {
     );
   }
 }
+ */

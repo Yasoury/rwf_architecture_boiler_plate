@@ -1,5 +1,4 @@
 import 'package:domain_models/domain_models.dart';
-import 'package:equatable/equatable.dart';
 
 class UserSettings extends Equatable {
   final String? langugae;

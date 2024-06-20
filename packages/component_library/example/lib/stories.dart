@@ -4,54 +4,54 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> getStories(WonderThemeData theme) {
   return [
-    Story.simple(
+    Story(
       name: 'CircularProgressIndicator',
-      section: 'Indecators',
-      child: const CircularProgressIndicator(),
+      description: 'Indecators',
+      builder: (context) => const CircularProgressIndicator(),
     ),
-    Story.simple(
+    Story(
       name: 'InProgressTextButton',
-      section: 'Indecators',
-      child: const InProgressTextButton(label: "upload"),
+      description: 'Indecators',
+      builder: (context) => const InProgressTextButton(label: "upload"),
     ),
-    Story.simple(
+    Story(
       name: 'Simple Expanded Elevated Button',
-      section: 'Buttons',
-      child: ExpandedElevatedButton(
+      description: 'Buttons',
+      builder: (context) => ExpandedElevatedButton(
         label: 'Press me',
         onTap: () {},
       ),
     ),
     Story(
       name: 'Expanded Elevated Button',
-      section: 'Buttons',
-      builder: (_, k) => ExpandedElevatedButton(
-        label: k.text(
+      description: 'Buttons',
+      builder: (context) => ExpandedElevatedButton(
+        label: context.knobs.text(
           label: 'label',
           initial: 'Press me',
         ),
-        onTap: k.boolean(
+        onTap: context.knobs.boolean(
           label: 'onTap',
           initial: true,
         )
             ? () {}
             : null,
         icon: Icon(
-          k.options(
+          context.knobs.options(
             label: 'icon',
             initial: Icons.home,
             options: const [
               Option(
-                'Login',
-                Icons.login,
+                label: 'Login',
+                value: Icons.login,
               ),
               Option(
-                'Refresh',
-                Icons.refresh,
+                label: 'Refresh',
+                value: Icons.refresh,
               ),
               Option(
-                'Logout',
-                Icons.logout,
+                label: 'Logout',
+                value: Icons.logout,
               ),
             ],
           ),
