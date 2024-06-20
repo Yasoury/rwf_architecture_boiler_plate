@@ -9,6 +9,10 @@ dependencies:
     path: ../../component_library
   flutter:
     sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
   flutter_bloc: ^8.1.5
   user_repository:
     path: ../../user_repository

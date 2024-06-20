@@ -150,6 +150,8 @@ class _MyAppState extends State<MyApp> {
             darkTheme: _darkTheme,
             child: !userPassedOnBoarding
                 ? MaterialApp(
+                    theme: _lightTheme.materialThemeData,
+                    darkTheme: _darkTheme.materialThemeData,
                     locale: Locale(userSettingsStream.data?.langugae ?? "en"),
                     localizationsDelegates: const [
                       GlobalWidgetsLocalizations.delegate,

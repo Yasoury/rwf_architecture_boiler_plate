@@ -53,7 +53,7 @@ dependencies:
   user_preferences:
     path: packages/features/user_preferences
 
-  intl: any
+  intl: ^0.19.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

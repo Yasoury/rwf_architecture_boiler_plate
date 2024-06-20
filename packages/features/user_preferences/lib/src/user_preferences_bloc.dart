@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:domain_models/domain_models.dart';
 // ignore: depend_on_referenced_packages
-import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';

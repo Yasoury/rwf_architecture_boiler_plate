@@ -36,36 +36,39 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     final l10n = OnBoardingLocalizations.of(context);
     final theme = WonderTheme.of(context);
+
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            PageView(
-              onPageChanged: (index) {
-                bloc.onPageUpdate(index: index);
-              },
-              controller: bloc.pageController,
-              children: [
-                onBording1(l10n, context, theme, size),
-                onBording2(l10n, context, theme, size),
-              ],
-            ),
-            Positioned(
-                left: size.width * .425,
-                bottom: Spacing.medium,
-                child: SmoothPageIndicator(
-                  controller: bloc.pageController,
-                  count: 2,
-                  effect: ExpandingDotsEffect(
-                    activeDotColor: theme.accentColor,
-                    dotHeight: size.height * .01,
-                  ),
-                  onDotClicked: (index) {
-                    bloc.onDotSelected(index: index);
-                  },
-                ))
-          ],
+    return StyledStatusBar.dark(
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: [
+              PageView(
+                onPageChanged: (index) {
+                  bloc.onPageUpdate(index: index);
+                },
+                controller: bloc.pageController,
+                children: [
+                  onBording1(l10n, context, theme, size),
+                  onBording2(l10n, context, theme, size),
+                ],
+              ),
+              Positioned(
+                  left: size.width * .425,
+                  bottom: Spacing.medium,
+                  child: SmoothPageIndicator(
+                    controller: bloc.pageController,
+                    count: 2,
+                    effect: ExpandingDotsEffect(
+                      activeDotColor: theme.accentColor,
+                      dotHeight: size.height * .01,
+                    ),
+                    onDotClicked: (index) {
+                      bloc.onDotSelected(index: index);
+                    },
+                  ))
+            ],
+          ),
         ),
       ),
     );
