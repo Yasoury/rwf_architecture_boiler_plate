@@ -2,7 +2,7 @@ import 'user_preferences_localizations.dart';
 
 /// The translations for Arabic (`ar`).
 class UserPreferencesLocalizationsAr extends UserPreferencesLocalizations {
-  UserPreferencesLocalizationsAr([String locale = 'ar']) : super(locale);
+  UserPreferencesLocalizationsAr([super.locale = 'ar']);
 
   @override
   String get signInButtonLabel => 'تسجيل الدخول';

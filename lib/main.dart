@@ -112,11 +112,18 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     _openInitialDynamicLinkIfAny();
+    _initializeApp(); // Start initialization
 
     _incomingDynamicLinksSubscription =
         _dynamicLinkService.onNewDynamicLinkPath().listen(
               _routerDelegate.push,
             );
+  }
+
+  Future<void> _initializeApp() async {
+    // Wait for user settings to load
+    await _userRepository.getUserSettings().first;
+    FlutterNativeSplash.remove();
   }
 
   Future<void> _openInitialDynamicLinkIfAny() async {
@@ -142,9 +149,7 @@ class _MyAppState extends State<MyApp> {
               userSettingsStream.data?.darkModePreference;
           final userPassedOnBoarding =
               userSettingsStream.data?.passedOnBoarding ?? false;
-          Future.delayed(const Duration(seconds: 1), () {
-            FlutterNativeSplash.remove();
-          });
+
           return WonderTheme(
             lightTheme: _lightTheme,
             darkTheme: _darkTheme,

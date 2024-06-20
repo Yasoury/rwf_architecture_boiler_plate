@@ -2,7 +2,7 @@ import 'user_preferences_localizations.dart';
 
 /// The translations for Portuguese (`pt`).
 class UserPreferencesLocalizationsPt extends UserPreferencesLocalizations {
-  UserPreferencesLocalizationsPt([String locale = 'pt']) : super(locale);
+  UserPreferencesLocalizationsPt([super.locale = 'pt']);
 
   @override
   String get signInButtonLabel => 'Entrar';

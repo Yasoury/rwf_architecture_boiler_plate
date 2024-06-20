@@ -2,7 +2,7 @@ import 'forgot_my_password_localizations.dart';
 
 /// The translations for Arabic (`ar`).
 class ForgotMyPasswordLocalizationsAr extends ForgotMyPasswordLocalizations {
-  ForgotMyPasswordLocalizationsAr([String locale = 'ar']) : super(locale);
+  ForgotMyPasswordLocalizationsAr([super.locale = 'ar']);
 
   @override
   String get dialogTitle => 'نسيت كلمة المرور';

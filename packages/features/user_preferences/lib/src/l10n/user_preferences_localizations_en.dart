@@ -2,7 +2,7 @@ import 'user_preferences_localizations.dart';
 
 /// The translations for English (`en`).
 class UserPreferencesLocalizationsEn extends UserPreferencesLocalizations {
-  UserPreferencesLocalizationsEn([String locale = 'en']) : super(locale);
+  UserPreferencesLocalizationsEn([super.locale = 'en']);
 
   @override
   String get signInButtonLabel => 'Sign In';

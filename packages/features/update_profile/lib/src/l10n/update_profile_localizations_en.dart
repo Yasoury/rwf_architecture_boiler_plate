@@ -14,16 +14,13 @@ class UpdateProfileLocalizationsEn extends UpdateProfileLocalizations {
   String get usernameTextFieldLabel => 'Username';
 
   @override
-  String get usernameTextFieldEmptyErrorMessage =>
-      'Your username can\'t be empty.';
+  String get usernameTextFieldEmptyErrorMessage => 'Your username can\'t be empty.';
 
   @override
-  String get usernameTextFieldInvalidErrorMessage =>
-      'Your username must be 1-20 characters long and can only contain letters, numbers, and the underscore (_).';
+  String get usernameTextFieldInvalidErrorMessage => 'Your username must be 1-20 characters long and can only contain letters, numbers, and the underscore (_).';
 
   @override
-  String get usernameTextFieldAlreadyTakenErrorMessage =>
-      'This username is already taken.';
+  String get usernameTextFieldAlreadyTakenErrorMessage => 'This username is already taken.';
 
   @override
   String get emailTextFieldLabel => 'Email';
@@ -35,20 +32,17 @@ class UpdateProfileLocalizationsEn extends UpdateProfileLocalizations {
   String get emailTextFieldInvalidErrorMessage => 'This email is not valid.';
 
   @override
-  String get emailTextFieldAlreadyRegisteredErrorMessage =>
-      'This email is already registered.';
+  String get emailTextFieldAlreadyRegisteredErrorMessage => 'This email is already registered.';
 
   @override
   String get passwordTextFieldLabel => 'New Password';
 
   @override
-  String get passwordTextFieldInvalidErrorMessage =>
-      'Password must be at least five characters long.';
+  String get passwordTextFieldInvalidErrorMessage => 'Password must be at least five characters long.';
 
   @override
   String get passwordConfirmationTextFieldLabel => 'New Password Confirmation';
 
   @override
-  String get passwordConfirmationTextFieldInvalidErrorMessage =>
-      'Your passwords don\'t match.';
+  String get passwordConfirmationTextFieldInvalidErrorMessage => 'Your passwords don\'t match.';
 }
