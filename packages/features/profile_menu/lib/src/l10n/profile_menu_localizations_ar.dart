@@ -2,7 +2,7 @@ import 'profile_menu_localizations.dart';
 
 /// The translations for Arabic (`ar`).
 class ProfileMenuLocalizationsAr extends ProfileMenuLocalizations {
-  ProfileMenuLocalizationsAr([String locale = 'ar']) : super(locale);
+  ProfileMenuLocalizationsAr([super.locale = 'ar']);
 
   @override
   String get signInButtonLabel => 'تسجيل الدخول';
