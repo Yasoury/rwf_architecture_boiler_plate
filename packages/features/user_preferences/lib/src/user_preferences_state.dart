@@ -12,12 +12,14 @@ class UserPreferencesLoaded extends UserPreferencesState {
     this.darkModePreference,
     this.isSignOutInProgress = false,
     this.username,
+    this.passedOnBoarding = true,
     this.appLocale = const Locale('ar'),
   });
 
   final DarkModePreference? darkModePreference;
   final String? username;
   final bool isSignOutInProgress;
+  final bool passedOnBoarding;
   final Locale? appLocale;
   bool get isUserAuthenticated => username != null;
 
@@ -26,11 +28,13 @@ class UserPreferencesLoaded extends UserPreferencesState {
     String? username,
     bool? isSignOutInProgress,
     Locale? appLocale,
+    bool? passedOnBoarding,
   }) {
     return UserPreferencesLoaded(
         darkModePreference: darkModePreference ?? this.darkModePreference,
         username: username ?? this.username,
         isSignOutInProgress: isSignOutInProgress ?? this.isSignOutInProgress,
+        passedOnBoarding: passedOnBoarding ?? this.passedOnBoarding,
         appLocale: appLocale ?? const Locale('en'));
   }
 

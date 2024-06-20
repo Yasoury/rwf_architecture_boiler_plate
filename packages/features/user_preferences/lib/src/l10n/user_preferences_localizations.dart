@@ -178,6 +178,12 @@ abstract class UserPreferencesLocalizations {
   /// In en, this message translates to:
   /// **'Portuguese'**
   String get portuguese;
+
+  /// No description provided for @showOnbOarding.
+  ///
+  /// In en, this message translates to:
+  /// **'Show On Boarding Screen'**
+  String get showOnbOarding;
 }
 
 class _UserPreferencesLocalizationsDelegate extends LocalizationsDelegate<UserPreferencesLocalizations> {

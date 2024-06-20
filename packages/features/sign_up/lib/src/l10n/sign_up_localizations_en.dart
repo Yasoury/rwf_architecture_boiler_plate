@@ -2,7 +2,7 @@ import 'sign_up_localizations.dart';
 
 /// The translations for English (`en`).
 class SignUpLocalizationsEn extends SignUpLocalizations {
-  SignUpLocalizationsEn([String locale = 'en']) : super(locale);
+  SignUpLocalizationsEn([super.locale = 'en']);
 
   @override
   String get invalidCredentialsErrorMessage => 'Invalid email and/or password.';

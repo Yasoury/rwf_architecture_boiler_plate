@@ -142,8 +142,9 @@ class _MyAppState extends State<MyApp> {
               userSettingsStream.data?.darkModePreference;
           final userPassedOnBoarding =
               userSettingsStream.data?.passedOnBoarding ?? false;
-          FlutterNativeSplash.remove();
-
+          Future.delayed(const Duration(seconds: 1), () {
+            FlutterNativeSplash.remove();
+          });
           return WonderTheme(
             lightTheme: _lightTheme,
             darkTheme: _darkTheme,
@@ -160,9 +161,11 @@ class _MyAppState extends State<MyApp> {
                     home: Scaffold(
                       body: OnBoardingScreen(
                         navigateToHome: () {
-                          _userRepository.upsertUserSettings(UserSettings(
-                            passedOnBoarding: true,
-                          ));
+                          _userRepository.upsertUserSettings(
+                            UserSettings(
+                              passedOnBoarding: true,
+                            ),
+                          );
                         },
                       ),
                     ),
