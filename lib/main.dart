@@ -157,7 +157,12 @@ class _MyAppState extends State<MyApp> {
                 ? MaterialApp(
                     theme: _lightTheme.materialThemeData,
                     darkTheme: _darkTheme.materialThemeData,
+                    themeMode: darkModePreference?.toThemeMode(),
                     locale: Locale(userSettingsStream.data?.langugae ?? "en"),
+                    supportedLocales: const [
+                      Locale('en', 'US'),
+                      Locale('ar', 'SA'),
+                    ],
                     localizationsDelegates: const [
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,

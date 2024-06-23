@@ -108,7 +108,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Text(
                   l10n.onBoardingTitle,
                   style: const TextStyle(
-                    color: Colors.black,
                     fontSize: FontSize.mediumLarge * 1.25,
                     fontWeight: FontWeight.bold,
                   ),
@@ -121,8 +120,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Text(
                     l10n.onBoardingTitleSubTitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: theme.secondaryColor,
+                    style: const TextStyle(
                       fontSize: FontSize.mediumLarge * .85,
                     ),
                   ),
@@ -196,7 +194,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Text(
                   l10n.onBoardingTitle,
                   style: const TextStyle(
-                    color: Colors.black,
                     fontSize: FontSize.mediumLarge * 1.25,
                     fontWeight: FontWeight.bold,
                   ),
@@ -209,8 +206,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Text(
                     l10n.onBoardingTitleSubTitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: theme.secondaryColor,
+                    style: const TextStyle(
                       fontSize: FontSize.mediumLarge * .85,
                     ),
                   ),
