@@ -72,9 +72,3 @@ flutter_native_splash:
   #flutter pub run flutter_native_splash:create
   background_image: "assets/images/launch_background.png"
   #color: "#7EC242"
-
-flutter_launcher_icons:
-  android: "launcher_icon"
-  image_path: "assets/images/appIconTrans.png"
-  remove_alpha_ios: true
-  ios: true
