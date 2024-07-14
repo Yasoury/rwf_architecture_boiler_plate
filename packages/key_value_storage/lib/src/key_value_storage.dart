@@ -16,11 +16,17 @@ import 'package:path_provider/path_provider.dart';
 /// Storing non-primitive types in Hive requires us to use incremental [typeId]s.
 /// Having all these models and boxes' keys in a single package allows us to
 /// avoid conflicts.
-class KeyValueStorage {
+final class KeyValueStorage {
   //TODOTip add the keys and the adapter for new boxes /cart,favorate....
   static const userSettingsKey = 'user-settings';
 
-  KeyValueStorage({
+  static final KeyValueStorage _instance = KeyValueStorage._internal();
+
+  factory KeyValueStorage() {
+    return _instance;
+  }
+
+  KeyValueStorage._internal({
     @visibleForTesting HiveInterface? hive,
   }) : _hive = hive ?? Hive {
     try {

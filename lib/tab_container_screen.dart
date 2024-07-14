@@ -31,7 +31,7 @@ class TabContainerScreen extends StatelessWidget {
             ),
           ),
           BottomNavigationBarItem(
-            label: l10n.profileBottomNavigationBarItemLabel,
+            label: l10n.userPreferencesBottomNavigationBarItemLabel,
             icon: const Icon(
               Icons.settings,
             ),
