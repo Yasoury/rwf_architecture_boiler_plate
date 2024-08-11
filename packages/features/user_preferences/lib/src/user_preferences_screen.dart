@@ -13,11 +13,13 @@ class UserPreferencesScreen extends StatelessWidget {
   const UserPreferencesScreen({
     required this.userRepository,
     this.onUpdateProfileTap,
+    this.onShowOnBoardingClicked,
     super.key,
   });
 
   final VoidCallback? onUpdateProfileTap;
   final UserRepository userRepository;
+  final VoidCallback? onShowOnBoardingClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class UserPreferencesScreen extends StatelessWidget {
       ),
       child: UserPreferencesView(
         onUpdateProfileTap: onUpdateProfileTap,
+        onShowOnBoardingClicked: onShowOnBoardingClicked,
       ),
     );
   }
@@ -36,14 +39,17 @@ class UserPreferencesScreen extends StatelessWidget {
 class UserPreferencesView extends StatelessWidget {
   const UserPreferencesView({
     this.onUpdateProfileTap,
+    this.onShowOnBoardingClicked,
     super.key,
   });
-
+  final VoidCallback? onShowOnBoardingClicked;
   final VoidCallback? onUpdateProfileTap;
 
   @override
   Widget build(BuildContext context) {
     final l10n = UserPreferencesLocalizations.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = WonderTheme.of(context);
     return StyledStatusBar.dark(
       child: Scaffold(
         body: SafeArea(
@@ -81,17 +87,17 @@ class UserPreferencesView extends StatelessWidget {
                     LocalePicker(
                       currentLocale: state.appLocale ?? const Locale('en'),
                     ),
-                    RoundedChoiceChip(
+                    const SizedBox(
+                      height: Spacing.large,
+                    ),
+                    SizedBox(
+                      width: size.width * .75,
+                      child: ExpandedElevatedButton(
                         label: l10n.showOnbOarding,
-                        isSelected: !state.passedOnBoarding,
-                        onSelected: (val) {
-                          final bloc = context.read<UserPreferencesBloc>();
-                          bloc.userRepository.upsertUserSettings(
-                            UserSettings(
-                              passedOnBoarding: !val,
-                            ),
-                          );
-                        }),
+                        onTap: onShowOnBoardingClicked,
+                        color: theme.accentColor,
+                      ),
+                    ),
                   ],
                 );
               } else {

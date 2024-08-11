@@ -1,6 +1,8 @@
+import 'package:domain_models/domain_models.dart';
 import 'package:flutter/material.dart';
 import 'package:forgot_my_password/forgot_my_password.dart';
 import 'package:monitoring/monitoring.dart';
+import 'package:on_boarding/on_boarding.dart';
 import 'package:profile_menu/profile_menu.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:sign_in/sign_in.dart';
@@ -26,6 +28,19 @@ Map<String, PageBuilder> buildRoutingTable({
             _PathConstants.userPreferencesPath,
           ],
         ),
+    _PathConstants.onboardingPath: (_) => MaterialPage(
+          name: 'on-boarding',
+          child: OnBoardingScreen(
+            navigateToHome: () {
+              userRepository.upsertUserSettings(
+                UserSettings(
+                  passedOnBoarding: true,
+                ),
+              );
+              routerDelegate.replace(_PathConstants.tabContainerPath);
+            },
+          ),
+        ),
     _PathConstants.userPreferencesPath: (_) {
       return MaterialPage(
         name: 'user-preferences',
@@ -36,6 +51,14 @@ Map<String, PageBuilder> buildRoutingTable({
             routerDelegate.push(
               _PathConstants.updateProfilePath,
             );
+          },
+          onShowOnBoardingClicked: () {
+            userRepository.upsertUserSettings(
+              UserSettings(
+                passedOnBoarding: false,
+              ),
+            );
+            routerDelegate.push(_PathConstants.onboardingPath);
           },
         ),
       );
@@ -123,6 +146,7 @@ class _PathConstants {
   const _PathConstants._();
 
   static String get tabContainerPath => '/';
+  static String get onboardingPath => '/onboardingPath';
   static String get userPreferencesPath =>
       '${tabContainerPath}user-preferencesPath';
   static String get homePath => '${tabContainerPath}home_screen';
