@@ -122,7 +122,12 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _initializeApp() async {
     // Wait for user settings to load
-    await _userRepository.getUserSettings().first;
+    var userSettings = await _userRepository.getUserSettings().first;
+
+    if (userSettings.passedOnBoarding != true) {
+      _routerDelegate.replace("/onboardingPath");
+    }
+
     FlutterNativeSplash.remove();
   }
 
@@ -147,67 +152,37 @@ class _MyAppState extends State<MyApp> {
         builder: (context, userSettingsStream) {
           final darkModePreference =
               userSettingsStream.data?.darkModePreference;
-          final userPassedOnBoarding =
-              userSettingsStream.data?.passedOnBoarding ?? false;
 
           return WonderTheme(
             lightTheme: _lightTheme,
             darkTheme: _darkTheme,
-            child: !userPassedOnBoarding
-                ? MaterialApp(
-                    theme: _lightTheme.materialThemeData,
-                    darkTheme: _darkTheme.materialThemeData,
-                    themeMode: darkModePreference?.toThemeMode(),
-                    locale: Locale(userSettingsStream.data?.langugae ?? "en"),
-                    supportedLocales: const [
-                      Locale('en', 'US'),
-                      Locale('ar', 'SA'),
-                    ],
-                    localizationsDelegates: const [
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      ComponentLibraryLocalizations.delegate,
-                      OnBoardingLocalizations.delegate,
-                    ],
-                    home: Scaffold(
-                      body: OnBoardingScreen(
-                        navigateToHome: () {
-                          _userRepository.upsertUserSettings(
-                            UserSettings(
-                              passedOnBoarding: true,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  )
-                : MaterialApp.router(
-                    title: 'RWF Architecture',
-                    theme: _lightTheme.materialThemeData,
-                    darkTheme: _darkTheme.materialThemeData,
-                    themeMode: darkModePreference?.toThemeMode(),
-                    locale: Locale(userSettingsStream.data?.langugae ?? "en"),
-                    supportedLocales: const [
-                      Locale('en', 'US'),
-                      Locale('ar', 'SA'),
-                    ],
-                    localizationsDelegates: const [
-                      GlobalCupertinoLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      AppLocalizations.delegate,
-                      ComponentLibraryLocalizations.delegate,
-                      ProfileMenuLocalizations.delegate,
-                      SignInLocalizations.delegate,
-                      ForgotMyPasswordLocalizations.delegate,
-                      SignUpLocalizations.delegate,
-                      UpdateProfileLocalizations.delegate,
-                      UserPreferencesLocalizations.delegate,
-                    ],
-                    routeInformationParser: const RoutemasterParser(),
-                    routerDelegate: _routerDelegate,
-                  ),
+            child: MaterialApp.router(
+              title: 'RWF Architecture',
+              theme: _lightTheme.materialThemeData,
+              darkTheme: _darkTheme.materialThemeData,
+              themeMode: darkModePreference?.toThemeMode(),
+              locale: Locale(userSettingsStream.data?.langugae ?? "en"),
+              supportedLocales: const [
+                Locale('en', 'US'),
+                Locale('ar', 'SA'),
+              ],
+              localizationsDelegates: const [
+                GlobalCupertinoLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                AppLocalizations.delegate,
+                ComponentLibraryLocalizations.delegate,
+                ProfileMenuLocalizations.delegate,
+                SignInLocalizations.delegate,
+                ForgotMyPasswordLocalizations.delegate,
+                SignUpLocalizations.delegate,
+                UpdateProfileLocalizations.delegate,
+                UserPreferencesLocalizations.delegate,
+                OnBoardingLocalizations.delegate,
+              ],
+              routeInformationParser: const RoutemasterParser(),
+              routerDelegate: _routerDelegate,
+            ),
           );
         });
   }
