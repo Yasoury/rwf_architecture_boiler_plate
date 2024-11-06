@@ -1,8 +1,10 @@
 import 'profile_menu_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for English (`en`).
 class ProfileMenuLocalizationsEn extends ProfileMenuLocalizations {
-  ProfileMenuLocalizationsEn([super.locale = 'en']);
+  ProfileMenuLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
   String get signInButtonLabel => 'Sign In';

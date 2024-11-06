@@ -8,6 +8,8 @@ import 'package:intl/intl.dart' as intl;
 import 'on_boarding_localizations_ar.dart';
 import 'on_boarding_localizations_en.dart';
 
+// ignore_for_file: type=lint
+
 /// Callers can lookup localized strings with an instance of OnBoardingLocalizations
 /// returned by `OnBoardingLocalizations.of(context)`.
 ///
