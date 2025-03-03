@@ -8,12 +8,10 @@ class UserLocalStorage {
   final KeyValueStorage noSqlStorage;
 
   Future<void> upsertUserSettings(UserSettingsCM settings) async {
-    final box = await noSqlStorage.userSettingsBox;
-    await box.put(0, settings);
+    await noSqlStorage.userSettingsCollection.put(settings);
   }
 
   Future<UserSettingsCM?> getUserSettings() async {
-    final box = await noSqlStorage.userSettingsBox;
-    return box.get(0);
+    return await noSqlStorage.userSettingsCollection.get(1);
   }
 }
