@@ -17,7 +17,7 @@ dependencies:
   routemaster: ^1.0.1
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.3.10
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.3
 
   monitoring:
     path: packages/monitoring
@@ -58,7 +58,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   integration_test:
     sdk: flutter
 

@@ -8,6 +8,8 @@ import 'package:intl/intl.dart' as intl;
 import 'profile_menu_localizations_ar.dart';
 import 'profile_menu_localizations_en.dart';
 
+// ignore_for_file: type=lint
+
 /// Callers can lookup localized strings with an instance of ProfileMenuLocalizations
 /// returned by `ProfileMenuLocalizations.of(context)`.
 ///

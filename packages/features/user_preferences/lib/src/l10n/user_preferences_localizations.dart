@@ -9,6 +9,8 @@ import 'user_preferences_localizations_ar.dart';
 import 'user_preferences_localizations_en.dart';
 import 'user_preferences_localizations_pt.dart';
 
+// ignore_for_file: type=lint
+
 /// Callers can lookup localized strings with an instance of UserPreferencesLocalizations
 /// returned by `UserPreferencesLocalizations.of(context)`.
 ///

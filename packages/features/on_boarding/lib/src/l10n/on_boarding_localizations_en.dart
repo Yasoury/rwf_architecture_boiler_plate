@@ -1,8 +1,10 @@
 import 'on_boarding_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for English (`en`).
 class OnBoardingLocalizationsEn extends OnBoardingLocalizations {
-  OnBoardingLocalizationsEn([super.locale = 'en']);
+  OnBoardingLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
   String get skip => 'Skip';
