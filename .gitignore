@@ -27,5 +27,9 @@ doc/api/
 .flutter-plugins
 .flutter-plugins-dependencies
 google-services.json
-GoogleService-Info.plist
-launch.json
+**/GoogleService-Info.plist
+ios/GoogleService-Info.plist
+ios/Runner/GoogleService-Info.plist
+
+**/.vscode/launch.json
+.vscode/launch.json
