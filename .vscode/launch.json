@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "rwf_architecture_boiler_plate",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "type": "dart",
+            "args": [ 
+                "--dart-define",
+                "firebase-API-KEY=AIzaSyBlC2mnzQo3h5wetuvCcz2c5wFqbLOC-eY"
+            ]
+        },
+        {
+            "name": "rwf_architecture_boiler_plate (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "rwf_architecture_boiler_plate (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "monitoring",
+            "cwd": "packages\\monitoring",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "monitoring (profile mode)",
+            "cwd": "packages\\monitoring",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "monitoring (release mode)",
+            "cwd": "packages\\monitoring",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
