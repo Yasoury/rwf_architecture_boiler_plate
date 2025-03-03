@@ -139,7 +139,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  smooth_page_indicator: ^1.1.0
   intl: ^0.19.0
 
   equatable: ^2.0.5

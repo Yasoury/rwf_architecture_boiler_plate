@@ -1,8 +1,10 @@
 import 'user_preferences_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Portuguese (`pt`).
 class UserPreferencesLocalizationsPt extends UserPreferencesLocalizations {
-  UserPreferencesLocalizationsPt([super.locale = 'pt']);
+  UserPreferencesLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
   String get signInButtonLabel => 'Entrar';

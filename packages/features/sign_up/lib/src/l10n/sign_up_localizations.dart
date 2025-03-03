@@ -8,6 +8,8 @@ import 'package:intl/intl.dart' as intl;
 import 'sign_up_localizations_ar.dart';
 import 'sign_up_localizations_en.dart';
 
+// ignore_for_file: type=lint
+
 /// Callers can lookup localized strings with an instance of SignUpLocalizations
 /// returned by `SignUpLocalizations.of(context)`.
 ///

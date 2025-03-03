@@ -1,8 +1,10 @@
 import 'sign_up_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Arabic (`ar`).
 class SignUpLocalizationsAr extends SignUpLocalizations {
-  SignUpLocalizationsAr([super.locale = 'ar']);
+  SignUpLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
   String get invalidCredentialsErrorMessage => 'البريد الإلكتروني و/أو كلمة المرور غير صحيحة.';
