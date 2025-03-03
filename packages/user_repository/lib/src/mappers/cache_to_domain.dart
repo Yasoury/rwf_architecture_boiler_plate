@@ -19,7 +19,7 @@ extension UserSettingsCMToDomain on UserSettingsCM {
     return UserSettings(
       langugae: langugae,
       passedOnBoarding: passedOnBoarding,
-      darkModePreference: darkModePreference!.toDomainModel(),
+      darkModePreference: darkModePreference.toDomainModel(),
     );
   }
 }
