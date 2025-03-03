@@ -52,6 +52,8 @@ dependencies:
     path: packages/features/on_boarding
   user_preferences:
     path: packages/features/user_preferences
+  splash:
+    path: packages/features/splash
 
   intl: ^0.19.0
 dev_dependencies:
@@ -65,8 +67,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/
     - assets/images/
-
 ## operations
 flutter_native_splash:
   #flutter pub run flutter_native_splash:create
