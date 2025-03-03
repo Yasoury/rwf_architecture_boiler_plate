@@ -8,4 +8,5 @@ class AssetsConst {
       "assets/images/onboardingImage2.svg";
 
   static const String backIcon = "assets/images/back.png";
+  static const String loadingAnimation = "assets/epar-loading.riv";
 }

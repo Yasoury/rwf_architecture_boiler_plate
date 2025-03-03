@@ -5,9 +5,9 @@ environment:
   sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
-  formz: ^0.7.0
+  formz: ^0.8.0
   equatable: ^2.0.3
 
 dev_dependencies:
-  lints: ^4.0.0
+  lints: ^5.0.0
   test: ^1.16.8

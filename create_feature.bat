@@ -156,8 +156,6 @@ mkdir packages\features\%PACKAGE_NAME%\lib\src\l10n
     echo.
     echo   flutter_localizations:
     echo     sdk: flutter
-    echo.
-    echo   smooth_page_indicator: ^^1.1.0
     echo   intl: ^^0.19.0
     echo.
     echo   equatable: ^^2.0.5

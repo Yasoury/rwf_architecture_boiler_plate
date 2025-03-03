@@ -20,6 +20,7 @@ import 'package:user_repository/user_repository.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'l10n/app_localizations.dart';
 import 'screen_view_observer.dart';
+import 'package:splash/splash.dart';
 
 void main() async {
   late final errorReportingService = ErrorReportingService();
@@ -179,6 +180,7 @@ class _MyAppState extends State<MyApp> {
                 UpdateProfileLocalizations.delegate,
                 UserPreferencesLocalizations.delegate,
                 OnBoardingLocalizations.delegate,
+                SplashLocalizations.delegate,
               ],
               routeInformationParser: const RoutemasterParser(),
               routerDelegate: _routerDelegate,

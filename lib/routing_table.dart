@@ -7,6 +7,7 @@ import 'package:profile_menu/profile_menu.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:sign_in/sign_in.dart';
 import 'package:sign_up/sign_up.dart';
+import 'package:splash/splash.dart';
 import 'package:update_profile/update_profile.dart';
 import 'package:user_preferences/user_preferences.dart';
 import 'package:user_repository/user_repository.dart';
@@ -138,20 +139,37 @@ Map<String, PageBuilder> buildRoutingTable({
           },
         ),
       );
+    },
+    _PathConstants.splashPath: (_) {
+      return MaterialPage(
+        name: 'Splash-Screen',
+        child: SplashScreen(
+          userRepository: userRepository,
+          navigateToOnBarding: () {
+            routerDelegate.replace(_PathConstants.onboardingPath);
+          },
+          navigateAuthIntro: () {
+            routerDelegate.replace(_PathConstants.signInPath);
+          },
+          navigateToHomeScreen: () {
+            routerDelegate.replace(_PathConstants.tabContainerPath);
+          },
+        ),
+      );
     }
   };
 }
 
 class _PathConstants {
   const _PathConstants._();
-
-  static String get tabContainerPath => '/';
+  static String get splashPath => '/';
+  static String get tabContainerPath => '${splashPath}root';
   static String get onboardingPath => '/onboardingPath';
   static String get userPreferencesPath =>
-      '${tabContainerPath}user-preferencesPath';
-  static String get homePath => '${tabContainerPath}home_screen';
-  static String get profileMenuPath => '${tabContainerPath}user';
-  static String get signInPath => '${tabContainerPath}sign-in';
-  static String get signUpPath => '${tabContainerPath}sign-up';
+      '$tabContainerPath/user-preferencesPath';
+  static String get homePath => '$tabContainerPath/home_screen';
+  static String get profileMenuPath => '$tabContainerPath/user';
+  static String get signInPath => '$tabContainerPath/sign-in';
+  static String get signUpPath => '$tabContainerPath/sign-up';
   static String get updateProfilePath => '$profileMenuPath/update-profile';
 }
