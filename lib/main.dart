@@ -114,24 +114,14 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
+    FlutterNativeSplash.remove();
+
     _openInitialDynamicLinkIfAny();
-    _initializeApp(); // Start initialization
 
     _incomingDynamicLinksSubscription =
         _dynamicLinkService.onNewDynamicLinkPath().listen(
               _routerDelegate.push,
             );
-  }
-
-  Future<void> _initializeApp() async {
-    // Wait for user settings to load
-    var userSettings = await _userRepository.getUserSettings().first;
-
-    if (userSettings.passedOnBoarding != true) {
-      _routerDelegate.replace("/onboardingPath");
-    }
-
-    FlutterNativeSplash.remove();
   }
 
   Future<void> _openInitialDynamicLinkIfAny() async {
