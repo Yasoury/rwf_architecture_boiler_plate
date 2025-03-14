@@ -34,8 +34,9 @@ class SplashCubit extends Cubit<SplashState> {
     var userSettings = await userRepository.getUserSettings().first;
 
     Future.delayed(const Duration(seconds: kDebugMode ? 0 : 5), () {
-      final bool isUserLoggedIn =
-          userModel != null && userModel.accessToken.isNotEmpty;
+      final bool isUserLoggedIn = userModel != null &&
+          userModel.accessToken != null &&
+          userModel.accessToken!.isNotEmpty;
       final bool hasPassedOnBoarding = userSettings.passedOnBoarding ?? false;
 
       NavigationStatus navigationStatus;

@@ -17,7 +17,7 @@ extension DarkModePreferenceCMToDomain on DarkModePreferenceCM {
 extension UserSettingsCMToDomain on UserSettingsCM {
   UserSettings toDomainModel() {
     return UserSettings(
-      langugae: langugae,
+      language: language,
       passedOnBoarding: passedOnBoarding,
       darkModePreference: darkModePreference.toDomainModel(),
     );

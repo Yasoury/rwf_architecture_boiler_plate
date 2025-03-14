@@ -31,9 +31,10 @@ class MockUserSecureStorage extends _i1.Mock implements _i2.UserSecureStorage {
   _i3.Future<void> upsertUserInfo({
     String? displayName,
     String? email,
-    String? idToken,
+    String? accessToken,
     String? userPhotoURL,
     String? refreshToken,
+    String? userId,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -42,9 +43,10 @@ class MockUserSecureStorage extends _i1.Mock implements _i2.UserSecureStorage {
           {
             #username: displayName,
             #email: email,
-            #idToken: idToken,
+            #idToken: accessToken,
             #refreshToken: refreshToken,
             #userPhotoURL: userPhotoURL,
+            #localId: userId,
           },
         ),
         returnValue: _i3.Future<void>.value(),
@@ -59,7 +61,6 @@ class MockUserSecureStorage extends _i1.Mock implements _i2.UserSecureStorage {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
-  @override
   _i3.Future<String?> getUserToken() => (super.noSuchMethod(
         Invocation.method(
           #getUserToken,

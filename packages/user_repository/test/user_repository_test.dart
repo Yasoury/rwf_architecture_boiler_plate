@@ -21,7 +21,7 @@ void main() {
       remoteApi: FirebaseApi(userTokenSupplier: () => Future.value()),
     );
 
-    when(userSecureStorage.getUserToken()).thenAnswer((_) async => 'idToken');
+    when(userSecureStorage.getAccessToken()).thenAnswer((_) async => 'idToken');
     expect(await userRepository.getUserToken(), 'idToken');
   });
   // Challenge

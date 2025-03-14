@@ -223,8 +223,8 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
     final user = await userRepository.getUser().first;
     if (user != null) {
       final newState = UpdateProfileLoaded(
-        username: Username.unvalidated(user.displayName),
-        email: Email.unvalidated(user.email),
+        username: Username.unvalidated(user.displayName ?? ''),
+        email: Email.unvalidated(user.email ?? ''),
       );
       emit(newState);
     }

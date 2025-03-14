@@ -146,6 +146,32 @@ class FirebaseApi {
     }
   }
 
+  Future<UpdateProfileInfoResponseModel> updateNameAndPic(
+    String displayName,
+    String? photoUrl,
+  ) async {
+    final url = _urlBuilder.buildUpdateProfileUrl();
+
+    String? userToken = await userTokenSupplierLocal();
+
+    final requestJsonBody = UpdateProfileInfoRequestModel(
+      idToken: userToken,
+      displayName: displayName,
+      photoUrl: photoUrl,
+      returnSecureToken: true,
+    ).toJson();
+    final response = await _dio.post(
+      url,
+      data: requestJsonBody,
+    );
+    try {
+      final Map<String, dynamic> jsonObject = response.data;
+      return UpdateProfileInfoResponseModel.fromJson(jsonObject);
+    } on DioException catch (error) {
+      log(error.toString());
+      throw UnkownFirebaseException();
+    }
+  }
   /* Future<void> requestPasswordResetEmail(String email) async {
     final url = _urlBuilder.buildRequestPasswordResetEmailUrl();
     try {

@@ -9,27 +9,31 @@ final class KeyValueStorage {
     return _instance;
   }
 
-  KeyValueStorage._internal() {
-    initIsarDB();
-  }
+  KeyValueStorage._internal();
+
   late Isar _isar;
 
   IsarCollection<UserSettingsCM> get userSettingsCollection =>
       _isar.userSettingsCMs;
 
+  Future<void> writeIsarTxn(Function() function) async {
+    await _isar.writeTxn(() async {
+      await function();
+    });
+  }
+
   Future<void> initIsarDB() async {
     final directory = await getApplicationDocumentsDirectory();
-    Isar.open(
-      [
-        //ADD Isar schema here
-        UserSettingsCMSchema,
-      ],
-      directory: directory.path,
-    );
+    if (!Isar.instanceNames.contains('default')) {
+      _isar = await Isar.open(
+        [
+          //ADD Isar schema here
+          UserSettingsCMSchema,
+        ],
+        directory: directory.path,
+      );
+    } else {
+      _isar = Isar.getInstance()!;
+    }
   }
 }
-/*  Future<Box<UserSettingsCM>> get userSettingsBox =>
-      _openHiveBox<UserSettingsCM>(
-        userSettingsKey,
-        isTemporary: false,
-      ); */

@@ -1,12 +1,15 @@
 class User {
   User({
-    required this.displayName,
-    required this.email,
-    required this.userPhotoURL,
-    required this.accessToken,
+    this.displayName,
+    this.email,
+    this.userPhotoURL,
+    this.accessToken,
+    this.userId,
   });
-  final String accessToken;
-  final String email;
-  final String displayName;
-  final String userPhotoURL;
+
+  final String? accessToken;
+  final String? email;
+  final String? displayName;
+  final String? userPhotoURL;
+  final String? userId;
 }

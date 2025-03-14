@@ -27,7 +27,7 @@ class UserPreferencesBloc
             (user, userSettings) => UserPreferencesLoaded(
               darkModePreference: userSettings.darkModePreference,
               username: user?.displayName,
-              appLocale: Locale(userSettings.langugae!),
+              appLocale: Locale(userSettings.language!),
             ),
           ),
           onData: emit.call,
@@ -57,7 +57,7 @@ class UserPreferencesBloc
 
     on<UserPreferencesLocaleChanged>((event, _) async {
       await userRepository.upsertUserSettings(UserSettings(
-        langugae: event.appLocale.languageCode,
+        language: event.appLocale.languageCode,
       ));
     });
 

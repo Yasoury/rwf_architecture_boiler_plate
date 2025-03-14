@@ -34,6 +34,8 @@ void main() async {
     final remoteValueService = RemoteValueService();
     await remoteValueService.load();
 
+    await KeyValueStorage().initIsarDB();
+
     FlutterError.onError = errorReportingService.recordFlutterError;
 
     Isolate.current.addErrorListener(
@@ -162,7 +164,7 @@ class _MyAppState extends State<MyApp> {
               theme: _lightTheme.materialThemeData,
               darkTheme: _darkTheme.materialThemeData,
               themeMode: darkModePreference?.toThemeMode(),
-              locale: Locale(userSettingsStream.data?.langugae ?? "en"),
+              locale: Locale(userSettingsStream.data?.language ?? "en"),
               supportedLocales: const [
                 Locale('en', 'US'),
                 Locale('ar', 'SA'),

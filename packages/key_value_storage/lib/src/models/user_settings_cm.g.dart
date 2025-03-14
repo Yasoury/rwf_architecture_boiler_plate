@@ -55,7 +55,7 @@ int _userSettingsCMEstimateSize(
 ) {
   var bytesCount = offsets.last;
   {
-    final value = object.langugae;
+    final value = object.language;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
@@ -70,7 +70,7 @@ void _userSettingsCMSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeByte(offsets[0], object.darkModePreference.index);
-  writer.writeString(offsets[1], object.langugae);
+  writer.writeString(offsets[1], object.language);
   writer.writeBool(offsets[2], object.passedOnBoarding);
 }
 
@@ -84,7 +84,7 @@ UserSettingsCM _userSettingsCMDeserialize(
     darkModePreference: _UserSettingsCMdarkModePreferenceValueEnumMap[
             reader.readByteOrNull(offsets[0])] ??
         DarkModePreferenceCM.accordingToSystemPreferences,
-    langugae: reader.readStringOrNull(offsets[1]),
+    language: reader.readStringOrNull(offsets[1]),
     passedOnBoarding: reader.readBoolOrNull(offsets[2]),
   );
   object.id = id;

@@ -6,7 +6,7 @@ part 'user_settings_cm.g.dart';
 class UserSettingsCM {
   Id id = Isar.autoIncrement; // you can also use id = null to auto increment
 
-  String? langugae;
+  String? language;
 
   bool? passedOnBoarding;
 
@@ -14,8 +14,8 @@ class UserSettingsCM {
   DarkModePreferenceCM darkModePreference;
 
   UserSettingsCM({
-    this.langugae = "en",
-    this.passedOnBoarding = false,
+    this.language,
+    this.passedOnBoarding,
     this.darkModePreference = DarkModePreferenceCM.accordingToSystemPreferences,
   });
 }

@@ -26,7 +26,7 @@ class ProfileMenuBloc extends Bloc<ProfileMenuEvent, ProfileMenuState> {
             (user, userSettings) => ProfileMenuLoaded(
               darkModePreference: userSettings.darkModePreference,
               username: user?.displayName,
-              appLocale: Locale(userSettings.langugae!),
+              appLocale: Locale(userSettings.language!),
             ),
           ),
           onData: emit.call,
@@ -56,7 +56,7 @@ class ProfileMenuBloc extends Bloc<ProfileMenuEvent, ProfileMenuState> {
 
     on<ProfileMenuLocaleChanged>((event, _) async {
       await userRepository.upsertUserSettings(UserSettings(
-        langugae: event.appLocale.languageCode,
+        language: event.appLocale.languageCode,
       ));
     });
 
