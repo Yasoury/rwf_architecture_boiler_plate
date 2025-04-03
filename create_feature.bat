@@ -101,7 +101,8 @@ mkdir packages\features\%PACKAGE_NAME%\lib\src\l10n
     echo     Widget build^(BuildContext context^) {
     echo         return BlocBuilder^<%PASCAL_CASE_PACKAGE_NAME%Cubit, %PASCAL_CASE_PACKAGE_NAME%State^>(
     echo             builder: ^(context, state^) {
-    echo                 return Container^(^);
+    echo                   return const Scaffold^(body: Center^(child: Text^(^'%PASCAL_CASE_PACKAGE_NAME%^'^),^),^);
+
     echo             }^,
     echo         ^);
     echo     }

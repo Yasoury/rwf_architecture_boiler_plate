@@ -83,7 +83,7 @@ class ${PASCAL_CASE_PACKAGE_NAME}View extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<${PASCAL_CASE_PACKAGE_NAME}Cubit, ${PASCAL_CASE_PACKAGE_NAME}State>(
       builder: (context, state) {
-        return Container();
+        return const Scaffold(body: Center(child: Text("${PASCAL_CASE_PACKAGE_NAME}"),),);
       },
     );
   }

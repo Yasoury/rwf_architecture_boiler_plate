@@ -6,3 +6,5 @@ export 'src/optional_password_confirmation.dart';
 export 'src/password.dart';
 export 'src/password_confirmation.dart';
 export 'src/username.dart';
+export 'src/mobile_number.dart';
+export 'src/dial_code.dart';
