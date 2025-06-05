@@ -1,4 +1,3 @@
-import 'package:firebase_api/firebase_api.dart';
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -18,7 +17,6 @@ void main() {
     final userRepository = UserRepository(
       secureStorage: userSecureStorage,
       noSqlStorage: KeyValueStorage(),
-      remoteApi: FirebaseApi(userTokenSupplier: () => Future.value()),
     );
 
     when(userSecureStorage.getAccessToken()).thenAnswer((_) async => 'idToken');

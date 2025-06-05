@@ -3,24 +3,19 @@ import 'dart:isolate';
 
 import 'package:component_library/component_library.dart';
 import 'package:domain_models/domain_models.dart';
-import 'package:firebase_api/firebase_api.dart';
+
 import 'package:flutter/material.dart';
-import 'package:forgot_my_password/forgot_my_password.dart';
+
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:monitoring/monitoring.dart';
-import 'package:on_boarding/on_boarding.dart';
-import 'package:user_preferences/user_preferences.dart';
-import 'package:profile_menu/profile_menu.dart';
+
 import 'package:routemaster/routemaster.dart';
 import 'package:rwf_architecture_boiler_plate/routing_table.dart';
-import 'package:sign_in/sign_in.dart';
-import 'package:sign_up/sign_up.dart';
-import 'package:update_profile/update_profile.dart';
+
 import 'package:user_repository/user_repository.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'l10n/app_localizations.dart';
 import 'screen_view_observer.dart';
-import 'package:splash/splash.dart';
 
 void main() async {
   late final errorReportingService = ErrorReportingService();
@@ -80,12 +75,7 @@ class _MyAppState extends State<MyApp> {
   final _analyticsService = AnalyticsService();
   final _dynamicLinkService = DynamicLinkService();
 
-  late final FirebaseApi _firebaseApi = FirebaseApi(
-    userTokenSupplier: () => _userRepository.getUserToken(),
-  );
-
   late final UserRepository _userRepository = UserRepository(
-    remoteApi: _firebaseApi,
     noSqlStorage: _keyValueStorage,
   );
 
@@ -165,14 +155,6 @@ class _MyAppState extends State<MyApp> {
                 GlobalWidgetsLocalizations.delegate,
                 AppLocalizations.delegate,
                 ComponentLibraryLocalizations.delegate,
-                ProfileMenuLocalizations.delegate,
-                SignInLocalizations.delegate,
-                ForgotMyPasswordLocalizations.delegate,
-                SignUpLocalizations.delegate,
-                UpdateProfileLocalizations.delegate,
-                UserPreferencesLocalizations.delegate,
-                OnBoardingLocalizations.delegate,
-                SplashLocalizations.delegate,
               ],
               routeInformationParser: const RoutemasterParser(),
               routerDelegate: _routerDelegate,

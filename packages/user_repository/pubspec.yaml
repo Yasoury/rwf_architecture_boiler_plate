@@ -5,8 +5,6 @@ environment:
   sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
-  firebase_api:
-    path: ../firebase_api
   key_value_storage:
     path: ../key_value_storage
   domain_models:
