@@ -16,6 +16,8 @@ final class KeyValueStorage {
   IsarCollection<UserSettingsCM> get userSettingsCollection =>
       _isar.userSettingsCMs;
 
+  IsarCollection<ArticleCM> get articleCollection => _isar.articleCMs;
+
   Future<void> writeIsarTxn(Function() function) async {
     await _isar.writeTxn(() async {
       await function();
@@ -29,6 +31,7 @@ final class KeyValueStorage {
         [
           //ADD Isar schema here
           UserSettingsCMSchema,
+          ArticleCMSchema,
         ],
         directory: directory.path,
       );

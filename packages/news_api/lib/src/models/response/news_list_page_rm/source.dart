@@ -1,10 +1,10 @@
-class Source {
+class SourceRM {
   dynamic id;
   String? name;
 
-  Source({this.id, this.name});
+  SourceRM({this.id, this.name});
 
-  factory Source.fromJson(Map<String, dynamic> json) => Source(
+  factory SourceRM.fromJson(Map<String, dynamic> json) => SourceRM(
         id: json['id'] as dynamic,
         name: json['name'] as String?,
       );

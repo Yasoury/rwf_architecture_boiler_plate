@@ -3,7 +3,7 @@ import 'article.dart';
 class NewsListPageRm {
   String? status;
   int? totalResults;
-  List<Article>? articles;
+  List<ArticleRM>? articles;
 
   NewsListPageRm({this.status, this.totalResults, this.articles});
 
@@ -12,7 +12,7 @@ class NewsListPageRm {
       status: json['status'] as String?,
       totalResults: json['totalResults'] as int?,
       articles: (json['articles'] as List<dynamic>?)
-          ?.map((e) => Article.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ArticleRM.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }

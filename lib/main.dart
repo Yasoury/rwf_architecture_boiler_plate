@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:monitoring/monitoring.dart';
+import 'package:news_api/news_api.dart';
 
 import 'package:routemaster/routemaster.dart';
 import 'package:rwf_architecture_boiler_plate/routing_table.dart';
@@ -74,6 +75,8 @@ class _MyAppState extends State<MyApp> {
 
   final _analyticsService = AnalyticsService();
   final _dynamicLinkService = DynamicLinkService();
+
+  late final NewsApi _newsApi = NewsApi();
 
   late final UserRepository _userRepository = UserRepository(
     noSqlStorage: _keyValueStorage,
