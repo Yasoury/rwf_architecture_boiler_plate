@@ -1,0 +1,19 @@
+name: news_api
+publish_to: none
+
+environment:
+  sdk: ">=3.0.5 <4.0.0"
+
+dependencies:
+  dio: ^5.8.0+1
+  equatable: ^2.0.3
+  json_annotation: ^4.0.1
+
+  meta: any
+dev_dependencies:
+  http_mock_adapter: ^0.6.1
+  mockito: ^5.2.0
+  build_runner: ^2.0.5
+  json_serializable: ^6.2.0
+  test: ^1.21.2
+  lints: ^4.0.0

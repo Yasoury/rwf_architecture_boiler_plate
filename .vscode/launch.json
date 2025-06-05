@@ -9,9 +9,9 @@
             "request": "launch",
             "program": "lib/main.dart",
             "type": "dart",
-            "args": [ 
+            "args": [
                 "--dart-define",
-                "firebase-API-KEY=AIzaSyBlC2mnzQo3h5wetuvCcz2c5wFqbLOC-eY"
+                "news-api-app-token=0865a1f8b6d44308877d2aa218d667ad"
             ]
         },
         {
