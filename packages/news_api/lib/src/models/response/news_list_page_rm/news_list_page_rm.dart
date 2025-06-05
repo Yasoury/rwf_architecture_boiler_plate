@@ -1,14 +1,14 @@
 import 'article.dart';
 
-class NewsListPageRm {
+class NewsListPageRM {
   String? status;
   int? totalResults;
   List<ArticleRM>? articles;
 
-  NewsListPageRm({this.status, this.totalResults, this.articles});
+  NewsListPageRM({this.status, this.totalResults, this.articles});
 
-  factory NewsListPageRm.fromJson(Map<String, dynamic> json) {
-    return NewsListPageRm(
+  factory NewsListPageRM.fromJson(Map<String, dynamic> json) {
+    return NewsListPageRM(
       status: json['status'] as String?,
       totalResults: json['totalResults'] as int?,
       articles: (json['articles'] as List<dynamic>?)

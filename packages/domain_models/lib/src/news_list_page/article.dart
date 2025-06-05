@@ -9,6 +9,7 @@ class Article {
   String? urlToImage;
   String? publishedAt;
   String? content;
+  bool? isTemp;
 
   Article({
     this.source,
@@ -19,5 +20,6 @@ class Article {
     this.urlToImage,
     this.publishedAt,
     this.content,
+    this.isTemp,
   });
 }

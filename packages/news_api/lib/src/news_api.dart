@@ -19,7 +19,7 @@ class NewsApi {
   final Dio _dio;
   final UrlBuilder _urlBuilder;
 
-  Future<NewsListPageRm> getNewsListPage(
+  Future<NewsListPageRM> searchNewsListPage(
     int page, {
     String searchTerm = '',
     int pageSize = 10,
@@ -33,7 +33,77 @@ class NewsApi {
     try {
       final response = await _dio.get(url);
       final jsonObject = response.data;
-      final newsListPage = NewsListPageRm.fromJson(jsonObject);
+      final newsListPage = NewsListPageRM.fromJson(jsonObject);
+
+      if ((newsListPage.articles ?? []).isEmpty) {
+        throw EmptySearchResultNewsApiException();
+      }
+
+      return newsListPage;
+    } on DioException catch (dioException) {
+      // Handle specific NewsAPI errors based on status codes
+      switch (dioException.response?.statusCode) {
+        case 401:
+          throw InvalidApiKeyNewsApiException();
+        case 429:
+          throw RateLimitExceededNewsApiException();
+        case 400:
+          throw BadRequestNewsApiException();
+        default:
+          throw UnknownNewsApiException();
+      }
+    }
+  }
+
+  Future<NewsListPageRM> getTopHeadNewsListPage(
+    int page, {
+    int pageSize = 10,
+  }) async {
+    final url = _urlBuilder.buildGetTopHeadlinesUrl(
+      page: page,
+      pageSize: pageSize,
+    );
+
+    try {
+      final response = await _dio.get(url);
+      final jsonObject = response.data;
+      final newsListPage = NewsListPageRM.fromJson(jsonObject);
+
+      if ((newsListPage.articles ?? []).isEmpty) {
+        throw EmptySearchResultNewsApiException();
+      }
+
+      return newsListPage;
+    } on DioException catch (dioException) {
+      // Handle specific NewsAPI errors based on status codes
+      switch (dioException.response?.statusCode) {
+        case 401:
+          throw InvalidApiKeyNewsApiException();
+        case 429:
+          throw RateLimitExceededNewsApiException();
+        case 400:
+          throw BadRequestNewsApiException();
+        default:
+          throw UnknownNewsApiException();
+      }
+    }
+  }
+
+  Future<NewsListPageRM> getNewsListPage(
+    int page, {
+    String searchTerm = '',
+    int pageSize = 10,
+  }) async {
+    final url = _urlBuilder.buildGetEverythingUrl(
+      query: searchTerm,
+      page: page,
+      pageSize: pageSize,
+    );
+
+    try {
+      final response = await _dio.get(url);
+      final jsonObject = response.data;
+      final newsListPage = NewsListPageRM.fromJson(jsonObject);
 
       if ((newsListPage.articles ?? []).isEmpty) {
         throw EmptySearchResultNewsApiException();

@@ -19,5 +19,11 @@ Map<String, PageBuilder> buildRoutingTable({
 
 class _PathConstants {
   const _PathConstants._();
-  static String get homePath => '/';
+  static String get homePath => '/news';
+  static String get idPathParameter => 'id';
+
+  static String articleDetailsPath({
+    int? articleId,
+  }) =>
+      '$homePath/${articleId ?? ':$idPathParameter'}';
 }

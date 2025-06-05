@@ -4,18 +4,18 @@ part 'article.g.dart';
 
 @collection
 class ArticleCM {
-  Id? id = Isar.autoIncrement;
+  String? title;
+  Id? get id => fastHash(title!);
   SourceCM? source;
   String? author;
-  String? title;
   String? description;
   String? url;
   String? urlToImage;
   String? publishedAt;
   String? content;
+  bool? isTemp;
 
   ArticleCM({
-    this.id,
     this.source,
     this.author,
     this.title,
@@ -24,5 +24,19 @@ class ArticleCM {
     this.urlToImage,
     this.publishedAt,
     this.content,
+    this.isTemp,
   });
+}
+
+int fastHash(String string) {
+  var hash = 0xcbf29ce484222325;
+  var i = 0;
+  while (i < string.length) {
+    final codeUnit = string.codeUnitAt(i++);
+    hash ^= codeUnit >> 8;
+    hash *= 0x100000001b3;
+    hash ^= codeUnit & 0xFF;
+    hash *= 0x100000001b3;
+  }
+  return hash;
 }

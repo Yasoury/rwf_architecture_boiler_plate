@@ -1,10 +1,9 @@
 class UrlBuilder {
-  const UrlBuilder({
-    String? baseUrl,
-  }) : _baseUrl = baseUrl ?? 'https://newsapi.org/v2';
+  const UrlBuilder();
 
-  final String _baseUrl;
+  static const _baseUrl = 'https://newsapi.org/v2';
 
+  // Existing everything endpoint
   String buildGetEverythingUrl({
     required String query,
     int page = 1,
@@ -22,47 +21,62 @@ class UrlBuilder {
     assert(
         pageSize > 0 && pageSize <= 100, 'Page size must be between 1 and 100');
 
-    final queryParams = <String, String>{
-      'q': query,
-      'page': page.toString(),
-      'pageSize': pageSize.toString(),
-    };
+    final uri = Uri.parse(_baseUrl).replace(
+      path: '/everything',
+      queryParameters: {
+        'q': query,
+        'page': page.toString(),
+        'pageSize': pageSize.toString(),
+        if (sources != null && sources.isNotEmpty) 'sources': sources,
+        if (domains != null && domains.isNotEmpty) 'domains': domains,
+        if (excludeDomains != null && excludeDomains.isNotEmpty)
+          'excludeDomains': excludeDomains,
+        if (from != null && from.isNotEmpty) 'from': from,
+        if (to != null && to.isNotEmpty) 'to': to,
+        if (language != null && language.isNotEmpty) 'language': language,
+        if (sortBy != null && sortBy.isNotEmpty) 'sortBy': sortBy,
+      },
+    );
 
-    // Add optional parameters if they are provided
-    if (sources != null && sources.isNotEmpty) {
-      queryParams['sources'] = sources;
-    }
+    return uri.toString();
+  }
 
-    if (domains != null && domains.isNotEmpty) {
-      queryParams['domains'] = domains;
-    }
+  // New top-headlines endpoint
+  String buildGetTopHeadlinesUrl({
+    String? country = 'us',
+    String? category,
+    String? sources,
+    String? query,
+    int pageSize = 10,
+    int page = 1,
+  }) {
+    // Validation following NewsAPI constraints
+    assert(page > 0, 'Page must be greater than 0');
+    assert(
+        pageSize > 0 && pageSize <= 100, 'Page size must be between 1 and 100');
+    assert(
+        (country != null && sources == null) ||
+            (sources != null && country == null) ||
+            (country == null && sources == null),
+        'Cannot mix country and sources parameters');
+    assert(
+        (category != null && sources == null) ||
+            (sources != null && category == null) ||
+            (category == null && sources == null),
+        'Cannot mix category and sources parameters');
 
-    if (excludeDomains != null && excludeDomains.isNotEmpty) {
-      queryParams['excludeDomains'] = excludeDomains;
-    }
+    final uri = Uri.parse(_baseUrl).replace(
+      path: '/top-headlines',
+      queryParameters: {
+        'page': page.toString(),
+        'pageSize': pageSize.toString(),
+        if (country != null && country.isNotEmpty) 'country': country,
+        if (category != null && category.isNotEmpty) 'category': category,
+        if (sources != null && sources.isNotEmpty) 'sources': sources,
+        if (query != null && query.isNotEmpty) 'q': query,
+      },
+    );
 
-    if (from != null && from.isNotEmpty) {
-      queryParams['from'] = from;
-    }
-
-    if (to != null && to.isNotEmpty) {
-      queryParams['to'] = to;
-    }
-
-    if (language != null && language.isNotEmpty) {
-      queryParams['language'] = language;
-    }
-
-    if (sortBy != null && sortBy.isNotEmpty) {
-      queryParams['sortBy'] = sortBy;
-    }
-
-    // Build query string
-    final queryString = queryParams.entries
-        .map((entry) =>
-            '${Uri.encodeComponent(entry.key)}=${Uri.encodeComponent(entry.value)}')
-        .join('&');
-
-    return '$_baseUrl/everything?$queryString';
+    return uri.toString();
   }
 }

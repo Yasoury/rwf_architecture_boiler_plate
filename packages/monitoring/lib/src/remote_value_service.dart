@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 /// Wrapper around [FirebaseRemoteConfig].
 class RemoteValueService {
-  static const _gridQuotesViewEnabledKey = 'grid_quotes_view_enabled';
+  static const _gridNewssViewEnabledKey = 'grid_quotes_view_enabled';
 
   RemoteValueService({
     @visibleForTesting FirebaseRemoteConfig? remoteConfig,
@@ -18,7 +18,7 @@ class RemoteValueService {
     await _remoteConfig.fetchAndActivate();
   }
 
-  bool get isGridQuotesViewEnabled => _remoteConfig.getBool(
-        _gridQuotesViewEnabledKey,
+  bool get isGridNewssViewEnabled => _remoteConfig.getBool(
+        _gridNewssViewEnabledKey,
       );
 }

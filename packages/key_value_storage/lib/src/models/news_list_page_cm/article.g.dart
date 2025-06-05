@@ -32,29 +32,34 @@ const ArticleCMSchema = CollectionSchema(
       name: r'description',
       type: IsarType.string,
     ),
-    r'publishedAt': PropertySchema(
+    r'isTemp': PropertySchema(
       id: 3,
+      name: r'isTemp',
+      type: IsarType.bool,
+    ),
+    r'publishedAt': PropertySchema(
+      id: 4,
       name: r'publishedAt',
       type: IsarType.string,
     ),
     r'source': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'source',
       type: IsarType.object,
       target: r'SourceCM',
     ),
     r'title': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'title',
       type: IsarType.string,
     ),
     r'url': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'url',
       type: IsarType.string,
     ),
     r'urlToImage': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'urlToImage',
       type: IsarType.string,
     )
@@ -140,16 +145,17 @@ void _articleCMSerialize(
   writer.writeString(offsets[0], object.author);
   writer.writeString(offsets[1], object.content);
   writer.writeString(offsets[2], object.description);
-  writer.writeString(offsets[3], object.publishedAt);
+  writer.writeBool(offsets[3], object.isTemp);
+  writer.writeString(offsets[4], object.publishedAt);
   writer.writeObject<SourceCM>(
-    offsets[4],
+    offsets[5],
     allOffsets,
     SourceCMSchema.serialize,
     object.source,
   );
-  writer.writeString(offsets[5], object.title);
-  writer.writeString(offsets[6], object.url);
-  writer.writeString(offsets[7], object.urlToImage);
+  writer.writeString(offsets[6], object.title);
+  writer.writeString(offsets[7], object.url);
+  writer.writeString(offsets[8], object.urlToImage);
 }
 
 ArticleCM _articleCMDeserialize(
@@ -162,16 +168,16 @@ ArticleCM _articleCMDeserialize(
     author: reader.readStringOrNull(offsets[0]),
     content: reader.readStringOrNull(offsets[1]),
     description: reader.readStringOrNull(offsets[2]),
-    id: id,
-    publishedAt: reader.readStringOrNull(offsets[3]),
+    isTemp: reader.readBoolOrNull(offsets[3]),
+    publishedAt: reader.readStringOrNull(offsets[4]),
     source: reader.readObjectOrNull<SourceCM>(
-      offsets[4],
+      offsets[5],
       SourceCMSchema.deserialize,
       allOffsets,
     ),
-    title: reader.readStringOrNull(offsets[5]),
-    url: reader.readStringOrNull(offsets[6]),
-    urlToImage: reader.readStringOrNull(offsets[7]),
+    title: reader.readStringOrNull(offsets[6]),
+    url: reader.readStringOrNull(offsets[7]),
+    urlToImage: reader.readStringOrNull(offsets[8]),
   );
   return object;
 }
@@ -190,18 +196,20 @@ P _articleCMDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 4:
+      return (reader.readStringOrNull(offset)) as P;
+    case 5:
       return (reader.readObjectOrNull<SourceCM>(
         offset,
         SourceCMSchema.deserialize,
         allOffsets,
       )) as P;
-    case 5:
-      return (reader.readStringOrNull(offset)) as P;
     case 6:
       return (reader.readStringOrNull(offset)) as P;
     case 7:
+      return (reader.readStringOrNull(offset)) as P;
+    case 8:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -216,9 +224,7 @@ List<IsarLinkBase<dynamic>> _articleCMGetLinks(ArticleCM object) {
   return [];
 }
 
-void _articleCMAttach(IsarCollection<dynamic> col, Id id, ArticleCM object) {
-  object.id = id;
-}
+void _articleCMAttach(IsarCollection<dynamic> col, Id id, ArticleCM object) {}
 
 extension ArticleCMQueryWhereSort
     on QueryBuilder<ArticleCM, ArticleCM, QWhere> {
@@ -809,6 +815,32 @@ extension ArticleCMQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<ArticleCM, ArticleCM, QAfterFilterCondition> isTempIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isTemp',
+      ));
+    });
+  }
+
+  QueryBuilder<ArticleCM, ArticleCM, QAfterFilterCondition> isTempIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isTemp',
+      ));
+    });
+  }
+
+  QueryBuilder<ArticleCM, ArticleCM, QAfterFilterCondition> isTempEqualTo(
+      bool? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isTemp',
+        value: value,
       ));
     });
   }
@@ -1475,6 +1507,18 @@ extension ArticleCMQuerySortBy on QueryBuilder<ArticleCM, ArticleCM, QSortBy> {
     });
   }
 
+  QueryBuilder<ArticleCM, ArticleCM, QAfterSortBy> sortByIsTemp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isTemp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ArticleCM, ArticleCM, QAfterSortBy> sortByIsTempDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isTemp', Sort.desc);
+    });
+  }
+
   QueryBuilder<ArticleCM, ArticleCM, QAfterSortBy> sortByPublishedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'publishedAt', Sort.asc);
@@ -1574,6 +1618,18 @@ extension ArticleCMQuerySortThenBy
     });
   }
 
+  QueryBuilder<ArticleCM, ArticleCM, QAfterSortBy> thenByIsTemp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isTemp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ArticleCM, ArticleCM, QAfterSortBy> thenByIsTempDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isTemp', Sort.desc);
+    });
+  }
+
   QueryBuilder<ArticleCM, ArticleCM, QAfterSortBy> thenByPublishedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'publishedAt', Sort.asc);
@@ -1646,6 +1702,12 @@ extension ArticleCMQueryWhereDistinct
     });
   }
 
+  QueryBuilder<ArticleCM, ArticleCM, QDistinct> distinctByIsTemp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isTemp');
+    });
+  }
+
   QueryBuilder<ArticleCM, ArticleCM, QDistinct> distinctByPublishedAt(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1698,6 +1760,12 @@ extension ArticleCMQueryProperty
   QueryBuilder<ArticleCM, String?, QQueryOperations> descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
+    });
+  }
+
+  QueryBuilder<ArticleCM, bool?, QQueryOperations> isTempProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isTemp');
     });
   }
 
