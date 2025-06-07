@@ -1,18 +1,35 @@
-import 'package:key_value_storage/key_value_storage.dart';
+import 'package:hive/hive.dart';
+import 'source.dart';
 
 part 'article.g.dart';
 
-@collection
-class ArticleCM {
+@HiveType(typeId: 3)
+class ArticleCM extends HiveObject {
+  @HiveField(0)
   String? title;
-  Id? get id => fastHash(title!);
+
+  @HiveField(1)
   SourceCM? source;
+
+  @HiveField(2)
   String? author;
+
+  @HiveField(3)
   String? description;
+
+  @HiveField(4)
   String? url;
+
+  @HiveField(5)
   String? urlToImage;
+
+  @HiveField(6)
   String? publishedAt;
+
+  @HiveField(7)
   String? content;
+
+  @HiveField(8)
   bool? isTemp;
 
   ArticleCM({
@@ -26,17 +43,4 @@ class ArticleCM {
     this.content,
     this.isTemp,
   });
-}
-
-int fastHash(String string) {
-  var hash = 0xcbf29ce484222325;
-  var i = 0;
-  while (i < string.length) {
-    final codeUnit = string.codeUnitAt(i++);
-    hash ^= codeUnit >> 8;
-    hash *= 0x100000001b3;
-    hash ^= codeUnit & 0xFF;
-    hash *= 0x100000001b3;
-  }
-  return hash;
 }

@@ -1,21 +1,20 @@
-import 'package:key_value_storage/key_value_storage.dart';
+import 'package:hive/hive.dart';
+import 'package:key_value_storage/src/models/models.dart';
 
 part 'user_settings_cm.g.dart';
 
-@collection
+@HiveType(typeId: 2)
 class UserSettingsCM {
-  Id id = Isar.autoIncrement; // you can also use id = null to auto increment
-
+  @HiveField(0)
   String? language;
-
+  @HiveField(1)
   bool? passedOnBoarding;
-
-  @enumerated // same as EnumType.ordinal
-  DarkModePreferenceCM darkModePreference;
+  @HiveField(2)
+  DarkModePreferenceCM? darkModePreference;
 
   UserSettingsCM({
-    this.language,
-    this.passedOnBoarding,
+    this.language = "en",
+    this.passedOnBoarding = false,
     this.darkModePreference = DarkModePreferenceCM.accordingToSystemPreferences,
   });
 }
