@@ -22,9 +22,6 @@ dependencies:
   monitoring:
     path: packages/monitoring
 
-  user_repository:
-    path: packages/user_repository
-
   key_value_storage:
     path: packages/key_value_storage
 
@@ -33,6 +30,9 @@ dependencies:
 
   news_api:
     path: packages/news_api
+
+  news_repository:
+    path: packages/news_repository
 
   domain_models:
     path: packages/domain_models

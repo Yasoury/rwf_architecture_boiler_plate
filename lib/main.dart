@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:monitoring/monitoring.dart';
 import 'package:news_api/news_api.dart';
+import 'package:news_repository/news_repository.dart';
 
 import 'package:routemaster/routemaster.dart';
 import 'package:rwf_architecture_boiler_plate/routing_table.dart';
 
-import 'package:user_repository/user_repository.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'l10n/app_localizations.dart';
 import 'screen_view_observer.dart';
@@ -29,8 +29,6 @@ void main() async {
     //for A/B testing
     final remoteValueService = RemoteValueService();
     await remoteValueService.load();
-
-    await KeyValueStorage().initIsarDB();
 
     FlutterError.onError = errorReportingService.recordFlutterError;
 
@@ -78,8 +76,9 @@ class _MyAppState extends State<MyApp> {
 
   late final NewsApi _newsApi = NewsApi();
 
-  late final UserRepository _userRepository = UserRepository(
-    noSqlStorage: _keyValueStorage,
+  late final NewsRepository _newsRepository = NewsRepository(
+    keyValueStorage: _keyValueStorage,
+    remoteApi: _newsApi,
   );
 
   late final RoutemasterDelegate _routerDelegate = RoutemasterDelegate(
@@ -92,9 +91,9 @@ class _MyAppState extends State<MyApp> {
         return RouteMap(
           routes: buildRoutingTable(
             routerDelegate: _routerDelegate,
-            userRepository: _userRepository,
             remoteValueService: widget.remoteValueService,
             dynamicLinkService: _dynamicLinkService,
+            newsRepository: _newsRepository,
           ),
         );
       });
@@ -133,49 +132,27 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<UserSettings>(
-        stream: _userRepository.getUserSettings(),
-        builder: (context, userSettingsStream) {
-          final darkModePreference =
-              userSettingsStream.data?.darkModePreference;
-
-          return WonderTheme(
-            lightTheme: _lightTheme,
-            darkTheme: _darkTheme,
-            child: MaterialApp.router(
-              title: 'RWF Architecture',
-              theme: _lightTheme.materialThemeData,
-              darkTheme: _darkTheme.materialThemeData,
-              themeMode: darkModePreference?.toThemeMode(),
-              locale: Locale(userSettingsStream.data?.language ?? "en"),
-              supportedLocales: const [
-                Locale('en', 'US'),
-                Locale('ar', 'SA'),
-              ],
-              localizationsDelegates: const [
-                GlobalCupertinoLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                AppLocalizations.delegate,
-                ComponentLibraryLocalizations.delegate,
-              ],
-              routeInformationParser: const RoutemasterParser(),
-              routerDelegate: _routerDelegate,
-            ),
-          );
-        });
-  }
-}
-
-extension on DarkModePreference {
-  ThemeMode toThemeMode() {
-    switch (this) {
-      case DarkModePreference.useSystemSettings:
-        return ThemeMode.system;
-      case DarkModePreference.alwaysLight:
-        return ThemeMode.light;
-      case DarkModePreference.alwaysDark:
-        return ThemeMode.dark;
-    }
+    return WonderTheme(
+      lightTheme: _lightTheme,
+      darkTheme: _darkTheme,
+      child: MaterialApp.router(
+        title: 'RWF Architecture',
+        theme: _lightTheme.materialThemeData,
+        darkTheme: _darkTheme.materialThemeData,
+        supportedLocales: const [
+          Locale('en', 'US'),
+          Locale('ar', 'SA'),
+        ],
+        localizationsDelegates: const [
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          AppLocalizations.delegate,
+          ComponentLibraryLocalizations.delegate,
+        ],
+        routeInformationParser: const RoutemasterParser(),
+        routerDelegate: _routerDelegate,
+      ),
+    );
   }
 }

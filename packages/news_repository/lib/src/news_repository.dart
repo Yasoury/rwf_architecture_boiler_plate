@@ -38,7 +38,7 @@ class NewsRepository {
 
       yield freshPage;
     } else {
-      final cachedArticles = await _localStorage.getArticles() ?? [];
+      final cachedArticles = await _localStorage.getArticles();
 
       final isFetchPolicyCacheAndNetwork =
           fetchPolicy == NewsListPageFetchPolicy.cacheAndNetwork;
