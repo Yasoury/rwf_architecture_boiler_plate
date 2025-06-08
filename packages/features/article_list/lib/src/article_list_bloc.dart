@@ -211,15 +211,14 @@ class ArticleListBloc extends Bloc<ArticleListEvent, ArticleListState> {
       await for (final newPage in pagesStream) {
         final newItemList = newPage.articles;
         final oldItemList = state.itemList ?? [];
-        final completeItemList = isRefresh || page == 1
-            ? newItemList
-            : (oldItemList + (newItemList ?? []));
+        final completeItemList =
+            isRefresh || page == 1 ? newItemList : (oldItemList + newItemList);
 
-        final nextPage = /* newPage.isLastPage ? null : */ page + 1; //TODO
+        final nextPage = newPage.isLastPage ? null : page + 1;
 
         yield ArticleListState.success(
           nextPage: nextPage,
-          itemList: completeItemList ?? [],
+          itemList: completeItemList,
           filter: currentlyAppliedFilter,
           isRefresh: isRefresh,
           previousState: state,
