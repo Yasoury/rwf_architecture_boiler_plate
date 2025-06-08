@@ -113,4 +113,24 @@ class NewsLocalStorage {
     }
     return null;
   }
+
+  // Add to NewsLocalStorage class
+  Future<List<ArticleCM>> searchCachedArticles(String searchTerm) async {
+    final box = await keyValueStorage.articlesBox;
+    final allArticles = box.values.toList();
+
+    if (searchTerm.isEmpty) return allArticles;
+
+    // Simple search implementation - you can enhance this
+    return allArticles.where((article) {
+      final titleMatch =
+          article.title?.toLowerCase().contains(searchTerm.toLowerCase()) ??
+              false;
+      final descriptionMatch = article.description
+              ?.toLowerCase()
+              .contains(searchTerm.toLowerCase()) ??
+          false;
+      return titleMatch || descriptionMatch;
+    }).toList();
+  }
 }

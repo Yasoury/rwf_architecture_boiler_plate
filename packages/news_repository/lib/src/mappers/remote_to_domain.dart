@@ -34,8 +34,8 @@ extension SourceRMToDomain on SourceRM {
 extension NewsListPageRMToDomain on NewsListPageRM {
   NewsListPage toDomainModel() {
     return NewsListPage(
-      totalCount: totalResults,
-      articles: articles?.toDomainModel(),
+      articles: articles?.toDomainModel() ?? [],
+      isLastPage: (articles ?? []).isEmpty ? true : false,
     );
   }
 }

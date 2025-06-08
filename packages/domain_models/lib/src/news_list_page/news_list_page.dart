@@ -1,11 +1,19 @@
+import 'package:equatable/equatable.dart';
+
 import 'article.dart';
 
-class NewsListPage {
-  int? totalCount;
-  List<Article>? articles;
+class NewsListPage extends Equatable {
+  final List<Article> articles;
+  final bool isLastPage;
 
   NewsListPage({
-    this.totalCount,
-    this.articles,
+    required this.articles,
+    required this.isLastPage,
   });
+
+  @override
+  List<Object?> get props => [
+        articles,
+        isLastPage,
+      ];
 }

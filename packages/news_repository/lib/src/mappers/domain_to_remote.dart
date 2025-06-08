@@ -35,8 +35,8 @@ extension NewsListPageToRemote on NewsListPage {
   NewsListPageRM toRemoteModel() {
     return NewsListPageRM(
       status: 'ok', // Default status for outgoing requests
-      totalResults: totalCount,
-      articles: articles?.toRemoteModel(),
+
+      articles: articles.toRemoteModel(),
     );
   }
 }
