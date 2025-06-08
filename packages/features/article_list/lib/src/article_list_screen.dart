@@ -86,7 +86,6 @@ class ArticleListViewState extends State<ArticleListView> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = WonderTheme.of(context);
     final l10n = ArticleListLocalizations.of(context);
     return BlocListener<ArticleListBloc, ArticleListState>(
       listener: (context, state) {
@@ -115,15 +114,7 @@ class ArticleListViewState extends State<ArticleListView> {
               onTap: () => _releaseFocus(context),
               child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: theme.screenMargin,
-                    ),
-                    child: CustomSearchBar(
-                      controller: _searchBarController,
-                    ),
-                  ),
-                  const FilterHorizontalList(),
+                  _ArticleListHeader(searchController: _searchBarController),
                   Expanded(
                     child: RefreshIndicator(
                       onRefresh: () {
@@ -137,15 +128,21 @@ class ArticleListViewState extends State<ArticleListView> {
                         final stateChangeFuture = _bloc.stream.first;
                         return stateChangeFuture;
                       },
-                      child: 1 == 1 //TODO
-                          ? ArticlePagedGridView(
-                              pagingController: _pagingController,
-                              onArticleSelected: widget.onArticleSelected,
-                            )
-                          : ArticlePagedListView(
-                              pagingController: _pagingController,
-                              onArticleSelected: widget.onArticleSelected,
-                            ),
+                      child: BlocSelector<ArticleListBloc, ArticleListState,
+                          ArticleViewMode>(
+                        selector: (state) => state.viewMode,
+                        builder: (context, viewMode) {
+                          return viewMode == ArticleViewMode.grid
+                              ? ArticlePagedGridView(
+                                  pagingController: _pagingController,
+                                  onArticleSelected: widget.onArticleSelected,
+                                )
+                              : ArticlePagedListView(
+                                  pagingController: _pagingController,
+                                  onArticleSelected: widget.onArticleSelected,
+                                );
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -175,6 +172,65 @@ extension on ArticleListState {
       itemList: itemList,
       nextPageKey: nextPage,
       error: error,
+    );
+  }
+}
+
+class _ArticleListHeader extends StatelessWidget {
+  const _ArticleListHeader({
+    required this.searchController,
+  });
+
+  final TextEditingController searchController;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = WonderTheme.of(context);
+    final l10n = ArticleListLocalizations.of(context);
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: theme.screenMargin),
+      child: Column(
+        children: [
+          CustomSearchBar(controller: searchController),
+          const SizedBox(height: Spacing.small),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const FilterHorizontalList(),
+              BlocSelector<ArticleListBloc, ArticleListState, ArticleViewMode>(
+                selector: (state) => state.viewMode,
+                builder: (context, viewMode) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        l10n.viewModeLabel,
+                      ),
+                      const SizedBox(width: Spacing.xSmall),
+                      IconButton(
+                        onPressed: () {
+                          context.read<ArticleListBloc>().add(
+                                const ArticleListViewModeToggled(),
+                              );
+                        },
+                        icon: Icon(
+                          viewMode == ArticleViewMode.grid
+                              ? Icons.view_list
+                              : Icons.grid_view,
+                        ),
+                        tooltip: viewMode == ArticleViewMode.grid
+                            ? l10n.switchToListViewTooltip
+                            : l10n.switchToGridViewTooltip,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

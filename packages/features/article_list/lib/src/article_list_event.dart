@@ -48,3 +48,7 @@ class ArticleListNextPageRequested extends ArticleListEvent {
 class ArticleListFailedFetchRetried extends ArticleListEvent {
   const ArticleListFailedFetchRetried();
 }
+
+class ArticleListViewModeToggled extends ArticleListEvent {
+  const ArticleListViewModeToggled();
+}

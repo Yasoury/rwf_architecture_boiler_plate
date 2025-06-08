@@ -39,6 +39,8 @@ class ArticleListBloc extends Bloc<ArticleListEvent, ArticleListState> {
           await _handleArticleListRefreshed(emitter, event);
         } else if (event is ArticleListNextPageRequested) {
           await _handleArticleListNextPageRequested(emitter, event);
+        } else if (event is ArticleListViewModeToggled) {
+          _handleArticleListViewModeToggled(emitter);
         }
       },
       transformer: (eventStream, eventHandler) {
@@ -94,7 +96,10 @@ class ArticleListBloc extends Bloc<ArticleListEvent, ArticleListState> {
     ArticleListTagChanged event,
   ) {
     emitter(
-      ArticleListState.loadingNewTag(tag: event.tag),
+      ArticleListState.loadingNewTag(
+        tag: event.tag,
+        previousState: state,
+      ),
     );
 
     final firstPageFetchStream = _fetchArticlePage(
@@ -119,6 +124,7 @@ class ArticleListBloc extends Bloc<ArticleListEvent, ArticleListState> {
     emitter(
       ArticleListState.loadingNewSearchTerm(
         searchTerm: event.searchTerm,
+        previousState: state,
       ),
     );
 
@@ -153,6 +159,14 @@ class ArticleListBloc extends Bloc<ArticleListEvent, ArticleListState> {
       firstPageFetchStream,
       onData: emitter.call,
     );
+  }
+
+  void _handleArticleListViewModeToggled(Emitter emitter) {
+    final newViewMode = state.viewMode == ArticleViewMode.grid
+        ? ArticleViewMode.list
+        : ArticleViewMode.grid;
+
+    emitter(state.copyWithViewMode(newViewMode));
   }
 
   Future<void> _handleArticleListNextPageRequested(
@@ -208,12 +222,14 @@ class ArticleListBloc extends Bloc<ArticleListEvent, ArticleListState> {
           itemList: completeItemList ?? [],
           filter: currentlyAppliedFilter,
           isRefresh: isRefresh,
+          previousState: state,
         );
       }
     } catch (error) {
       if (error is EmptySearchResultException) {
         yield ArticleListState.noItemsFound(
           filter: currentlyAppliedFilter,
+          previousState: state,
         );
       }
 

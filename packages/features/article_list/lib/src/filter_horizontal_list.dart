@@ -15,18 +15,15 @@ class FilterHorizontalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(
-        vertical: Spacing.mediumLarge,
-      ),
-      child: Row(children: [
-        ...Tag.values.map(
-          (tag) => _TagChip(
-            tag: tag,
+    return Expanded(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          ...Tag.values.map(
+            (tag) => _TagChip(tag: tag),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }
@@ -40,12 +37,10 @@ class _TagChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = WonderTheme.of(context);
     final isLastTag = Tag.values.last == tag;
     return Padding(
       padding: EdgeInsets.only(
-        right: isLastTag ? theme.screenMargin : _itemSpacing,
-        left: _itemSpacing,
+        right: isLastTag ? 0 : _itemSpacing,
       ),
       child: BlocSelector<ArticleListBloc, ArticleListState, Tag?>(
         selector: (state) {

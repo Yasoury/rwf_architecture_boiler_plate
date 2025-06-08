@@ -55,4 +55,13 @@ class ArticleListLocalizationsEn extends ArticleListLocalizations {
 
   @override
   String get gamingTagLabel => 'Gaming';
+
+  @override
+  String get viewModeLabel => 'View';
+
+  @override
+  String get switchToListViewTooltip => 'Switch to list view';
+
+  @override
+  String get switchToGridViewTooltip => 'Switch to grid view';
 }

@@ -188,6 +188,24 @@ abstract class ArticleListLocalizations {
   /// In en, this message translates to:
   /// **'Gaming'**
   String get gamingTagLabel;
+
+  /// No description provided for @viewModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get viewModeLabel;
+
+  /// No description provided for @switchToListViewTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to list view'**
+  String get switchToListViewTooltip;
+
+  /// No description provided for @switchToGridViewTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to grid view'**
+  String get switchToGridViewTooltip;
 }
 
 class _ArticleListLocalizationsDelegate extends LocalizationsDelegate<ArticleListLocalizations> {

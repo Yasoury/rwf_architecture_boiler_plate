@@ -16,5 +16,9 @@
   "aiTagLabel": "AI",
   "climateTagLabel": "Climate",
   "automotiveTagLabel": "Automotive",
-  "gamingTagLabel": "Gaming"
+  "gamingTagLabel": "Gaming",
+  "viewModeLabel": "View",
+
+    "switchToListViewTooltip": "Switch to list view",
+  "switchToGridViewTooltip": "Switch to grid view"
 }

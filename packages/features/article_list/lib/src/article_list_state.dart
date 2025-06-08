@@ -7,90 +7,87 @@ class ArticleListState extends Equatable {
     this.error,
     this.filter,
     this.refreshError,
+    this.viewMode = ArticleViewMode.grid,
   });
 
   final List<Article>? itemList;
-
   final int? nextPage;
-
   final dynamic error;
-
   final ArticleListFilter? filter;
-
   final dynamic refreshError;
+  final ArticleViewMode viewMode;
 
+  // Keep existing viewMode unless explicitly changed
   ArticleListState.loadingNewTag({
     required Tag? tag,
+    ArticleListState? previousState,
   }) : this(
           filter: tag != null ? ArticleListFilterByTag(tag) : null,
+          viewMode: previousState?.viewMode ?? ArticleViewMode.grid,
         );
 
   ArticleListState.loadingNewSearchTerm({
     required String searchTerm,
+    ArticleListState? previousState,
   }) : this(
           filter: searchTerm.isEmpty
               ? null
-              : ArticleListFilterBySearchTerm(
-                  searchTerm,
-                ),
+              : ArticleListFilterBySearchTerm(searchTerm),
+          viewMode: previousState?.viewMode ?? ArticleViewMode.grid,
         );
 
-  const ArticleListState.noItemsFound({
+  ArticleListState.noItemsFound({
     required ArticleListFilter? filter,
+    ArticleListState? previousState,
   }) : this(
           itemList: const [],
           error: null,
           nextPage: 1,
           filter: filter,
+          viewMode: previousState?.viewMode ?? ArticleViewMode.grid,
         );
 
-  const ArticleListState.success({
+  ArticleListState.success({
     required int? nextPage,
     required List<Article> itemList,
     required ArticleListFilter? filter,
     required bool isRefresh,
+    ArticleListState? previousState,
   }) : this(
           nextPage: nextPage,
           itemList: itemList,
           filter: filter,
+          viewMode: previousState?.viewMode ?? ArticleViewMode.grid,
         );
 
-  ArticleListState copyWithNewError(
-    dynamic error,
-  ) =>
-      ArticleListState(
+  // Copy methods preserve viewMode automatically
+  ArticleListState copyWithNewError(dynamic error) => ArticleListState(
         itemList: itemList,
         nextPage: nextPage,
         error: error,
         filter: filter,
         refreshError: null,
+        viewMode: viewMode,
       );
 
-  ArticleListState copyWithNewRefreshError(
-    dynamic refreshError,
-  ) =>
+  ArticleListState copyWithNewRefreshError(dynamic refreshError) =>
       ArticleListState(
         itemList: itemList,
         nextPage: nextPage,
         error: error,
         filter: filter,
         refreshError: refreshError,
+        viewMode: viewMode,
       );
-  ArticleListState copyWithUpdatedArticle(
-    Article updatedArticle,
-  ) {
+
+  ArticleListState copyWithViewMode(ArticleViewMode newViewMode) {
     return ArticleListState(
-      itemList: itemList?.map((article) {
-        if (article.title == updatedArticle.title) {
-          return updatedArticle;
-        } else {
-          return article;
-        }
-      }).toList(),
+      itemList: itemList,
       nextPage: nextPage,
       error: error,
       filter: filter,
-      refreshError: null,
+      refreshError: refreshError,
+      viewMode: newViewMode,
     );
   }
 
@@ -101,6 +98,7 @@ class ArticleListState extends Equatable {
         error,
         filter,
         refreshError,
+        viewMode,
       ];
 }
 
@@ -132,3 +130,5 @@ class ArticleListFilterBySearchTerm extends ArticleListFilter {
         searchTerm,
       ];
 }
+
+enum ArticleViewMode { grid, list }
