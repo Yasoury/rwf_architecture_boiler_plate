@@ -1,15 +1,12 @@
+import 'package:article/article.dart';
 import 'package:article_list/article_list.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:news_repository/news_repository.dart';
-
 import 'package:routemaster/routemaster.dart';
 
 Map<String, PageBuilder> buildRoutingTable({
   required RoutemasterDelegate routerDelegate,
   required NewsRepository newsRepository,
-  //TODOTip add the neassery Repository
 }) {
   return {
     _PathConstants.homePath: (_) {
@@ -28,13 +25,15 @@ Map<String, PageBuilder> buildRoutingTable({
       );
     },
     _PathConstants.articleDetailsPath(): (info) {
+      final articleTitle = info.pathParameters[_PathConstants.idPathParameter];
+
       return MaterialPage(
-          child:
-              Container() /* ArticleScreen(
+        name: 'article-details',
+        child: ArticleScreen(
           newsRepository: newsRepository,
-          
-        ), */
-          );
+          articleTitle: Uri.decodeComponent(articleTitle ?? ''),
+        ),
+      );
     }
   };
 }
@@ -47,5 +46,5 @@ class _PathConstants {
   static String articleDetailsPath({
     String? articleTitle,
   }) =>
-      '$homePath/article/${articleTitle ?? ':$idPathParameter'}';
+      '$homePath/article/${articleTitle != null ? Uri.encodeComponent(articleTitle) : ':$idPathParameter'}';
 }

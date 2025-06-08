@@ -1,0 +1,18 @@
+{
+  "unknownErrorOccurred": "Unknown error occurred",
+  "articleNotFound": "Article Not Found",
+  "tryAgain": "Try Again",
+  "article": "Article",
+  "byAuthor": "By {author}",
+  "@byAuthor": {
+    "placeholders": {
+      "author": {
+        "type": "String"
+      }
+    }
+  },
+  "fullArticleContentNotAvailable": "Full article content is not available.",
+  "readFullArticle": "Read Full Article",
+  "cannotOpenUrl": "Cannot open URL",
+  "errorOpeningUrl": "Error opening URL"
+}

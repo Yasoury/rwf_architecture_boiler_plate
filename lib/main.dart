@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:article_list/article_list.dart';
 import 'package:component_library/component_library.dart';
+import 'package:article/article.dart';
 
 import 'package:flutter/material.dart';
 
@@ -81,6 +82,7 @@ class _MyAppState extends State<MyApp> {
           AppLocalizations.delegate,
           ComponentLibraryLocalizations.delegate,
           ArticleListLocalizations.delegate,
+          ArticleLocalizations.delegate,
         ],
         routeInformationParser: const RoutemasterParser(),
         routerDelegate: _routerDelegate,

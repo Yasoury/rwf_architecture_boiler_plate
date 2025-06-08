@@ -157,6 +157,11 @@ class NewsRepository {
     }
   }
 
+  Future<Article?> getArticleByTitle(String title) async {
+    final cachedArticle = await _localStorage.getArticleByTitle(title);
+    return cachedArticle?.toDomainModel();
+  }
+
   // Enhanced: Add method to clear search cache periodically
   Future<void> clearSearchCache() async {
     await _localStorage.clearTempCachedNews();

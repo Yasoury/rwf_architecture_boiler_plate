@@ -38,6 +38,9 @@ dependencies:
   article_list:
     path: packages/features/article_list
 
+  article:
+    path: packages/features/article
+
   intl: ^0.19.0
 dev_dependencies:
   flutter_test:

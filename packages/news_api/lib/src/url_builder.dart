@@ -39,42 +39,4 @@ class UrlBuilder {
 
     return uri.toString();
   }
-
-  // New top-headlines endpoint
-  String buildGetTopHeadlinesUrl({
-    String? country = 'us',
-    String? category,
-    String? sources,
-    String? query,
-    int pageSize = 10,
-    int page = 1,
-  }) {
-    // Validation following NewsAPI constraints
-    assert(page > 0, 'Page must be greater than 0');
-    assert(
-        pageSize > 0 && pageSize <= 100, 'Page size must be between 1 and 100');
-    assert(
-        (country != null && sources == null) ||
-            (sources != null && country == null) ||
-            (country == null && sources == null),
-        'Cannot mix country and sources parameters');
-    assert(
-        (category != null && sources == null) ||
-            (sources != null && category == null) ||
-            (category == null && sources == null),
-        'Cannot mix category and sources parameters');
-
-    final uri = Uri.parse('$_baseUrl/top-headlines').replace(
-      queryParameters: {
-        'page': page.toString(),
-        'pageSize': pageSize.toString(),
-        if (country != null && country.isNotEmpty) 'country': country,
-        if (category != null && category.isNotEmpty) 'category': category,
-        if (sources != null && sources.isNotEmpty) 'sources': sources,
-        if (query != null && query.isNotEmpty) 'q': query,
-      },
-    );
-
-    return uri.toString();
-  }
 }

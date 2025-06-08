@@ -1,7 +1,9 @@
 import 'package:key_value_storage/key_value_storage.dart';
 // ignore: depend_on_referenced_packages
-import 'package:meta/meta.dart';
+
 import 'package:path_provider/path_provider.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter/foundation.dart';
 
 /// Wraps [Hive] so that we can register all adapters and manage all keys in a
 /// single place.
@@ -71,13 +73,18 @@ final class KeyValueStorage {
     if (_hive.isBoxOpen(boxKey)) {
       return _hive.box(boxKey);
     } else {
-      final directory = await (isTemporary
-          ? getTemporaryDirectory()
-          : getApplicationDocumentsDirectory());
-      return _hive.openBox<T>(
-        boxKey,
-        path: directory.path,
-      );
+      if (kIsWeb) {
+        // For web, open box without path (uses IndexedDB)
+        return _hive.openBox<T>(boxKey);
+      } else {
+        final directory = await (isTemporary
+            ? getTemporaryDirectory()
+            : getApplicationDocumentsDirectory());
+        return _hive.openBox<T>(
+          boxKey,
+          path: directory.path,
+        );
+      }
     }
   }
 }
