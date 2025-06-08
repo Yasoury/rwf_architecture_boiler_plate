@@ -12,7 +12,13 @@ class NewsApi {
         _urlBuilder = urlBuilder ?? const UrlBuilder() {
     _dio.setUpAuthHeaders();
     _dio.interceptors.add(
-      LogInterceptor(responseBody: false),
+      LogInterceptor(
+        responseBody: true,
+        request: true,
+        requestBody: true,
+        requestHeader: true,
+        responseHeader: true,
+      ),
     );
   }
 

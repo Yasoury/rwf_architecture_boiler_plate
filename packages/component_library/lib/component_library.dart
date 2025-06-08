@@ -15,3 +15,7 @@ export 'package:flutter_svg/flutter_svg.dart';
 export 'package:intl/intl.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
 export 'src/rounded_choice_chip.dart';
+export 'src/search_bar.dart';
+export 'src/article_card.dart';
+
+export 'src/exception_indicator.dart';

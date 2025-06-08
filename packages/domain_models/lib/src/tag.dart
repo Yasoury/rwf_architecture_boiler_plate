@@ -1,0 +1,17 @@
+enum Tag {
+  technology,
+  business,
+  startups,
+  science,
+  health,
+  politics,
+  sports,
+  entertainment,
+  world,
+  finance,
+  cybersecurity,
+  ai,
+  climate,
+  automotive,
+  gaming,
+}

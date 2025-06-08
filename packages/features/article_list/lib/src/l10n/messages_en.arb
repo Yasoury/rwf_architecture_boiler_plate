@@ -1,0 +1,20 @@
+{
+  "newsRefreshErrorMessage": "We couldn't refresh your items.\nPlease, check your internet connection and try again later.",
+ 
+ 
+  "technologyTagLabel": "Technology",
+  "businessTagLabel": "Business",
+  "startupsTagLabel": "Startups",
+  "scienceTagLabel": "Science",
+  "healthTagLabel": "Health",
+  "politicsTagLabel": "Politics",
+  "sportsTagLabel": "Sports",
+  "entertainmentTagLabel": "Entertainment",
+  "worldTagLabel": "World",
+  "financeTagLabel": "Finance",
+  "cybersecurityTagLabel": "Cybersecurity",
+  "aiTagLabel": "AI",
+  "climateTagLabel": "Climate",
+  "automotiveTagLabel": "Automotive",
+  "gamingTagLabel": "Gaming"
+}

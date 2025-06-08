@@ -21,8 +21,7 @@ class UrlBuilder {
     assert(
         pageSize > 0 && pageSize <= 100, 'Page size must be between 1 and 100');
 
-    final uri = Uri.parse(_baseUrl).replace(
-      path: '/everything',
+    final uri = Uri.parse('$_baseUrl/everything').replace(
       queryParameters: {
         'q': query,
         'page': page.toString(),
@@ -65,8 +64,7 @@ class UrlBuilder {
             (category == null && sources == null),
         'Cannot mix category and sources parameters');
 
-    final uri = Uri.parse(_baseUrl).replace(
-      path: '/top-headlines',
+    final uri = Uri.parse('$_baseUrl/top-headlines').replace(
       queryParameters: {
         'page': page.toString(),
         'pageSize': pageSize.toString(),

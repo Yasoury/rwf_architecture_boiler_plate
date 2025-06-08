@@ -27,7 +27,7 @@ abstract class WonderThemeData {
 
   Color get roundedChoiceChipSelectedAvatarColor;
 
-  Color get quoteSvgColor;
+  Color get articleSvgColor;
 
   Color get unvotedButtonColor;
 
@@ -43,12 +43,33 @@ abstract class WonderThemeData {
 
   Color get lightTextColor;
 
+  Color get surfaceColor;
+
   MaterialColor get accentColorAsMaterialColor;
 
-  TextStyle quoteTextStyle = const TextStyle(
-    fontFamily: 'Fondamento',
-    package: 'component_library',
-  );
+  TextStyle get articleTextStyle => TextStyle(
+        fontFamily: 'Fondamento',
+        package: 'component_library',
+        color: articleTextColor,
+      );
+
+  TextStyle get headlineTextStyle => TextStyle(
+        fontWeight: FontWeight.bold,
+        color: headlineTextColor,
+      );
+
+  TextStyle get bodyTextStyle => TextStyle(
+        color: bodyTextColor,
+      );
+
+  TextStyle get captionTextStyle => TextStyle(
+        color: captionTextColor,
+      );
+
+  Color get articleTextColor;
+  Color get headlineTextColor;
+  Color get bodyTextColor;
+  Color get captionTextColor;
 }
 
 class LightWonderThemeData extends WonderThemeData {
@@ -73,7 +94,7 @@ class LightWonderThemeData extends WonderThemeData {
   Color get roundedChoiceChipSelectedLabelColor => Colors.white;
 
   @override
-  Color get quoteSvgColor => Colors.black;
+  Color get articleSvgColor => Colors.black;
 
   @override
   Color get roundedChoiceChipAvatarColor => Colors.black;
@@ -103,8 +124,23 @@ class LightWonderThemeData extends WonderThemeData {
   Color get lightTextColor => const Color(0xffBEBEBE);
 
   @override
+  Color get surfaceColor => Colors.grey.shade100;
+
+  @override
   MaterialColor get accentColorAsMaterialColor =>
       const Color(0xff6c63ff).toMaterialColor();
+
+  @override
+  Color get articleTextColor => Colors.black87;
+
+  @override
+  Color get headlineTextColor => Colors.black;
+
+  @override
+  Color get bodyTextColor => Colors.black87;
+
+  @override
+  Color get captionTextColor => Colors.grey.shade600;
 }
 
 class DarkWonderThemeData extends WonderThemeData {
@@ -130,7 +166,7 @@ class DarkWonderThemeData extends WonderThemeData {
   Color get roundedChoiceChipSelectedLabelColor => Colors.black;
 
   @override
-  Color get quoteSvgColor => Colors.white;
+  Color get articleSvgColor => Colors.white;
 
   @override
   Color get roundedChoiceChipAvatarColor => Colors.white;
@@ -160,8 +196,23 @@ class DarkWonderThemeData extends WonderThemeData {
   Color get lightTextColor => const Color(0xffBEBEBE);
 
   @override
+  Color get surfaceColor => Colors.grey.shade800;
+
+  @override
   MaterialColor get accentColorAsMaterialColor =>
       const Color(0xff6c63ff).toMaterialColor();
+
+  @override
+  Color get articleTextColor => Colors.white38;
+
+  @override
+  Color get headlineTextColor => Colors.white;
+
+  @override
+  Color get bodyTextColor => Colors.white70;
+
+  @override
+  Color get captionTextColor => Colors.grey.shade400;
 }
 
 extension on Color {
