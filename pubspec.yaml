@@ -16,11 +16,8 @@ dependencies:
 
   routemaster: ^1.0.1
   cupertino_icons: ^1.0.2
-  flutter_native_splash: ^2.3.10
-  flutter_launcher_icons: ^0.14.3
 
-  monitoring:
-    path: packages/monitoring
+  flutter_launcher_icons: ^0.14.3
 
   key_value_storage:
     path: packages/key_value_storage
@@ -38,8 +35,8 @@ dependencies:
     path: packages/domain_models
 
   ## Features
-  #update_profile:
-  #   path: packages/features/update_profile
+  article_list:
+    path: packages/features/article_list
 
   intl: ^0.19.0
 dev_dependencies:
@@ -52,11 +49,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/
-    - assets/images/
-## operations
-flutter_native_splash:
-  #flutter pub run flutter_native_splash:create
-  background_image: "assets/images/launch_background.png"
-  #color: "#7EC242"

@@ -9,7 +9,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get quotesBottomNavigationBarItemLabel => 'الصفحة الرئيسية';
+  String get articlesBottomNavigationBarItemLabel => 'الصفحة الرئيسية';
 
   @override
   String get profileBottomNavigationBarItemLabel => 'الملف الشخصي';

@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get quotesBottomNavigationBarItemLabel => 'Home screen';
+  String get articlesBottomNavigationBarItemLabel => 'Home screen';
 
   @override
   String get profileBottomNavigationBarItemLabel => 'Profile';

@@ -1,28 +1,51 @@
-import 'package:domain_models/domain_models.dart';
+import 'package:article_list/article_list.dart';
+
 import 'package:flutter/material.dart';
 
-import 'package:monitoring/monitoring.dart';
 import 'package:news_repository/news_repository.dart';
 
 import 'package:routemaster/routemaster.dart';
 
 Map<String, PageBuilder> buildRoutingTable({
   required RoutemasterDelegate routerDelegate,
-  required RemoteValueService remoteValueService,
-  required DynamicLinkService dynamicLinkService,
   required NewsRepository newsRepository,
   //TODOTip add the neassery Repository
 }) {
-  return {};
+  return {
+    _PathConstants.homePath: (_) {
+      return MaterialPage(
+        child: ArticleListScreen(
+          newsRepository: newsRepository,
+          onArticleSelected: (articleTitle) {
+            final navigation = routerDelegate.push<String?>(
+              _PathConstants.articleDetailsPath(
+                articleTitle: articleTitle,
+              ),
+            );
+            return navigation.result;
+          },
+        ),
+      );
+    },
+    _PathConstants.articleDetailsPath(): (info) {
+      return MaterialPage(
+          child:
+              Container() /* ArticleScreen(
+          newsRepository: newsRepository,
+          
+        ), */
+          );
+    }
+  };
 }
 
 class _PathConstants {
   const _PathConstants._();
-  static String get homePath => '/news';
+  static String get homePath => '/';
   static String get idPathParameter => 'id';
 
   static String articleDetailsPath({
-    int? articleId,
+    String? articleTitle,
   }) =>
-      '$homePath/${articleId ?? ':$idPathParameter'}';
+      '$homePath/article/${articleTitle ?? ':$idPathParameter'}';
 }

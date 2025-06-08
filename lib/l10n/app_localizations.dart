@@ -95,11 +95,11 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @quotesBottomNavigationBarItemLabel.
+  /// No description provided for @articlesBottomNavigationBarItemLabel.
   ///
   /// In en, this message translates to:
   /// **'Home screen'**
-  String get quotesBottomNavigationBarItemLabel;
+  String get articlesBottomNavigationBarItemLabel;
 
   /// No description provided for @profileBottomNavigationBarItemLabel.
   ///
