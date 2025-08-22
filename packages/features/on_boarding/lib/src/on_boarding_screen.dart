@@ -97,7 +97,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             height: size.height * .35,
             width: size.width,
             decoration: BoxDecoration(
-                color: theme.accentColor.withOpacity(.1),
+                color: theme.accentColor.withValues(alpha: .1),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(48),
                   topRight: Radius.circular(48),
@@ -183,7 +183,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             height: size.height * .35,
             width: size.width,
             decoration: BoxDecoration(
-                color: theme.accentColor.withOpacity(.1),
+                color: theme.accentColor.withValues(alpha: .1),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(48),
                   topRight: Radius.circular(48),

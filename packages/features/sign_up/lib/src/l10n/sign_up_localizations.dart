@@ -62,7 +62,8 @@ import 'sign_up_localizations_en.dart';
 /// be consistent with the languages listed in the SignUpLocalizations.supportedLocales
 /// property.
 abstract class SignUpLocalizations {
-  SignUpLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  SignUpLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class SignUpLocalizations {
     return Localizations.of<SignUpLocalizations>(context, SignUpLocalizations)!;
   }
 
-  static const LocalizationsDelegate<SignUpLocalizations> delegate = _SignUpLocalizationsDelegate();
+  static const LocalizationsDelegate<SignUpLocalizations> delegate =
+      _SignUpLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +84,8 @@ abstract class SignUpLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -198,34 +201,36 @@ abstract class SignUpLocalizations {
   String get passwordConfirmationTextFieldInvalidErrorMessage;
 }
 
-class _SignUpLocalizationsDelegate extends LocalizationsDelegate<SignUpLocalizations> {
+class _SignUpLocalizationsDelegate
+    extends LocalizationsDelegate<SignUpLocalizations> {
   const _SignUpLocalizationsDelegate();
 
   @override
   Future<SignUpLocalizations> load(Locale locale) {
-    return SynchronousFuture<SignUpLocalizations>(lookupSignUpLocalizations(locale));
+    return SynchronousFuture<SignUpLocalizations>(
+        lookupSignUpLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SignUpLocalizationsDelegate old) => false;
 }
 
 SignUpLocalizations lookupSignUpLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return SignUpLocalizationsAr();
-    case 'en': return SignUpLocalizationsEn();
+    case 'ar':
+      return SignUpLocalizationsAr();
+    case 'en':
+      return SignUpLocalizationsEn();
   }
 
   throw FlutterError(
-    'SignUpLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'SignUpLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

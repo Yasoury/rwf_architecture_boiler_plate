@@ -10,7 +10,7 @@ class ExplicitCrash {
   final FirebaseCrashlytics _crashlytics;
 
   // 2
-  crashTheApp() {
+  void crashTheApp() {
     _crashlytics.crash();
   }
 }

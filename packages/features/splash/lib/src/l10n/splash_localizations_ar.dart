@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'splash_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -13,7 +15,8 @@ class SplashLocalizationsAr extends SplashLocalizations {
   String get onBoardingTitle => 'مرحبا بك معنا ';
 
   @override
-  String get onBoardingTitleSubTitle => 'أتمنى لك الاستمتاع في بناء نطبيق بجودة عالية ';
+  String get onBoardingTitleSubTitle =>
+      'أتمنى لك الاستمتاع في بناء نطبيق بجودة عالية ';
 
   @override
   String get next => 'التالي';

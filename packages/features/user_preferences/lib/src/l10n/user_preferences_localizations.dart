@@ -63,15 +63,18 @@ import 'user_preferences_localizations_pt.dart';
 /// be consistent with the languages listed in the UserPreferencesLocalizations.supportedLocales
 /// property.
 abstract class UserPreferencesLocalizations {
-  UserPreferencesLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  UserPreferencesLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static UserPreferencesLocalizations of(BuildContext context) {
-    return Localizations.of<UserPreferencesLocalizations>(context, UserPreferencesLocalizations)!;
+    return Localizations.of<UserPreferencesLocalizations>(
+        context, UserPreferencesLocalizations)!;
   }
 
-  static const LocalizationsDelegate<UserPreferencesLocalizations> delegate = _UserPreferencesLocalizationsDelegate();
+  static const LocalizationsDelegate<UserPreferencesLocalizations> delegate =
+      _UserPreferencesLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -83,7 +86,8 @@ abstract class UserPreferencesLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -188,35 +192,38 @@ abstract class UserPreferencesLocalizations {
   String get showOnbOarding;
 }
 
-class _UserPreferencesLocalizationsDelegate extends LocalizationsDelegate<UserPreferencesLocalizations> {
+class _UserPreferencesLocalizationsDelegate
+    extends LocalizationsDelegate<UserPreferencesLocalizations> {
   const _UserPreferencesLocalizationsDelegate();
 
   @override
   Future<UserPreferencesLocalizations> load(Locale locale) {
-    return SynchronousFuture<UserPreferencesLocalizations>(lookupUserPreferencesLocalizations(locale));
+    return SynchronousFuture<UserPreferencesLocalizations>(
+        lookupUserPreferencesLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_UserPreferencesLocalizationsDelegate old) => false;
 }
 
 UserPreferencesLocalizations lookupUserPreferencesLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return UserPreferencesLocalizationsAr();
-    case 'en': return UserPreferencesLocalizationsEn();
-    case 'pt': return UserPreferencesLocalizationsPt();
+    case 'ar':
+      return UserPreferencesLocalizationsAr();
+    case 'en':
+      return UserPreferencesLocalizationsEn();
+    case 'pt':
+      return UserPreferencesLocalizationsPt();
   }
 
   throw FlutterError(
-    'UserPreferencesLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'UserPreferencesLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

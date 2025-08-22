@@ -1,8 +1,12 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'component_library_localizations.dart';
+
+// ignore_for_file: type=lint
 
 /// The translations for English (`en`).
 class ComponentLibraryLocalizationsEn extends ComponentLibraryLocalizations {
-  ComponentLibraryLocalizationsEn([super.locale = 'en']);
+  ComponentLibraryLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
   String get downvoteIconButtonTooltip => 'Downvote';

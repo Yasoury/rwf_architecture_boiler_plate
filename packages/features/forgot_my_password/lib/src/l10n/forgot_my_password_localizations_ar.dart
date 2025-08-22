@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'forgot_my_password_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -13,13 +15,16 @@ class ForgotMyPasswordLocalizationsAr extends ForgotMyPasswordLocalizations {
   String get emailTextFieldLabel => 'البريد الإلكتروني';
 
   @override
-  String get emailTextFieldEmptyErrorMessage => 'لا يمكن أن يكون بريدك الإلكتروني فارغًا.';
+  String get emailTextFieldEmptyErrorMessage =>
+      'لا يمكن أن يكون بريدك الإلكتروني فارغًا.';
 
   @override
-  String get emailTextFieldInvalidErrorMessage => 'هذا البريد الإلكتروني غير صالح.';
+  String get emailTextFieldInvalidErrorMessage =>
+      'هذا البريد الإلكتروني غير صالح.';
 
   @override
-  String get emailRequestSuccessMessage => 'إذا كان هذا البريد الإلكتروني مسجلاً في أنظمتنا، سيتم إرسال رابط لك مع تعليمات حول كيفية إعادة تعيين كلمة المرور.';
+  String get emailRequestSuccessMessage =>
+      'إذا كان هذا البريد الإلكتروني مسجلاً في أنظمتنا، سيتم إرسال رابط لك مع تعليمات حول كيفية إعادة تعيين كلمة المرور.';
 
   @override
   String get confirmButtonLabel => 'تأكيد';

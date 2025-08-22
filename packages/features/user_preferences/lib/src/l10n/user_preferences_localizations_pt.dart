@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'user_preferences_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -18,7 +20,8 @@ class UserPreferencesLocalizationsPt extends UserPreferencesLocalizations {
   String get updateProfileTileLabel => 'Atualizar Perfil';
 
   @override
-  String get darkModePreferencesHeaderTileLabel => 'Configurações de Modo Noturno';
+  String get darkModePreferencesHeaderTileLabel =>
+      'Configurações de Modo Noturno';
 
   @override
   String get languageHeaderTileLabel => 'Linguagem';
@@ -30,7 +33,8 @@ class UserPreferencesLocalizationsPt extends UserPreferencesLocalizations {
   String get darkModePreferencesAlwaysLightTileLabel => 'Sempre Claro';
 
   @override
-  String get darkModePreferencesUseSystemSettingsTileLabel => 'De Acordo com o Sistema';
+  String get darkModePreferencesUseSystemSettingsTileLabel =>
+      'De Acordo com o Sistema';
 
   @override
   String get signOutButtonLabel => 'Sair';

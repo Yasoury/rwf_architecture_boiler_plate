@@ -256,10 +256,10 @@ class UserRepository {
   Future<void> requestPasswordResetEmail(String email) async {
     //await remoteApi.requestPasswordResetEmail(email);
   }
-
+/* 
   Future<void> signUpAnonymously() async {
     try {
-      final response = await remoteApi.signUpAnonymously();
+      final response = remoteApi.signUpAnonymously();
 
       final String randomName = "Guest#${generateRandomSixDigitNumber()}";
       await _secureStorage.upsertUserInfo(
@@ -287,7 +287,7 @@ class UserRepository {
       }
       rethrow;
     }
-  }
+  } */
 
   int generateRandomSixDigitNumber() {
     Random random = Random();

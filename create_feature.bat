@@ -157,7 +157,7 @@ mkdir packages\features\%PACKAGE_NAME%\lib\src\l10n
     echo.
     echo   flutter_localizations:
     echo     sdk: flutter
-    echo   intl: ^^0.19.0
+    echo   intl: ^^0.20.2
     echo.
     echo   equatable: ^^2.0.5
     echo.
@@ -169,6 +169,7 @@ mkdir packages\features\%PACKAGE_NAME%\lib\src\l10n
     echo   flutter_lints: ^^4.0.0
     echo.
     echo flutter:
+    echo   generate: true
     echo   uses-material-design: true
 ) > packages\features\%PACKAGE_NAME%\pubspec.yaml
 

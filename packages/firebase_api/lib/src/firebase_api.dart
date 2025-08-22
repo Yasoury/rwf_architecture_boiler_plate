@@ -65,7 +65,7 @@ class FirebaseApi {
     }
   }
 
-  signUpAnonymously() {}
+  void signUpAnonymously() {}
 
   Future<SignupWithEmailAndPasswordResponseModel> signUpWithEmailAndPassword(
       String username, String email, String password) async {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class OnboardingBloc {
   final PageController _pageController = PageController();
 
-  get pageController => _pageController;
+  PageController get pageController => _pageController;
   final StreamController<int> _selectedIndexController = StreamController()
     ..add(0);
 
@@ -19,23 +19,23 @@ class OnboardingBloc {
     _selectedIndexController.sink.add(index);
   }
 
-  initState({required bool onBoardingViewed}) {
+  void initState({required bool onBoardingViewed}) {
     _isOnBoardingViwedController.sink.add(onBoardingViewed);
   }
 
-  dispose() {
+  void dispose() {
     _selectedIndexController.close();
     _isOnBoardingViwedController.close();
     _pageController.dispose();
   }
 
-  onDotSelected({required int index}) {
+  void onDotSelected({required int index}) {
     _selectedIndexController.sink.add(index);
     _pageController.animateToPage(index,
         duration: const Duration(microseconds: 500), curve: Curves.ease);
   }
 
-  onPageUpdate({required int index}) {
+  void onPageUpdate({required int index}) {
     _selectedIndexController.sink.add(index);
   }
 }

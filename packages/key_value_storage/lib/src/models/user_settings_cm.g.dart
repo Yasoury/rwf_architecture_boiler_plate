@@ -23,9 +23,9 @@ const UserSettingsCMSchema = CollectionSchema(
       type: IsarType.byte,
       enumMap: _UserSettingsCMdarkModePreferenceEnumValueMap,
     ),
-    r'langugae': PropertySchema(
+    r'language': PropertySchema(
       id: 1,
-      name: r'langugae',
+      name: r'language',
       type: IsarType.string,
     ),
     r'passedOnBoarding': PropertySchema(
@@ -330,31 +330,31 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeIsNull() {
+      languageIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'langugae',
+        property: r'language',
       ));
     });
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeIsNotNull() {
+      languageIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'langugae',
+        property: r'language',
       ));
     });
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeEqualTo(
+      languageEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'langugae',
+        property: r'language',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -362,7 +362,7 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeGreaterThan(
+      languageGreaterThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -370,7 +370,7 @@ extension UserSettingsCMQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'langugae',
+        property: r'language',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -378,7 +378,7 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeLessThan(
+      languageLessThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -386,7 +386,7 @@ extension UserSettingsCMQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'langugae',
+        property: r'language',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -394,7 +394,7 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeBetween(
+      languageBetween(
     String? lower,
     String? upper, {
     bool includeLower = true,
@@ -403,7 +403,7 @@ extension UserSettingsCMQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'langugae',
+        property: r'language',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -414,13 +414,13 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeStartsWith(
+      languageStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'langugae',
+        property: r'language',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -428,13 +428,13 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeEndsWith(
+      languageEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'langugae',
+        property: r'language',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -442,10 +442,10 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeContains(String value, {bool caseSensitive = true}) {
+      languageContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'langugae',
+        property: r'language',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -453,10 +453,10 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeMatches(String pattern, {bool caseSensitive = true}) {
+      languageMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'langugae',
+        property: r'language',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
@@ -464,20 +464,20 @@ extension UserSettingsCMQueryFilter
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeIsEmpty() {
+      languageIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'langugae',
+        property: r'language',
         value: '',
       ));
     });
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterFilterCondition>
-      langugaeIsNotEmpty() {
+      languageIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'langugae',
+        property: r'language',
         value: '',
       ));
     });
@@ -534,16 +534,16 @@ extension UserSettingsCMQuerySortBy
     });
   }
 
-  QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterSortBy> sortByLangugae() {
+  QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterSortBy> sortByLanguage() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'langugae', Sort.asc);
+      return query.addSortBy(r'language', Sort.asc);
     });
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterSortBy>
-      sortByLangugaeDesc() {
+      sortByLanguageDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'langugae', Sort.desc);
+      return query.addSortBy(r'language', Sort.desc);
     });
   }
 
@@ -590,16 +590,16 @@ extension UserSettingsCMQuerySortThenBy
     });
   }
 
-  QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterSortBy> thenByLangugae() {
+  QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterSortBy> thenByLanguage() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'langugae', Sort.asc);
+      return query.addSortBy(r'language', Sort.asc);
     });
   }
 
   QueryBuilder<UserSettingsCM, UserSettingsCM, QAfterSortBy>
-      thenByLangugaeDesc() {
+      thenByLanguageDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'langugae', Sort.desc);
+      return query.addSortBy(r'language', Sort.desc);
     });
   }
 
@@ -627,10 +627,10 @@ extension UserSettingsCMQueryWhereDistinct
     });
   }
 
-  QueryBuilder<UserSettingsCM, UserSettingsCM, QDistinct> distinctByLangugae(
+  QueryBuilder<UserSettingsCM, UserSettingsCM, QDistinct> distinctByLanguage(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'langugae', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'language', caseSensitive: caseSensitive);
     });
   }
 
@@ -657,9 +657,9 @@ extension UserSettingsCMQueryProperty
     });
   }
 
-  QueryBuilder<UserSettingsCM, String?, QQueryOperations> langugaeProperty() {
+  QueryBuilder<UserSettingsCM, String?, QQueryOperations> languageProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'langugae');
+      return query.addPropertyName(r'language');
     });
   }
 

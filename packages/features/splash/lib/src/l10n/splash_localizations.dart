@@ -62,7 +62,8 @@ import 'splash_localizations_en.dart';
 /// be consistent with the languages listed in the SplashLocalizations.supportedLocales
 /// property.
 abstract class SplashLocalizations {
-  SplashLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  SplashLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class SplashLocalizations {
     return Localizations.of<SplashLocalizations>(context, SplashLocalizations)!;
   }
 
-  static const LocalizationsDelegate<SplashLocalizations> delegate = _SplashLocalizationsDelegate();
+  static const LocalizationsDelegate<SplashLocalizations> delegate =
+      _SplashLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +84,8 @@ abstract class SplashLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -126,34 +129,36 @@ abstract class SplashLocalizations {
   String get startNow;
 }
 
-class _SplashLocalizationsDelegate extends LocalizationsDelegate<SplashLocalizations> {
+class _SplashLocalizationsDelegate
+    extends LocalizationsDelegate<SplashLocalizations> {
   const _SplashLocalizationsDelegate();
 
   @override
   Future<SplashLocalizations> load(Locale locale) {
-    return SynchronousFuture<SplashLocalizations>(lookupSplashLocalizations(locale));
+    return SynchronousFuture<SplashLocalizations>(
+        lookupSplashLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SplashLocalizationsDelegate old) => false;
 }
 
 SplashLocalizations lookupSplashLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return SplashLocalizationsAr();
-    case 'en': return SplashLocalizationsEn();
+    case 'ar':
+      return SplashLocalizationsAr();
+    case 'en':
+      return SplashLocalizationsEn();
   }
 
   throw FlutterError(
-    'SplashLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'SplashLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

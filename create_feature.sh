@@ -139,7 +139,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  intl: ^0.19.0
+  intl: ^0.20.2
 
   equatable: ^2.0.5
 
@@ -151,6 +151,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
 EOF
 
