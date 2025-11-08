@@ -6,6 +6,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Flutter template project based on "Real-World Flutter by Tutorials" book principles, implementing Clean Architecture with presentation, domain, and data layers. The project follows a modular package-based structure with features and shared components.
 
+## Comprehensive Architecture Guides
+
+**IMPORTANT**: For detailed implementation patterns, refer to the specialized guides in the `docs/` folder:
+
+### For AI Agents (Claude Code):
+- **Exception Handling**: `docs/EXCEPTION_HANDLING_GUIDE_AI_AGENT.md` - Complete rules for implementing multi-layered exception handling
+- **Feature Package Architecture**: `docs/FEATURE_PACKAGE_ARCHITECTURE_GUIDE_AI_AGENT.md` - Package organization, dependencies, and barrel file patterns
+- **Routing & Navigation**: `docs/ROUTING_GUIDE_AI_AGENT.md` - Routing table patterns, path management, and deep linking
+
+### For Human Developers:
+- **Exception Handling**: `docs/EXCEPTION_HANDLING_GUIDE_HUMAN.md` - Understanding the exception flow and best practices
+- **Feature Package Architecture**: `docs/FEATURE_PACKAGE_ARCHITECTURE_GUIDE_HUMAN.md` - Package-by-feature vs package-by-layer approaches
+- **Routing & Navigation**: `docs/ROUTING_GUIDE_HUMAN.md` - Navigator 2.0 with Routemaster explained
+
+These guides provide comprehensive, pattern-based implementation details. Refer to them when working on exception handling, creating new features, or implementing navigation.
+
 ## Architecture Principles
 
 - **Clean Architecture**: Maintain strict separation between presentation, domain, and data layers
