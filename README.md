@@ -1,21 +1,25 @@
-# WonderWords - Flutter Architecture Template
+# Flutter Clean Architecture Boilerplate
 
-A production-ready Flutter application template demonstrating **Real-World Flutter** architecture patterns with clean architecture, feature packages, and comprehensive state management. Built on the foundations of the FavQs quote browsing app from "Real-World Flutter by Tutorials" by Ray Wenderlich.
+A production-ready Flutter boilerplate template implementing **Real-World Flutter** architecture patterns with clean architecture, feature-based packages, and comprehensive state management. This template provides a solid foundation for building scalable Flutter applications with authentication, onboarding, and user profile management.
 
-## 📱 What This App Does
+**Based on**: "Real-World Flutter by Tutorials" by Ray Wenderlich - extracted from the full application as a clean starting point for new projects.
 
-WonderWords is a fully functional quote browsing and management application featuring:
+## 📱 What This Template Provides
 
-- 📖 **Browse Quotes** - Paginated quote list with infinite scrolling
-- 🔍 **Search & Filter** - Search by keyword, filter by tags or favorites
-- ⭐ **Favorites** - Save your favorite quotes (requires authentication)
-- 👤 **User Management** - Sign up, sign in, profile management
-- 🔗 **Deep Linking** - Share quotes via Firebase Dynamic Links
-- 🌙 **Dark Mode** - Full theme support with light and dark modes
-- 🌐 **Internationalization** - English and Arabic support
-- 📊 **Analytics** - Firebase Analytics integration
+This is a **ready-to-use authentication boilerplate** featuring:
 
-**Note**: This is a template for learning clean architecture patterns in Flutter, not a production app ready for deployment.
+- 🔐 **Authentication Flow** - Sign in, sign up, password recovery
+- 🎯 **Onboarding** - First-time user experience
+- 👤 **User Profile** - Profile menu and profile update screens
+- ⚙️ **User Preferences** - Settings and preferences management
+- 🚀 **Splash Screen** - App initialization
+- 🎨 **Theme System** - Light and dark mode support
+- 🌐 **Internationalization** - English and Arabic localization
+- 🔥 **Firebase Integration** - Analytics, Crashlytics, Remote Config
+- 🗄️ **Isar Database** - High-performance local storage
+- 🧭 **Navigator 2.0** - Declarative routing with Routemaster
+
+**Purpose**: Clone this template and add your own feature packages (e.g., tasks, posts, products) following the established clean architecture patterns.
 
 ---
 
@@ -23,7 +27,7 @@ WonderWords is a fully functional quote browsing and management application feat
 
 ### Architecture Patterns
 - **Clean Architecture** with presentation, domain, and data layers
-- **Package-by-Feature** for features (quote_list, sign_in, etc.)
+- **Package-by-Feature** for features (sign_in, profile_menu, etc.)
 - **Package-by-Layer** for infrastructure (repositories, API, storage)
 - **Repository Pattern** for data access abstraction
 - **BLoC/Cubit** for predictable state management
@@ -32,11 +36,10 @@ WonderWords is a fully functional quote browsing and management application feat
 ### Technical Highlights
 - **Navigator 2.0** with Routemaster for declarative routing
 - **Isar Database** for high-performance local caching
-- **Firebase Services** (Analytics, Crashlytics, Dynamic Links, Remote Config)
-- **FavQs API Integration** for quote data
+- **Firebase Services** (Analytics, Crashlytics, Remote Config)
 - **Barrel File Pattern** for clean package exports
 - **Form Validation** with Formz
-- **Deep Linking** with social meta tags
+- **Modular Package Structure** - Easy to add new features
 
 ---
 
@@ -73,7 +76,7 @@ See **[CLAUDE.md](CLAUDE.md)** for:
 
 - Flutter SDK **3.0.5** or higher
 - Dart SDK **3.0.5** or higher
-- Firebase account (for Analytics, Crashlytics, Dynamic Links)
+- Firebase account (for Analytics, Crashlytics, Remote Config)
 - Git
 
 ### 1. Clone the Repository
@@ -106,7 +109,6 @@ make get
 4. Enable Firebase services:
    - **Analytics** - User behavior tracking
    - **Crashlytics** - Crash reporting
-   - **Dynamic Links** - Deep linking for quote sharing
    - **Remote Config** - Feature flags (optional)
 
 ### 4. Run the App
@@ -134,18 +136,18 @@ rwf_architecture_boiler_plate/
 │
 ├── packages/
 │   ├── features/                           # Package-by-Feature
-│   │   ├── quote_list/                     # Browse and filter quotes
-│   │   ├── quote_details/                  # View, favorite, share quote
-│   │   ├── sign_in/                        # User authentication
+│   │   ├── sign_in/                        # User sign in
 │   │   ├── sign_up/                        # User registration
+│   │   ├── forgot_my_password/             # Password recovery
+│   │   ├── on_boarding/                    # First-time user flow
+│   │   ├── splash/                         # App initialization
 │   │   ├── profile_menu/                   # User profile and settings
 │   │   ├── update_profile/                 # Edit user information
-│   │   └── forgot_my_password/             # Password recovery dialog
+│   │   └── user_preferences/               # App preferences
 │   │
-│   ├── quote_repository/                   # Quote data management
 │   ├── user_repository/                    # User/auth management
 │   │
-│   ├── fav_qs_api/                         # FavQs API client
+│   ├── firebase_api/                       # Firebase API client
 │   ├── key_value_storage/                  # Local preferences storage
 │   │
 │   ├── domain_models/                      # Shared business entities
@@ -174,15 +176,16 @@ rwf_architecture_boiler_plate/
 Each screen gets its own package in `packages/features/`:
 
 ```
-packages/features/quote_list/
+packages/features/sign_in/
 ├── lib/
-│   ├── quote_list.dart              # Barrel file (public API)
+│   ├── sign_in.dart                  # Barrel file (public API)
 │   └── src/                          # Private implementation
-│       ├── quote_list_screen.dart    # UI
-│       ├── quote_list_bloc.dart      # State management
-│       ├── quote_list_state.dart     # State classes
-│       ├── quote_list_event.dart     # Event classes
+│       ├── sign_in_screen.dart       # UI
+│       ├── sign_in_cubit.dart        # State management
+│       ├── sign_in_state.dart        # State classes
 │       └── l10n/                     # Feature localization
+│           ├── messages_en.arb
+│           └── messages_ar.arb
 ├── test/
 └── pubspec.yaml
 ```
@@ -197,14 +200,13 @@ Shared services and repositories:
 
 ```
 packages/
-├── quote_repository/        # Coordinates API + local storage
-├── user_repository/         # User authentication and profile
-├── fav_qs_api/             # HTTP client for FavQs API
-├── key_value_storage/      # Local preferences wrapper
-├── domain_models/          # Shared business entities
-├── component_library/      # Reusable UI widgets
-├── form_fields/            # Shared form validation
-└── monitoring/             # Analytics, crashlytics, deep links
+├── user_repository/         # User authentication and profile data
+├── firebase_api/            # Firebase authentication client
+├── key_value_storage/       # Local preferences wrapper
+├── domain_models/           # Shared business entities (User, etc.)
+├── component_library/       # Reusable UI widgets
+├── form_fields/             # Shared form validation
+└── monitoring/              # Analytics, crashlytics, remote config
 ```
 
 **See**: [Feature Package Architecture Guide](docs/FEATURE_PACKAGE_ARCHITECTURE_GUIDE_HUMAN.md) for complete details.
@@ -296,17 +298,17 @@ make pods-clean
 ### Local Storage
 - **isar** (^3.1.0+1) - High-performance NoSQL database
 - **isar_flutter_libs** (^3.1.0+1) - Flutter bindings
-- Used for caching quotes and user data
+- Used for caching user data and app state
 
 ### Networking
-- **dio** (^5.4.1) - HTTP client for FavQs API
+- **dio** (^5.4.1) - HTTP client for API communication
 - **json_serializable** (^6.7.1) - JSON serialization
 
 ### Firebase
 - **firebase_core** (^2.27.0) - Firebase initialization
 - **firebase_analytics** (^10.8.9) - User analytics
 - **firebase_crashlytics** (^3.4.18) - Crash reporting
-- **firebase_dynamic_links** (^5.4.17) - Deep linking
+- **firebase_auth** - User authentication
 - **firebase_remote_config** (^4.3.17) - Feature flags
 
 ### Localization
@@ -331,7 +333,7 @@ make pods-clean
                  │
 ┌────────────────▼────────────────────────────────┐
 │            Domain Layer                          │
-│  - Domain Models (Quote, User, Tag)             │
+│  - Domain Models (User, etc.)                   │
 │  - Domain Exceptions                             │
 │  - Business Logic Interfaces                     │
 └────────────────┬────────────────────────────────┘
@@ -340,8 +342,8 @@ make pods-clean
                  │
 ┌────────────────▼────────────────────────────────┐
 │             Data Layer                           │
-│  - Repositories (Quote, User)                    │
-│  - API Clients (FavQs API)                      │
+│  - Repositories (User Repository)                │
+│  - API Clients (Firebase API)                   │
 │  - Local Storage (Isar)                         │
 │  - Cache Models (CM suffix)                     │
 │  - Remote Models (RM suffix)                    │
@@ -351,15 +353,15 @@ make pods-clean
 ### 2. Exception Handling (3 Layers)
 
 ```
-API Layer Exceptions (FavQsException suffix)
+API Layer Exceptions (e.g., FirebaseException)
     ↓ Caught by Repository
-Domain Exceptions (No suffix)
+Domain Exceptions (e.g., InvalidCredentialsException)
     ↓ Caught by BLoC/Cubit
-UI States (SnackBar, ExceptionIndicator)
+UI States (SnackBar, Error Messages)
 ```
 
 **Example Flow**:
-1. API throws `InvalidCredentialsFavQsException` (error code 21)
+1. API throws Firebase authentication error
 2. Repository catches and throws `InvalidCredentialsException`
 3. Cubit catches and updates state with `SubmissionStatus.invalidCredentialsError`
 4. UI displays localized error message in SnackBar
@@ -371,30 +373,37 @@ UI States (SnackBar, ExceptionIndicator)
 Repositories coordinate between API and local storage:
 
 ```dart
-class QuoteRepository {
-  QuoteRepository({
-    required this.remoteApi,        // FavQs API client
+class UserRepository {
+  UserRepository({
+    required this.remoteApi,        // Firebase API client
     required this.keyValueStorage,  // Isar database
   });
 
-  // Fetch with caching strategy
-  Stream<List<Quote>> getQuotes({
-    required QuoteListPageFetchPolicy policy,  // Cache vs network
-  }) async* {
-    // 1. Check cache (if policy allows)
-    // 2. Fetch from API
-    // 3. Update cache
-    // 4. Transform to domain models
-    // 5. Handle exceptions (API → Domain)
+  // Authentication
+  Future<User> signIn(String email, String password) async {
+    try {
+      final response = await remoteApi.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Cache user data
+      await _localStorage.upsertUser(response.user.toCacheModel());
+
+      return response.user.toDomainModel();
+    } on InvalidCredentialsFirebaseException {
+      throw InvalidCredentialsException();
+    } catch (error) {
+      rethrow;
+    }
   }
 }
 ```
 
-**Fetch Policies**:
-- `cacheAndNetwork` - Show cache first, then network
-- `networkOnly` - Skip cache entirely
-- `networkPreferably` - Try network, fallback to cache
-- `cachePreferably` - Use cache, no network call
+**Key Responsibilities**:
+- Transform API exceptions to domain exceptions
+- Coordinate between remote API and local cache
+- Provide clean domain models to presentation layer
 
 ### 4. Model Architecture
 
@@ -402,40 +411,50 @@ class QuoteRepository {
 
 ```dart
 // Domain Model (no suffix) - Business logic layer
-class Quote {
-  final int id;
-  final String body;
-  final String author;
-  final bool isFavorite;
+class User {
+  final String id;
+  final String email;
+  final String username;
+  final String? profilePictureUrl;
 }
 
 // Cache Model (CM suffix) - Isar database
 @Collection()
-class QuoteCM {
+class UserCM {
   Id id = Isar.autoIncrement;
-  late String body;
-  late String author;
-  late bool isFavorite;
+  late String userId;
+  late String email;
+  late String username;
+  String? profilePictureUrl;
 }
 
 // Remote Model (RM suffix) - API responses
 @JsonSerializable()
-class QuoteRM {
-  final int id;
-  final String body;
-  final String author;
-  @JsonKey(name: 'favorited') final bool isFavorite;
+class UserRM {
+  final String id;
+  final String email;
+  final String username;
+  @JsonKey(name: 'profile_picture') final String? profilePictureUrl;
 }
 ```
 
 **Mappers** convert between model types:
 ```dart
-extension QuoteRMToDomain on QuoteRM {
-  Quote toDomainModel() => Quote(...);
+extension UserRMToDomain on UserRM {
+  User toDomainModel() => User(
+    id: id,
+    email: email,
+    username: username,
+    profilePictureUrl: profilePictureUrl,
+  );
 }
 
-extension QuoteRMToCM on QuoteRM {
-  QuoteCM toCacheModel() => QuoteCM()..body = body..author = author;
+extension UserRMToCM on UserRM {
+  UserCM toCacheModel() => UserCM()
+    ..userId = id
+    ..email = email
+    ..username = username
+    ..profilePictureUrl = profilePictureUrl;
 }
 ```
 
@@ -445,13 +464,13 @@ extension QuoteRMToCM on QuoteRM {
 - Form validation and submission
 - Direct state changes
 - Single-responsibility screens
-- Examples: `sign_in`, `sign_up`, `quote_details`
+- Examples: `sign_in`, `sign_up`, `update_profile`
 
 **Use BLoC** for complex state:
 - Event-driven architecture
 - Stream transformations
 - Multiple concurrent operations
-- Examples: `quote_list`, `profile_menu`
+- Examples: `profile_menu`, user session management
 
 **Example Cubit**:
 ```dart
@@ -462,24 +481,54 @@ class SignInCubit extends Cubit<SignInState> {
   final UserRepository userRepository;
 
   void onEmailChanged(String value) {
-    final email = Email.unvalidated(value);
-    emit(state.copyWith(email: email));
+    final previousState = state;
+    final previousEmailState = previousState.email;
+
+    final shouldValidate = previousEmailState.isNotValid &&
+                          !previousEmailState.isPure;
+
+    final newEmailState = shouldValidate
+        ? Email.validated(value)
+        : Email.unvalidated(value);
+
+    emit(state.copyWith(email: newEmailState));
+  }
+
+  void onEmailUnfocused() {
+    final previousEmailValue = state.email.value;
+    final newEmailState = Email.validated(previousEmailValue);
+    emit(state.copyWith(email: newEmailState));
   }
 
   void onSubmit() async {
-    emit(state.copyWith(status: SubmissionStatus.inProgress));
+    final email = Email.validated(state.email.value);
+    final password = Password.validated(state.password.value);
 
-    try {
-      await userRepository.signIn(
-        state.email.value,
-        state.password.value,
-      );
-      emit(state.copyWith(status: SubmissionStatus.success));
-    } catch (error) {
-      final status = error is InvalidCredentialsException
-          ? SubmissionStatus.invalidCredentialsError
-          : SubmissionStatus.genericError;
-      emit(state.copyWith(status: status));
+    final isFormValid = Formz.validate([email, password]);
+
+    final newState = state.copyWith(
+      email: email,
+      password: password,
+      submissionStatus: isFormValid
+          ? SubmissionStatus.inProgress
+          : null,
+    );
+
+    emit(newState);
+
+    if (isFormValid) {
+      try {
+        await userRepository.signIn(
+          email.value,
+          password.value,
+        );
+        emit(state.copyWith(submissionStatus: SubmissionStatus.success));
+      } catch (error) {
+        final status = error is InvalidCredentialsException
+            ? SubmissionStatus.invalidCredentialsError
+            : SubmissionStatus.genericError;
+        emit(state.copyWith(submissionStatus: status));
+      }
     }
   }
 }
@@ -498,7 +547,7 @@ class SignInCubit extends Cubit<SignInState> {
 Each feature has its own localization files:
 
 ```
-packages/features/quote_list/lib/src/l10n/
+packages/features/sign_in/lib/src/l10n/
 ├── messages_en.arb    # English translations
 └── messages_ar.arb    # Arabic translations
 ```
@@ -506,9 +555,11 @@ packages/features/quote_list/lib/src/l10n/
 **Example ARB file**:
 ```json
 {
-  "quoteListTitle": "Quotes",
-  "searchHint": "Search quotes...",
-  "favoriteButton": "Favorite"
+  "signInTitle": "Sign In",
+  "emailLabel": "Email",
+  "passwordLabel": "Password",
+  "signInButton": "Sign In",
+  "invalidCredentialsError": "Invalid email or password"
 }
 ```
 
@@ -518,9 +569,9 @@ packages/features/quote_list/lib/src/l10n/
 // In your widget
 @override
 Widget build(BuildContext context) {
-  final l10n = QuoteListLocalizations.of(context);
+  final l10n = SignInLocalizations.of(context);
 
-  return Text(l10n.quoteListTitle);  // "Quotes"
+  return Text(l10n.signInTitle);  // "Sign In"
 }
 ```
 
@@ -543,18 +594,17 @@ All cache models use the `CM` suffix and Isar annotations:
 
 ```dart
 @Collection()
-class QuoteCM {
+class UserCM {
   Id id = Isar.autoIncrement;
 
-  late String body;
-  late String author;
-  late bool isFavorite;
+  late String userId;
+  late String email;
+  late String username;
 
-  // Lists stored as JSON strings
-  late String tagsJson;
+  String? profilePictureUrl;
 
   @Index()
-  late int favqsId;  // Index for fast lookups
+  late String userIdIndex;  // Index for fast lookups
 }
 ```
 
@@ -563,16 +613,16 @@ class QuoteCM {
 **Always use the transaction wrapper**:
 
 ```dart
-class QuoteLocalStorage {
+class UserLocalStorage {
   final Isar _isar;
 
   Future<void> writeIsarTxn(Future<void> Function() function) async {
     await _isar.writeTxn(function);
   }
 
-  Future<void> saveQuote(QuoteCM quote) async {
+  Future<void> saveUser(UserCM user) async {
     await writeIsarTxn(() async {
-      await _isar.quoteCMs.put(quote);
+      await _isar.userCMs.put(user);
     });
   }
 }
@@ -584,19 +634,18 @@ class QuoteLocalStorage {
 
 ```dart
 // Get by ID
-Future<QuoteCM?> getQuote(int favqsId) async {
-  return await _isar.quoteCMs
+Future<UserCM?> getUser(String userId) async {
+  return await _isar.userCMs
       .where()
-      .favqsIdEqualTo(favqsId)
+      .userIdIndexEqualTo(userId)
       .findFirst();
 }
 
-// Query with filter
-Future<List<QuoteCM>> getFavoriteQuotes() async {
-  return await _isar.quoteCMs
-      .filter()
-      .isFavoriteEqualTo(true)
-      .findAll();
+// Get current user
+Future<UserCM?> getCurrentUser() async {
+  return await _isar.userCMs
+      .where()
+      .findFirst();
 }
 ```
 
@@ -627,44 +676,52 @@ make test-coverage
 ### Test Structure
 
 ```
-packages/features/quote_list/
+packages/features/sign_in/
 └── test/
-    ├── quote_list_bloc_test.dart      # BLoC tests
+    ├── sign_in_cubit_test.dart        # Cubit tests
     └── widgets/
-        └── quote_card_test.dart        # Widget tests
+        └── email_field_test.dart       # Widget tests
 
-packages/quote_repository/
+packages/user_repository/
 └── test/
-    └── quote_repository_test.dart      # Repository tests
+    └── user_repository_test.dart       # Repository tests
 ```
 
-### Example: BLoC Test
+### Example: Cubit Test
 
 ```dart
 import 'package:bloc_test/bloc_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockQuoteRepository extends Mock implements QuoteRepository {}
+class MockUserRepository extends Mock implements UserRepository {}
 
 void main() {
-  group('QuoteListBloc', () {
-    late QuoteRepository quoteRepository;
+  group('SignInCubit', () {
+    late UserRepository userRepository;
 
     setUp(() {
-      quoteRepository = MockQuoteRepository();
+      userRepository = MockUserRepository();
     });
 
-    blocTest<QuoteListBloc, QuoteListState>(
-      'emits loaded state when quotes are fetched successfully',
-      build: () => QuoteListBloc(quoteRepository: quoteRepository),
-      act: (bloc) {
-        when(() => quoteRepository.getQuotePage(any()))
-            .thenAnswer((_) async => testQuotes);
-        bloc.add(const QuoteListStarted());
+    blocTest<SignInCubit, SignInState>(
+      'emits success when sign in succeeds',
+      build: () => SignInCubit(userRepository: userRepository),
+      act: (cubit) {
+        when(() => userRepository.signIn(any(), any()))
+            .thenAnswer((_) async => testUser);
+        cubit.onSubmit();
       },
       expect: () => [
-        const QuoteListInProgress(),
-        QuoteListLoaded(quotes: testQuotes),
+        SignInState(
+          email: Email.validated('test@example.com'),
+          password: Password.validated('password123'),
+          submissionStatus: SubmissionStatus.inProgress,
+        ),
+        SignInState(
+          email: Email.validated('test@example.com'),
+          password: Password.validated('password123'),
+          submissionStatus: SubmissionStatus.success,
+        ),
       ],
     );
   });
@@ -675,86 +732,43 @@ void main() {
 
 ```dart
 void main() {
-  group('QuoteRepository', () {
-    late FavQsApi mockApi;
-    late QuoteLocalStorage mockStorage;
-    late QuoteRepository repository;
+  group('UserRepository', () {
+    late FirebaseApi mockApi;
+    late UserLocalStorage mockStorage;
+    late UserRepository repository;
 
     setUp(() {
-      mockApi = MockFavQsApi();
-      mockStorage = MockQuoteLocalStorage();
-      repository = QuoteRepository(
+      mockApi = MockFirebaseApi();
+      mockStorage = MockUserLocalStorage();
+      repository = UserRepository(
         remoteApi: mockApi,
         localStorage: mockStorage,
       );
     });
 
-    test('should return cached quotes when available', () async {
+    test('should sign in user successfully', () async {
       // Arrange
-      when(() => mockStorage.getQuotes())
-          .thenAnswer((_) async => cachedQuotes);
+      when(() => mockApi.signInWithEmailAndPassword(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+          )).thenAnswer((_) async => signInResponse);
+
+      when(() => mockStorage.upsertUser(any()))
+          .thenAnswer((_) async => Future.value());
 
       // Act
-      final result = await repository
-          .getQuotes(policy: QuoteListPageFetchPolicy.cachePreferably)
-          .first;
+      final result = await repository.signIn(
+        'test@example.com',
+        'password123',
+      );
 
       // Assert
-      expect(result, equals(expectedQuotes));
-      verify(() => mockStorage.getQuotes()).called(1);
-      verifyNever(() => mockApi.getQuotes());
+      expect(result, equals(expectedUser));
+      verify(() => mockStorage.upsertUser(any())).called(1);
     });
   });
 }
 ```
-
----
-
-## 🔗 Deep Linking
-
-### Firebase Dynamic Links Setup
-
-1. Create a Dynamic Links prefix in Firebase Console:
-   ```
-   https://wonderwords1.page.link
-   ```
-
-2. Configure domain verification for Android/iOS
-
-3. The app handles two scenarios:
-   - **App opened by link**: `getInitialDynamicLinkPath()`
-   - **Link received while running**: `onNewDynamicLinkPath()` stream
-
-### Generating Shareable Links
-
-```dart
-// In routing_table.dart
-_PathConstants.quoteDetailsPath(): (info) => MaterialPage(
-  child: QuoteDetailsScreen(
-    shareableLinkGenerator: (quote) {
-      return dynamicLinkService.generateDynamicLinkUrl(
-        path: '/quotes/${quote.id}',
-        socialMetaTagParameters: SocialMetaTagParameters(
-          title: quote.body,
-          description: quote.author,
-        ),
-      );
-    },
-  ),
-),
-```
-
-### Using in UI
-
-```dart
-// User taps share button
-final link = await widget.shareableLinkGenerator(currentQuote);
-// Returns: https://wonderwords1.page.link/xyz123
-
-Share.share(link);  // Opens share sheet
-```
-
-**See**: [Routing Guide](docs/ROUTING_GUIDE_HUMAN.md) for complete deep linking implementation.
 
 ---
 
@@ -769,12 +783,10 @@ class _PathConstants {
   const _PathConstants._();
 
   static String get tabContainerPath => '/';
-  static String get quoteListPath => '${tabContainerPath}quotes';
-  static String get profileMenuPath => '${tabContainerPath}user';
-
-  // Dynamic route with parameter
-  static String quoteDetailsPath({int? quoteId}) =>
-      '$quoteListPath/${quoteId ?? ':id'}';
+  static String get signInPath => '${tabContainerPath}sign-in';
+  static String get signUpPath => '${tabContainerPath}sign-up';
+  static String get profileMenuPath => '${tabContainerPath}profile';
+  static String get updateProfilePath => '${profileMenuPath}/update';
 }
 ```
 
@@ -783,39 +795,36 @@ class _PathConstants {
 ```dart
 Map<String, PageBuilder> buildRoutingTable({
   required RoutemasterDelegate routerDelegate,
-  required QuoteRepository quoteRepository,
   required UserRepository userRepository,
 }) {
   return {
-    // Tab container
+    // Tab container (requires auth)
     _PathConstants.tabContainerPath: (_) => CupertinoTabPage(
       child: const TabContainerScreen(),
       paths: [
-        _PathConstants.quoteListPath,
         _PathConstants.profileMenuPath,
       ],
     ),
 
-    // Quote list
-    _PathConstants.quoteListPath: (route) => MaterialPage(
-      name: 'quotes-list',
-      child: QuoteListScreen(
-        quoteRepository: quoteRepository,
-        onQuoteSelected: (id) {
-          final navigation = routerDelegate.push<Quote?>(
-            _PathConstants.quoteDetailsPath(quoteId: id),
-          );
-          return navigation.result;
-        },
+    // Sign in
+    _PathConstants.signInPath: (_) => MaterialPage(
+      name: 'sign-in',
+      fullscreenDialog: true,
+      child: SignInScreen(
+        userRepository: userRepository,
+        onSignInSuccess: () => routerDelegate.pop(),
+        onSignUpTap: () => routerDelegate.push(_PathConstants.signUpPath),
       ),
     ),
 
-    // Quote details with path parameter
-    _PathConstants.quoteDetailsPath(): (info) => MaterialPage(
-      name: 'quote-details',
-      child: QuoteDetailsScreen(
-        quoteId: int.parse(info.pathParameters['id'] ?? '0'),
-        quoteRepository: quoteRepository,
+    // Profile menu
+    _PathConstants.profileMenuPath: (_) => MaterialPage(
+      name: 'profile-menu',
+      child: ProfileMenuScreen(
+        userRepository: userRepository,
+        onUpdateProfileTap: () => routerDelegate.push(
+          _PathConstants.updateProfilePath,
+        ),
       ),
     ),
   };
@@ -828,18 +837,22 @@ Features **never import Routemaster** - they use callbacks:
 
 ```dart
 // ✅ CORRECT - Feature uses callbacks
-class QuoteListScreen extends StatelessWidget {
-  const QuoteListScreen({
-    required this.onQuoteSelected,  // Callback, not router
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({
+    required this.onSignInSuccess,
+    required this.onSignUpTap,
   });
 
-  final Future<Quote?> Function(int id) onQuoteSelected;
+  final VoidCallback onSignInSuccess;
+  final VoidCallback onSignUpTap;
 
-  void _handleQuoteTap(Quote quote) {
-    onQuoteSelected(quote.id);  // Trigger callback
+  void _handleSignInSuccess() {
+    onSignInSuccess();  // Trigger callback
   }
 }
 ```
+
+**See**: [Routing Guide](docs/ROUTING_GUIDE_HUMAN.md) for complete navigation patterns.
 
 ---
 
@@ -920,7 +933,7 @@ make build-runner
 make gen-l10n
 
 # Or for a specific feature
-cd packages/features/quote_list
+cd packages/features/sign_in
 flutter gen-l10n
 ```
 
@@ -929,22 +942,13 @@ flutter gen-l10n
 **Android**:
 - Verify `google-services.json` is in `android/app/`
 - Check `applicationId` in `android/app/build.gradle` matches Firebase
+- Ensure Firebase Authentication is enabled in console
 
 **iOS**:
 - Ensure `GoogleService-Info.plist` is added via Xcode (not just copied)
 - Verify bundle ID in Xcode matches Firebase
 - Check signing configuration
-
-### FavQs API Errors
-
-**401 Unauthorized**:
-- User not signed in (some endpoints require auth)
-- Invalid credentials during sign-in
-- Token expired (sign in again)
-
-**Error Code 20**: User authentication required
-**Error Code 21**: Invalid credentials
-**Error Code 32**: Email or username already taken
+- Enable Firebase Authentication in console
 
 ### Dependency Conflicts
 
@@ -995,7 +999,7 @@ pod install
 
 ### Data Management
 11. ✅ **Use model suffixes** - Domain (no suffix), Cache (CM), Remote (RM)
-12. ✅ **Cache strategically** - Use fetch policies for cache vs network
+12. ✅ **Cache user data** - Store authenticated user info locally
 13. ✅ **Use Isar transactions** - Wrap writes in `writeIsarTxn`
 
 ### Development Workflow
@@ -1003,6 +1007,89 @@ pod install
 15. ✅ **Run tests before committing** - `make testing`
 16. ✅ **Generate code after model changes** - `make build-runner`
 17. ✅ **Keep localization updated** - `make gen-l10n` after ARB changes
+
+---
+
+## 🚀 Building Your App on This Template
+
+### Adding New Features
+
+1. **Create a new feature package**:
+   ```bash
+   cd packages/features
+   mkdir my_feature
+   cd my_feature
+   flutter create . --template=package
+   ```
+
+2. **Structure your feature**:
+   ```
+   packages/features/my_feature/
+   ├── lib/
+   │   ├── my_feature.dart           # Barrel file
+   │   └── src/
+   │       ├── my_feature_screen.dart
+   │       ├── my_feature_cubit.dart
+   │       ├── my_feature_state.dart
+   │       └── l10n/
+   └── pubspec.yaml
+   ```
+
+3. **Add dependencies** in `pubspec.yaml`:
+   ```yaml
+   dependencies:
+     flutter_bloc: ^8.1.5
+     component_library:
+       path: ../../component_library
+     domain_models:
+       path: ../../domain_models
+   ```
+
+4. **Register route** in `routing_table.dart`:
+   ```dart
+   static String get myFeaturePath => '${tabContainerPath}my-feature';
+
+   // In buildRoutingTable:
+   _PathConstants.myFeaturePath: (_) => MaterialPage(
+     child: MyFeatureScreen(...),
+   ),
+   ```
+
+5. **Run code generation**:
+   ```bash
+   make get
+   make build-runner
+   make gen-l10n
+   ```
+
+### Adding a Repository
+
+1. **Create repository package**:
+   ```bash
+   cd packages
+   mkdir my_repository
+   ```
+
+2. **Implement repository** following the pattern:
+   - Create domain models in `domain_models/`
+   - Create cache models with `CM` suffix
+   - Create remote models with `RM` suffix
+   - Implement repository coordinating API + cache
+   - Transform exceptions (API → Domain)
+
+3. **Add tests**:
+   ```bash
+   mkdir my_repository/test
+   # Write repository tests with mocked dependencies
+   ```
+
+### Customizing the Template
+
+- **Replace Firebase Auth** with your own backend
+- **Add more locales** in ARB files
+- **Customize theme** in `component_library/`
+- **Add analytics events** in `monitoring/`
+- **Extend user model** with additional fields
 
 ---
 
@@ -1042,8 +1129,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Based on**: "Real-World Flutter by Tutorials" by Ray Wenderlich
 - **Architecture**: Clean Architecture principles
-- **API**: FavQs API for quote data
-- **Firebase**: Analytics, Crashlytics, Dynamic Links
+- **Firebase**: Authentication, Analytics, Crashlytics
 
 ---
 
@@ -1058,4 +1144,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Happy coding! 🚀**
 
-This template is designed for **learning clean architecture patterns** in Flutter. Study the code, explore the documentation, and build amazing apps!
+This template is designed as a **clean starting point** for Flutter apps requiring authentication. Clone it, add your features, and build amazing applications following clean architecture patterns!
