@@ -24,52 +24,42 @@ class DarkModePreferencePicker extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        ...ListTile.divideTiles(
-          tiles: [
-            RadioListTile<DarkModePreference>(
-              title: Text(
-                l10n.darkModePreferencesAlwaysDarkTileLabel,
-              ),
-              value: DarkModePreference.alwaysDark,
-              groupValue: currentValue,
-              onChanged: (newOption) {
-                bloc.add(
-                  const UserPreferencesDarkModePreferenceChanged(
-                    DarkModePreference.alwaysDark,
+        RadioGroup<DarkModePreference>(
+          groupValue: currentValue,
+          onChanged: (newOption) {
+            if (newOption != null) {
+              bloc.add(
+                UserPreferencesDarkModePreferenceChanged(
+                  newOption,
+                ),
+              );
+            }
+          },
+          child: Column(
+            children: ListTile.divideTiles(
+              tiles: [
+                RadioListTile<DarkModePreference>(
+                  title: Text(
+                    l10n.darkModePreferencesAlwaysDarkTileLabel,
                   ),
-                );
-              },
-            ),
-            RadioListTile<DarkModePreference>(
-              title: Text(
-                l10n.darkModePreferencesAlwaysLightTileLabel,
-              ),
-              value: DarkModePreference.alwaysLight,
-              groupValue: currentValue,
-              onChanged: (newOption) {
-                bloc.add(
-                  const UserPreferencesDarkModePreferenceChanged(
-                    DarkModePreference.alwaysLight,
+                  value: DarkModePreference.alwaysDark,
+                ),
+                RadioListTile<DarkModePreference>(
+                  title: Text(
+                    l10n.darkModePreferencesAlwaysLightTileLabel,
                   ),
-                );
-              },
-            ),
-            RadioListTile<DarkModePreference>(
-              title: Text(
-                l10n.darkModePreferencesUseSystemSettingsTileLabel,
-              ),
-              value: DarkModePreference.useSystemSettings,
-              groupValue: currentValue,
-              onChanged: (newOption) {
-                bloc.add(
-                  const UserPreferencesDarkModePreferenceChanged(
-                    DarkModePreference.useSystemSettings,
+                  value: DarkModePreference.alwaysLight,
+                ),
+                RadioListTile<DarkModePreference>(
+                  title: Text(
+                    l10n.darkModePreferencesUseSystemSettingsTileLabel,
                   ),
-                );
-              },
-            ),
-          ],
-          context: context,
+                  value: DarkModePreference.useSystemSettings,
+                ),
+              ],
+              context: context,
+            ).toList(),
+          ),
         ),
       ],
     );

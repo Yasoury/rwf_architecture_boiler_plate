@@ -22,39 +22,37 @@ class LocalePicker extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
-      ...ListTile.divideTiles(
-        context: context,
-        tiles: [
-          RadioListTile<Locale>(
-            title: Text(
-              l10n.english,
-            ),
-            value: const Locale('en'),
-            groupValue: currentLocale,
-            onChanged: (newOption) {
-              bloc.add(
-                const UserPreferencesLocaleChanged(
-                  Locale('en'),
+      RadioGroup<Locale>(
+        groupValue: currentLocale,
+        onChanged: (newOption) {
+          if (newOption != null) {
+            bloc.add(
+              UserPreferencesLocaleChanged(
+                newOption,
+              ),
+            );
+          }
+        },
+        child: Column(
+          children: ListTile.divideTiles(
+            context: context,
+            tiles: [
+              RadioListTile<Locale>(
+                title: Text(
+                  l10n.english,
                 ),
-              );
-            },
-          ),
-          RadioListTile<Locale>(
-            title: Text(
-              l10n.arabic,
-            ),
-            value: const Locale('ar'),
-            groupValue: currentLocale,
-            onChanged: (newOption) {
-              bloc.add(
-                const UserPreferencesLocaleChanged(
-                  Locale('ar'),
+                value: const Locale('en'),
+              ),
+              RadioListTile<Locale>(
+                title: Text(
+                  l10n.arabic,
                 ),
-              );
-            },
-          ),
-        ],
-      )
+                value: const Locale('ar'),
+              ),
+            ],
+          ).toList(),
+        ),
+      ),
     ]);
   }
 }

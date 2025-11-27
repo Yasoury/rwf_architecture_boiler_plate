@@ -11,7 +11,7 @@
             "type": "dart",
             "args": [ 
                 "--dart-define",
-                "firebase-API-KEY=AIzaSyBlC2mnzQo3h5wetuvCcz2c5wFqbLOC-eY"
+                "firebase-API-KEY=AIzaSyBAZyMi07ZYVybqRzhB0CInlMzPsokcZiU"
             ]
         },
         {
