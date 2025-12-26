@@ -102,7 +102,6 @@ arb-dir: lib/src/l10n
 template-arb-file: messages_en.arb
 output-localization-file: ${PACKAGE_NAME}_localizations.dart
 output-class: ${PASCAL_CASE_PACKAGE_NAME}Localizations
-synthetic-package: false
 nullable-getter: false
 EOF
 

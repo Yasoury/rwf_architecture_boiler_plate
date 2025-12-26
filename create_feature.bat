@@ -121,7 +121,6 @@ mkdir packages\features\%PACKAGE_NAME%\lib\src\l10n
     echo template-arb-file: messages_en.arb
     echo output-localization-file: %PACKAGE_NAME%_localizations.dart
     echo output-class: %PASCAL_CASE_PACKAGE_NAME%Localizations
-    echo synthetic-package: false
     echo nullable-getter: false
 ) > packages\features\%PACKAGE_NAME%\l10n.yaml
 

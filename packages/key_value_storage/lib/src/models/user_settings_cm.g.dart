@@ -45,7 +45,7 @@ const UserSettingsCMSchema = CollectionSchema(
   getId: _userSettingsCMGetId,
   getLinks: _userSettingsCMGetLinks,
   attach: _userSettingsCMAttach,
-  version: '3.1.8',
+  version: '3.3.0',
 );
 
 int _userSettingsCMEstimateSize(
