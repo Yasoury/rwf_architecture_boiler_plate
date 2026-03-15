@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monitoring/monitoring.dart';
-import 'package:routemaster/routemaster.dart';
 
-class ScreenViewObserver extends RoutemasterObserver {
+class ScreenViewObserver extends NavigatorObserver {
   ScreenViewObserver({
     required this.analyticsService,
   });

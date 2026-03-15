@@ -1,10 +1,10 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:flutter/material.dart';
 import 'package:forgot_my_password/forgot_my_password.dart';
+import 'package:go_router/go_router.dart';
 import 'package:monitoring/monitoring.dart';
 import 'package:on_boarding/on_boarding.dart';
 import 'package:profile_menu/profile_menu.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:sign_in/sign_in.dart';
 import 'package:sign_up/sign_up.dart';
 import 'package:splash/splash.dart';
@@ -13,163 +13,220 @@ import 'package:user_preferences/user_preferences.dart';
 import 'package:user_repository/user_repository.dart';
 import 'tab_container_screen.dart';
 
-Map<String, PageBuilder> buildRoutingTable({
-  required RoutemasterDelegate routerDelegate,
+List<RouteBase> buildRoutes({
   required RemoteValueService remoteValueService,
   required DynamicLinkService dynamicLinkService,
   required UserRepository userRepository,
   //TODOTip add the neassery Repository
 }) {
-  return {
-    _PathConstants.tabContainerPath: (_) => CupertinoTabPage(
-          child: const TabContainerScreen(),
-          paths: [
-            _PathConstants.homePath,
-            _PathConstants.profileMenuPath,
-            _PathConstants.userPreferencesPath,
-          ],
-        ),
-    _PathConstants.onboardingPath: (_) => MaterialPage(
-          name: 'on-boarding',
-          child: OnBoardingScreen(
-            navigateToHome: () {
-              userRepository.upsertUserSettings(
-                UserSettings(
-                  passedOnBoarding: true,
-                ),
-              );
-              routerDelegate.replace(_PathConstants.tabContainerPath);
-            },
-          ),
-        ),
-    _PathConstants.userPreferencesPath: (_) {
-      return MaterialPage(
-        name: 'user-preferences',
-        child: UserPreferencesScreen(
+  return [
+    // Splash screen (root)
+    GoRoute(
+      path: AppRoutes.splash,
+      name: 'Splash-Screen',
+      builder: (context, state) => PopScope(
+        canPop: false,
+        child: SplashScreen(
           userRepository: userRepository,
-          //TODOTips change later
-          onUpdateProfileTap: () {
-            routerDelegate.push(
-              _PathConstants.updateProfilePath,
-            );
+          navigateToOnBarding: () {
+            context.go(AppRoutes.onboarding);
           },
-          onShowOnBoardingClicked: () {
+          navigateAuthIntro: () {
+            context.go(AppRoutes.signIn);
+          },
+          navigateToHomeScreen: () {
+            context.go(AppRoutes.homePath);
+          },
+        ),
+      ),
+    ),
+
+    // Onboarding
+    GoRoute(
+      path: AppRoutes.onboarding,
+      name: 'on-boarding',
+      builder: (context, state) => PopScope(
+        canPop: false,
+        child: OnBoardingScreen(
+          navigateToHome: () {
             userRepository.upsertUserSettings(
               UserSettings(
-                passedOnBoarding: false,
+                passedOnBoarding: true,
               ),
             );
-            routerDelegate.push(_PathConstants.onboardingPath);
+            context.go(AppRoutes.homePath);
           },
         ),
-      );
-    },
-    _PathConstants.profileMenuPath: (_) {
-      return MaterialPage(
-        name: 'profile-menu',
-        child: ProfileMenuScreen(
-          userRepository: userRepository,
-          onSignInTap: () {
-            routerDelegate.push(
-              _PathConstants.signInPath,
-            );
-          },
-          onSignUpTap: () {
-            routerDelegate.push(
-              _PathConstants.signUpPath,
-            );
-          },
-          onUpdateProfileTap: () {
-            routerDelegate.push(
-              _PathConstants.updateProfilePath,
-            );
-          },
-        ),
-      );
-    },
-    _PathConstants.updateProfilePath: (_) => MaterialPage(
-          name: 'update-profile',
-          child: UpdateProfileScreen(
-            userRepository: userRepository,
-            onUpdateProfileSuccess: () {
-              routerDelegate.pop();
-            },
-          ),
-        ),
-    _PathConstants.signInPath: (_) {
-      return MaterialPage(
-        name: 'sign-in',
-        fullscreenDialog: true,
+      ),
+    ),
+
+    // Sign In
+    GoRoute(
+      path: AppRoutes.signIn,
+      name: 'sign-in',
+      builder: (context, state) => PopScope(
+        canPop: false,
         child: Builder(
           builder: (context) {
             return SignInScreen(
               userRepository: userRepository,
               onSignInSuccess: () {
-                routerDelegate.pop();
+                context.pop();
               },
               onSignUpTap: () {
-                routerDelegate.push(_PathConstants.signUpPath);
+                context.push(AppRoutes.signUp);
               },
               onForgotMyPasswordTap: () {
                 showDialog(
-                    context: context,
-                    builder: (context) {
-                      return ForgotMyPasswordDialog(
-                          userRepository: userRepository,
-                          onCancelTap: () {
-                            routerDelegate.pop();
-                          },
-                          onEmailRequestSuccess: () {
-                            routerDelegate.pop();
-                          });
-                    });
+                  context: context,
+                  builder: (dialogContext) {
+                    return ForgotMyPasswordDialog(
+                      userRepository: userRepository,
+                      onCancelTap: () {
+                        Navigator.of(dialogContext).pop();
+                      },
+                      onEmailRequestSuccess: () {
+                        Navigator.of(dialogContext).pop();
+                      },
+                    );
+                  },
+                );
               },
             );
           },
         ),
-      );
-    },
-    _PathConstants.signUpPath: (_) {
-      return MaterialPage(
-        name: 'sign-up',
-        child: SignUpScreen(
-          userRepository: userRepository,
-          onSignUpSuccess: () {
-            routerDelegate.pop();
-          },
+      ),
+    ),
+
+    // Sign Up
+    GoRoute(
+      path: AppRoutes.signUp,
+      name: 'sign-up',
+      builder: (context, state) => SignUpScreen(
+        userRepository: userRepository,
+        onSignUpSuccess: () {
+          context.pop();
+        },
+      ),
+    ),
+
+    // Update Profile
+    GoRoute(
+      path: AppRoutes.updateProfile,
+      name: 'update-profile',
+      builder: (context, state) => UpdateProfileScreen(
+        userRepository: userRepository,
+        onUpdateProfileSuccess: () {
+          context.pop();
+        },
+      ),
+    ),
+
+    // Tab Container with StatefulShellRoute (3 tabs: Home, Profile, Settings)
+    StatefulShellRoute.indexedStack(
+      parentNavigatorKey: rootNavigatorKey,
+      builder: (context, state, navigationShell) {
+        return PopScope(
+          canPop: false,
+          child: TabContainerScreen(navigationShell: navigationShell),
+        );
+      },
+      branches: [
+        // Home branch
+        StatefulShellBranch(
+          navigatorKey: _homeNavigatorKey,
+          routes: [
+            GoRoute(
+              path: AppRoutes.homePath,
+              name: 'home',
+              builder: (context, state) => const Scaffold(
+                body: Center(
+                  child: Text('Home Screen'),
+                ),
+              ),
+            ),
+          ],
         ),
-      );
-    },
-    _PathConstants.splashPath: (_) {
-      return MaterialPage(
-        name: 'Splash-Screen',
-        child: SplashScreen(
-          userRepository: userRepository,
-          navigateToOnBarding: () {
-            routerDelegate.replace(_PathConstants.onboardingPath);
-          },
-          navigateAuthIntro: () {
-            routerDelegate.replace(_PathConstants.signInPath);
-          },
-          navigateToHomeScreen: () {
-            routerDelegate.replace(_PathConstants.tabContainerPath);
-          },
+
+        // Profile branch
+        StatefulShellBranch(
+          navigatorKey: _profileNavigatorKey,
+          routes: [
+            GoRoute(
+              path: AppRoutes.profileMenuPath,
+              name: 'profile-menu',
+              builder: (context, state) => ProfileMenuScreen(
+                userRepository: userRepository,
+                onSignInTap: () {
+                  context.push(AppRoutes.signIn);
+                },
+                onSignUpTap: () {
+                  context.push(AppRoutes.signUp);
+                },
+                onUpdateProfileTap: () {
+                  context.push(AppRoutes.updateProfile);
+                },
+              ),
+            ),
+          ],
         ),
-      );
-    }
-  };
+
+        // Settings branch
+        StatefulShellBranch(
+          navigatorKey: _settingsNavigatorKey,
+          routes: [
+            GoRoute(
+              path: AppRoutes.userPreferencesPath,
+              name: 'user-preferences',
+              builder: (context, state) => UserPreferencesScreen(
+                userRepository: userRepository,
+                //TODOTips change later
+                onUpdateProfileTap: () {
+                  context.push(AppRoutes.updateProfile);
+                },
+                onShowOnBoardingClicked: () {
+                  userRepository.upsertUserSettings(
+                    UserSettings(
+                      passedOnBoarding: false,
+                    ),
+                  );
+                  context.push(AppRoutes.onboarding);
+                },
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  ];
 }
 
-class _PathConstants {
-  const _PathConstants._();
-  static String get splashPath => '/';
-  static String get tabContainerPath => '${splashPath}root';
-  static String get onboardingPath => '/onboardingPath';
-  static String get userPreferencesPath =>
-      '$tabContainerPath/user-preferencesPath';
-  static String get homePath => '$tabContainerPath/home_screen';
-  static String get profileMenuPath => '$tabContainerPath/user';
-  static String get signInPath => '$tabContainerPath/sign-in';
-  static String get signUpPath => '$tabContainerPath/sign-up';
-  static String get updateProfilePath => '$profileMenuPath/update-profile';
+// Navigator keys for StatefulShellRoute branches
+final GlobalKey<NavigatorState> rootNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'root');
+final GlobalKey<NavigatorState> _homeNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'home');
+final GlobalKey<NavigatorState> _profileNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'profile');
+final GlobalKey<NavigatorState> _settingsNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'settings');
+
+/// Path constants for navigation
+class AppRoutes {
+  const AppRoutes._();
+
+  // Root paths
+  static const String splash = '/';
+  static const String onboarding = '/onboarding';
+  static const String signIn = '/sign-in';
+  static const String signUp = '/sign-up';
+  static const String updateProfile = '/update-profile';
+
+  // Tab container base path
+  static const String tabContainer = '/app';
+
+  // Tab paths (3 tabs)
+  static String get homePath => '$tabContainer/home';
+  static String get profileMenuPath => '$tabContainer/profile';
+  static String get userPreferencesPath => '$tabContainer/settings';
 }

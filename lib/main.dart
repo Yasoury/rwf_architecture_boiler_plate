@@ -6,12 +6,12 @@ import 'package:domain_models/domain_models.dart';
 import 'package:firebase_api/firebase_api.dart';
 import 'package:flutter/material.dart';
 import 'package:forgot_my_password/forgot_my_password.dart';
+import 'package:go_router/go_router.dart';
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:monitoring/monitoring.dart';
 import 'package:on_boarding/on_boarding.dart';
 import 'package:user_preferences/user_preferences.dart';
 import 'package:profile_menu/profile_menu.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:rwf_architecture_boiler_plate/routing_table.dart';
 import 'package:sign_in/sign_in.dart';
 import 'package:sign_up/sign_up.dart';
@@ -89,22 +89,20 @@ class _MyAppState extends State<MyApp> {
     noSqlStorage: _keyValueStorage,
   );
 
-  late final RoutemasterDelegate _routerDelegate = RoutemasterDelegate(
-      observers: [
-        ScreenViewObserver(
-          analyticsService: _analyticsService,
-        )
-      ],
-      routesBuilder: (context) {
-        return RouteMap(
-          routes: buildRoutingTable(
-            routerDelegate: _routerDelegate,
-            userRepository: _userRepository,
-            remoteValueService: widget.remoteValueService,
-            dynamicLinkService: _dynamicLinkService,
-          ),
-        );
-      });
+  late final GoRouter _router = GoRouter(
+    navigatorKey: rootNavigatorKey,
+    initialLocation: AppRoutes.splash,
+    observers: [
+      ScreenViewObserver(
+        analyticsService: _analyticsService,
+      ),
+    ],
+    routes: buildRoutes(
+      userRepository: _userRepository,
+      remoteValueService: widget.remoteValueService,
+      dynamicLinkService: _dynamicLinkService,
+    ),
+  );
 
   late StreamSubscription _incomingDynamicLinksSubscription;
   final _lightTheme = LightWonderThemeData();
@@ -120,14 +118,14 @@ class _MyAppState extends State<MyApp> {
 
     _incomingDynamicLinksSubscription =
         _dynamicLinkService.onNewDynamicLinkPath().listen(
-              _routerDelegate.push,
+              _router.push,
             );
   }
 
   Future<void> _openInitialDynamicLinkIfAny() async {
     final path = await _dynamicLinkService.getInitialDynamicLinkPath();
     if (path != null) {
-      _routerDelegate.push(path);
+      _router.push(path);
     }
   }
 
@@ -174,8 +172,7 @@ class _MyAppState extends State<MyApp> {
                 OnBoardingLocalizations.delegate,
                 SplashLocalizations.delegate,
               ],
-              routeInformationParser: const RoutemasterParser(),
-              routerDelegate: _routerDelegate,
+              routerConfig: _router,
             ),
           );
         });
