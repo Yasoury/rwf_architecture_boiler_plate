@@ -127,6 +127,12 @@ abstract class SplashLocalizations {
   /// In en, this message translates to:
   /// **'Start Now'**
   String get startNow;
+
+  /// No description provided for @poweredBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Powered By: RWF : V. {version}'**
+  String poweredBy(String version);
 }
 
 class _SplashLocalizationsDelegate

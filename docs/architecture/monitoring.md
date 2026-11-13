@@ -43,9 +43,9 @@ class AnalyticsService {
 }
 ```
 
-## Screen View Tracking via NavigatorObserver
+## Screen View Tracking
 
-The `ScreenViewObserver` extends `NavigatorObserver` (not a router-specific observer) and is passed to `GoRouter(observers: [...])`. Screen names come from `GoRoute(name: 'screen-name')` in the routing table. See the Routing & Navigation doc for the full implementation.
+The `ScreenViewObserver` listens to the GoRouter delegate (so it also sees tab switches and screens inside tab branches) and is created in `main.dart` with the router. Screen names come from `GoRoute(name: 'screen-name')` in the routing table. See the Routing & Navigation doc for the full implementation.
 
 ## Error Reporting (Crashlytics)
 

@@ -1,8 +1,8 @@
-import 'package:domain_models/domain_models.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:forgot_my_password/forgot_my_password.dart';
 import 'package:go_router/go_router.dart';
-import 'package:monitoring/monitoring.dart';
 import 'package:on_boarding/on_boarding.dart';
 import 'package:profile_menu/profile_menu.dart';
 import 'package:sign_in/sign_in.dart';
@@ -11,52 +11,62 @@ import 'package:splash/splash.dart';
 import 'package:update_profile/update_profile.dart';
 import 'package:user_preferences/user_preferences.dart';
 import 'package:user_repository/user_repository.dart';
+import 'app_redirect.dart';
+import 'app_session.dart';
 import 'tab_container_screen.dart';
 
-List<RouteBase> buildRoutes({
-  required RemoteValueService remoteValueService,
-  required DynamicLinkService dynamicLinkService,
+/// Builds the app's router: the routing table guarded by [appRedirect].
+GoRouter buildRouter({
   required UserRepository userRepository,
+  required AppSession appSession,
+  String initialLocation = AppRoutes.splash,
+}) {
+  return GoRouter(
+    navigatorKey: rootNavigatorKey,
+    initialLocation: initialLocation,
+    // Re-runs the redirect once the session is ready, leaving the splash.
+    refreshListenable: appSession,
+    redirect: (context, state) => appRedirect(
+      location: state.uri,
+      isReady: appSession.isReady,
+      isSignedIn: appSession.isSignedIn,
+      hasPassedOnboarding: appSession.hasPassedOnboarding,
+    ),
+    // Unknown locations (e.g. a stale deep link) land on the home tab.
+    onException: (context, state, router) => router.go(AppRoutes.homePath),
+    routes: buildRoutes(
+      userRepository: userRepository,
+      appSession: appSession,
+    ),
+  );
+}
+
+List<RouteBase> buildRoutes({
+  required UserRepository userRepository,
+  required AppSession appSession,
   //TODOTip add the neassery Repository
 }) {
   return [
-    // Splash screen (root)
+    // Splash: shown while [AppSession] loads. The router's redirect moves on
+    // from here, so the screen needs no navigation callbacks.
     GoRoute(
       path: AppRoutes.splash,
-      name: 'Splash-Screen',
-      builder: (context, state) => PopScope(
-        canPop: false,
-        child: SplashScreen(
-          userRepository: userRepository,
-          navigateToOnBarding: () {
-            context.go(AppRoutes.onboarding);
-          },
-          navigateAuthIntro: () {
-            context.go(AppRoutes.signIn);
-          },
-          navigateToHomeScreen: () {
-            context.go(AppRoutes.homePath);
-          },
-        ),
-      ),
+      name: 'splash',
+      builder: (context, state) => const SplashScreen(),
     ),
 
-    // Onboarding
+    // Onboarding: the first-launch gate, also pushed from the settings tab.
     GoRoute(
       path: AppRoutes.onboarding,
       name: 'on-boarding',
-      builder: (context, state) => PopScope(
-        canPop: false,
-        child: OnBoardingScreen(
-          navigateToHome: () {
-            userRepository.upsertUserSettings(
-              UserSettings(
-                passedOnBoarding: true,
-              ),
-            );
-            context.go(AppRoutes.homePath);
-          },
-        ),
+      builder: (context, state) => OnBoardingScreen(
+        navigateToHome: () {
+          unawaited(appSession.completeOnboarding());
+          _popOrGo(
+            context,
+            continueLocationOf(state.uri) ?? AppRoutes.homePath,
+          );
+        },
       ),
     ),
 
@@ -64,38 +74,40 @@ List<RouteBase> buildRoutes({
     GoRoute(
       path: AppRoutes.signIn,
       name: 'sign-in',
-      builder: (context, state) => PopScope(
-        canPop: false,
-        child: Builder(
-          builder: (context) {
-            return SignInScreen(
-              userRepository: userRepository,
-              onSignInSuccess: () {
-                context.pop();
-              },
-              onSignUpTap: () {
-                context.push(AppRoutes.signUp);
-              },
-              onForgotMyPasswordTap: () {
-                showDialog(
-                  context: context,
-                  builder: (dialogContext) {
-                    return ForgotMyPasswordDialog(
-                      userRepository: userRepository,
-                      onCancelTap: () {
-                        Navigator.of(dialogContext).pop();
-                      },
-                      onEmailRequestSuccess: () {
-                        Navigator.of(dialogContext).pop();
-                      },
-                    );
+      builder: (context, state) {
+        void onSignedIn() => _popOrGo(
+              context,
+              continueLocationOf(state.uri) ?? AppRoutes.homePath,
+            );
+
+        return SignInScreen(
+          userRepository: userRepository,
+          onSignInSuccess: onSignedIn,
+          onSignUpTap: () async {
+            // Signing up signs the user in, so this screen is done as well.
+            final didSignUp = await context.push<bool>(AppRoutes.signUp);
+            if (didSignUp == true && context.mounted) {
+              onSignedIn();
+            }
+          },
+          onForgotMyPasswordTap: () {
+            showDialog(
+              context: context,
+              builder: (dialogContext) {
+                return ForgotMyPasswordDialog(
+                  userRepository: userRepository,
+                  onCancelTap: () {
+                    Navigator.of(dialogContext).pop();
+                  },
+                  onEmailRequestSuccess: () {
+                    Navigator.of(dialogContext).pop();
                   },
                 );
               },
             );
           },
-        ),
-      ),
+        );
+      },
     ),
 
     // Sign Up
@@ -105,7 +117,7 @@ List<RouteBase> buildRoutes({
       builder: (context, state) => SignUpScreen(
         userRepository: userRepository,
         onSignUpSuccess: () {
-          context.pop();
+          _popOrGo(context, AppRoutes.homePath, result: true);
         },
       ),
     ),
@@ -117,7 +129,7 @@ List<RouteBase> buildRoutes({
       builder: (context, state) => UpdateProfileScreen(
         userRepository: userRepository,
         onUpdateProfileSuccess: () {
-          context.pop();
+          _popOrGo(context, AppRoutes.profileMenuPath);
         },
       ),
     ),
@@ -126,10 +138,7 @@ List<RouteBase> buildRoutes({
     StatefulShellRoute.indexedStack(
       parentNavigatorKey: rootNavigatorKey,
       builder: (context, state, navigationShell) {
-        return PopScope(
-          canPop: false,
-          child: TabContainerScreen(navigationShell: navigationShell),
-        );
+        return TabContainerScreen(navigationShell: navigationShell);
       },
       branches: [
         // Home branch
@@ -185,11 +194,6 @@ List<RouteBase> buildRoutes({
                   context.push(AppRoutes.updateProfile);
                 },
                 onShowOnBoardingClicked: () {
-                  userRepository.upsertUserSettings(
-                    UserSettings(
-                      passedOnBoarding: false,
-                    ),
-                  );
                   context.push(AppRoutes.onboarding);
                 },
               ),
@@ -199,6 +203,20 @@ List<RouteBase> buildRoutes({
       ],
     ),
   ];
+}
+
+/// Closes the current screen, or replaces it with [fallbackLocation] when it
+/// is the only one on the stack (reached by a redirect or a deep link).
+void _popOrGo(
+  BuildContext context,
+  String fallbackLocation, {
+  Object? result,
+}) {
+  if (context.canPop()) {
+    context.pop(result);
+  } else {
+    context.go(fallbackLocation);
+  }
 }
 
 // Navigator keys for StatefulShellRoute branches

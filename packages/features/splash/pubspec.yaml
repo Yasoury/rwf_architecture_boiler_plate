@@ -7,9 +7,6 @@ environment:
 dependencies:
   component_library:
     path: ../../component_library
-  user_repository:
-    path: ../../user_repository
-
   flutter_bloc: ^9.1.0
   flutter:
     sdk: flutter

@@ -23,4 +23,9 @@ class SplashLocalizationsAr extends SplashLocalizations {
 
   @override
   String get startNow => 'بدء الان';
+
+  @override
+  String poweredBy(String version) {
+    return 'بواسطة: RWF : الإصدار $version';
+  }
 }

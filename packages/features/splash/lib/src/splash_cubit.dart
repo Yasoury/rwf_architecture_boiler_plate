@@ -1,74 +1,36 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:user_repository/user_repository.dart';
 
 part 'splash_state.dart';
 
+typedef AppVersionLoader = Future<String> Function();
+
 class SplashCubit extends Cubit<SplashState> {
-  final Size screenSize;
-
-  final UserRepository userRepository;
-
   SplashCubit({
-    required this.screenSize,
-    required this.userRepository,
-  }) : super(SplashInProgress()) {
-    initSplash();
+    @visibleForTesting AppVersionLoader? versionLoader,
+  })  : _loadVersion = versionLoader ?? _loadPlatformVersion,
+        super(const SplashState()) {
+    _init();
   }
 
-  void initSplash() {
-    Future.delayed(const Duration(milliseconds: 300), () {
-      emit(SplashLoaded(
-          size: screenSize.width / 1.5,
-          navigationStatus: NavigationStatus.idle));
-    });
-    _getCurrentVersionNo();
-    navigateToHome();
-  }
+  final AppVersionLoader _loadVersion;
 
-  Future<void> navigateToHome() async {
-    var userModel = await userRepository.getUser().first;
-    var userSettings = await userRepository.getUserSettings().first;
-
-    Future.delayed(const Duration(seconds: kDebugMode ? 0 : 5), () {
-      final bool isUserLoggedIn = userModel != null &&
-          userModel.accessToken != null &&
-          userModel.accessToken!.isNotEmpty;
-      final bool hasPassedOnBoarding = userSettings.passedOnBoarding ?? false;
-
-      NavigationStatus navigationStatus;
-
-      if (!hasPassedOnBoarding) {
-        // If user hasn't completed onboarding, always show onboarding first
-        navigationStatus = NavigationStatus.navigateToOnBarding;
-      } else if (!isUserLoggedIn) {
-        // If user completed onboarding but not logged in, show auth
-        navigationStatus = NavigationStatus.navigateAuthIntro;
-      } else {
-        // User is logged in and completed onboarding, go to home
-        navigationStatus = NavigationStatus.navigateToHomeScreen;
+  Future<void> _init() async {
+    try {
+      final version = await _loadVersion();
+      if (isClosed) {
+        return;
       }
-
-      emit(SplashLoaded(
-        size: state is SplashLoaded
-            ? (state as SplashLoaded).size
-            : screenSize.width / 1.5,
-        version: state is SplashLoaded ? (state as SplashLoaded).version : null,
-        navigationStatus: navigationStatus,
-      ));
-    });
+      emit(SplashState(version: version));
+    } catch (_) {
+      // The version label is decorative; the splash works without it.
+    }
   }
 
-  void _getCurrentVersionNo() {
-    PackageInfo.fromPlatform().then((packageInfo) {
-      emit(SplashLoaded(
-        size: state is SplashLoaded ? (state as SplashLoaded).size : null,
-        version: packageInfo.version,
-        navigationStatus: NavigationStatus.idle,
-      ));
-    });
+  static Future<String> _loadPlatformVersion() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    return packageInfo.version;
   }
 }

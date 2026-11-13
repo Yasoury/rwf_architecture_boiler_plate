@@ -7,6 +7,7 @@ import 'package:firebase_api/firebase_api.dart';
 import 'package:flutter/material.dart';
 import 'package:forgot_my_password/forgot_my_password.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rwf_architecture_boiler_plate/app_session.dart';
 import 'package:key_value_storage/key_value_storage.dart';
 import 'package:monitoring/monitoring.dart';
 import 'package:on_boarding/on_boarding.dart';
@@ -28,13 +29,19 @@ void main() async {
   runZonedGuarded<Future<void>>(() async {
     WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
+    // Keeps the native splash up until the first Flutter frame is worth
+    // showing; removed in [_MyAppState].
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
     await initializeMonitoringPackage();
 
     //for A/B testing
     final remoteValueService = RemoteValueService();
-    await remoteValueService.load();
 
-    await KeyValueStorage().initIsarDB();
+    await Future.wait([
+      remoteValueService.load(),
+      KeyValueStorage().initIsarDB(),
+    ]);
 
     FlutterError.onError = errorReportingService.recordFlutterError;
 
@@ -47,8 +54,6 @@ void main() async {
         );
       }).sendPort,
     );
-
-    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
     runApp(
       MyApp(
@@ -89,20 +94,19 @@ class _MyAppState extends State<MyApp> {
     noSqlStorage: _keyValueStorage,
   );
 
-  late final GoRouter _router = GoRouter(
-    navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.splash,
-    observers: [
-      ScreenViewObserver(
-        analyticsService: _analyticsService,
-      ),
-    ],
-    routes: buildRoutes(
-      userRepository: _userRepository,
-      remoteValueService: widget.remoteValueService,
-      dynamicLinkService: _dynamicLinkService,
-    ),
+  late final AppSession _appSession = AppSession(
+    userRepository: _userRepository,
   );
+
+  late final GoRouter _router = buildRouter(
+    userRepository: _userRepository,
+    appSession: _appSession,
+  );
+
+  late final ScreenViewObserver _screenViewObserver;
+
+  late final Stream<UserSettings> _userSettingsStream =
+      _userRepository.getUserSettings();
 
   late StreamSubscription _incomingDynamicLinksSubscription;
   final _lightTheme = LightWonderThemeData();
@@ -112,26 +116,54 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    FlutterNativeSplash.remove();
+    _screenViewObserver = ScreenViewObserver(
+      analyticsService: _analyticsService,
+      router: _router,
+    );
+
+    _removeNativeSplashOnceSettingsLoad();
 
     _openInitialDynamicLinkIfAny();
 
     _incomingDynamicLinksSubscription =
         _dynamicLinkService.onNewDynamicLinkPath().listen(
-              _router.push,
+              _openDynamicLink,
             );
+  }
+
+  /// Holds the native splash until the stored locale and theme are known, so
+  /// the first Flutter frame doesn't flash the defaults.
+  Future<void> _removeNativeSplashOnceSettingsLoad() async {
+    try {
+      await _userRepository.getUserSettings().first;
+    } finally {
+      FlutterNativeSplash.remove();
+    }
   }
 
   Future<void> _openInitialDynamicLinkIfAny() async {
     final path = await _dynamicLinkService.getInitialDynamicLinkPath();
-    if (path != null) {
+    if (path != null && mounted) {
+      _openDynamicLink(path);
+    }
+  }
+
+  void _openDynamicLink(String path) {
+    if (_appSession.isReady) {
       _router.push(path);
+    } else {
+      // Still on the splash: `go` lets the redirect park the link and resume
+      // it once startup finishes, instead of stacking it on the splash.
+      _router.go(path);
     }
   }
 
   @override
   void dispose() {
     _incomingDynamicLinksSubscription.cancel();
+    _screenViewObserver.dispose();
+    _router.dispose();
+    _appSession.dispose();
     super.dispose();
   }
 
@@ -139,7 +171,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<UserSettings>(
-        stream: _userRepository.getUserSettings(),
+        stream: _userSettingsStream,
         builder: (context, userSettingsStream) {
           final darkModePreference =
               userSettingsStream.data?.darkModePreference;

@@ -23,4 +23,9 @@ class SplashLocalizationsEn extends SplashLocalizations {
 
   @override
   String get startNow => 'Start Now';
+
+  @override
+  String poweredBy(String version) {
+    return 'Powered By: RWF : V. $version';
+  }
 }

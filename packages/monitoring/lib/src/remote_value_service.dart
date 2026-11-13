@@ -11,11 +11,19 @@ class RemoteValueService {
 
   final FirebaseRemoteConfig _remoteConfig;
 
-  Future<void> load() async {
+  /// Never throws for a failed or slow fetch: startup awaits this, and the
+  /// defaults (or the last activated values) are good enough to run with.
+  Future<void> load({
+    Duration timeout = const Duration(seconds: 3),
+  }) async {
     await _remoteConfig.setDefaults(<String, dynamic>{
       'grid_quotes_view_enabled': true,
     });
-    await _remoteConfig.fetchAndActivate();
+    try {
+      await _remoteConfig.fetchAndActivate().timeout(timeout);
+    } catch (_) {
+      // Offline, throttled or timed out.
+    }
   }
 
   bool get isGridQuotesViewEnabled => _remoteConfig.getBool(
